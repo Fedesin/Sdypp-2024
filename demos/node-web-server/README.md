@@ -29,3 +29,9 @@ Ahora, si desde el navegador vas a la URL http://localhost:8080/api/user, deber√
 	"age": 23
 }
 ```
+
+4. Detener el contenedor
+
+```bash
+docker container stop node-web-server
+```
