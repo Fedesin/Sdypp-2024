@@ -6,7 +6,7 @@ on:
             - main
 
 jobs:
-    nombre-de-la-action:
+    hello-world-job:
         runs-on: ubuntu-latest
         steps:
             - name: Run Commands
