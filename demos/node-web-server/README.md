@@ -17,7 +17,7 @@ docker build -t node-web-server .
 3. Levantar el contenedor
 
 ```bash
-docker run --name node-web-server -p 8080:3000 node-web-server
+docker run --name node-web-server -p 8080:3000 -d node-web-server
 ```
 
 Ahora, si desde el navegador vas a la URL http://localhost:8080/api/user, deberías ver la siguiente respuesta:
