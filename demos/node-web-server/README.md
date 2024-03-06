@@ -1,5 +1,7 @@
 # Node web server demo
 
+Esta es un mini proyecto de prueba para testear como se dockeriza un web server implementado en Node.js + Express
+
 ## Instrucciones
 
 1. Clonar el .env.template, renombrar a .env y configurar las variables
