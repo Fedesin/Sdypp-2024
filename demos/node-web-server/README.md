@@ -1,18 +1,31 @@
 # Node web server demo
 
-## Requerimientos
-
--   Node.js (v18.17.1 o superior)
--   NPM (v9.6.7 o superior)
+## Instrucciones
 
 1. Clonar el .env.template, renombrar a .env y configurar las variables
 
 ```
-PORT =
+PORT = 3000
 ```
 
-2. Levantar el servidor
+2. Hacer un build de la imagen de docker
 
 ```bash
-npm run dev
+docker build -t node-web-server .
+```
+
+3. Levantar el contenedor
+
+```bash
+docker run --name node-web-server -p 8080:3000 node-web-server
+```
+
+Ahora, si desde el navegador vas a la URL http://localhost:8080/api/user, deberías ver la siguiente respuesta:
+
+```json
+{
+	"name": "Usuario 1",
+	"email": "asdasd@asdasd.com",
+	"age": 23
+}
 ```
