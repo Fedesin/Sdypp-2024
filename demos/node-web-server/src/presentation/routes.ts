@@ -4,4 +4,4 @@ import { UserController } from './controllers/user.controller';
 export const router = Router();
 const userController = new UserController();
 
-router.get('/', userController.getUser);
+router.get('/api/user', userController.getUser);
