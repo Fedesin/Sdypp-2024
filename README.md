@@ -1,4 +1,4 @@
-# Sistemas distribuidos y programación paralela (2023) - Grupo 1 
+# Sistemas distribuidos y programación paralela (2024) - Grupo 1 
 
 #### Este repositorio contiene los trabajos practicos que se iran entregando a lo largo de la cursada de la materia 📚.
 
