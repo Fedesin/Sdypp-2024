@@ -1,13 +1,7 @@
 # Documentación
-Creamos la carpeta con mkdir de keys, luego
-ejecutamos el siguiente comando con los valores correspondientes al usuario 
-ssh-keygen -t rsa -b 4096 -C "${USERNAME}@example.com" -f ./keys/id_rsa_example -q -N ""
-Luego tiramos el siguiente comando para actualizar la vm de gcloud
-gcloud compute project-info add-metadata --metadata "ssh-keys=${USERNAME}:$(cat ./keys/id_rsa_example.pub)"
-una vez realizado esto ya podriamos crear la maquina y ejecutar
-los comandos con el script init.sh o ingresar via ssh y descargar los paquetes manualmente
-el comando ssh para ingresar a la vm es el siguiente con los datos correspondientes.
-ssh -i ./keys/id_rsa_example sdyppg1@35.227.40.69
+Creamos la carpeta /keys, luego ejecutamos el comando para crear las claves SSH del usuario. Luego, actualizamos el proyecto GCP con las claves generadas anteriormente.
+
+Una vez realizado esto ya podriamos crear la maquina incluyendo el script init.sh o ingresar via SSH y descargar los paquetes manualmente.
 
 ## Objetivo: Crear VM en GCP y poner a correr web-server en puerto 3000
 
