@@ -1,5 +1,5 @@
 # Variables
-USERNAME="johndoe"
+USERNAME="sdyppg1"
 REGION=us-east1
 ZONE=us-east1-b
 
@@ -21,6 +21,7 @@ ssh-keygen -t rsa -b 4096 -C "${USERNAME}@example.com" -f ./keys/id_rsa_example 
 gcloud compute project-info add-metadata --metadata "ssh-keys=${USERNAME}:$(cat ./keys/id_rsa_example.pub)"
 
 #* Creates the VM instance
+#--metadata-from-file user-data=./init.sh \ este script ejecuta los comandos al iniciar la maquina de instalar los paquetes.
 gcloud compute instances create web-server \
     --zone="$ZONE" \
     --machine-type=e2-micro \
