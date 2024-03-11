@@ -17,25 +17,20 @@ REGION=us-east1
 ZONE=us-east1-b
 
 # Cree una regla de firewall para permitir el tráfico en el puerto 80 (HTTP) / 22 (SSH) / 3000 (nodo-servidor web)
-
 gcloud compute firewall-rules create allow-http --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0
 gcloud compute firewall-rules create allow-ssh --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:22 --source-ranges=0.0.0.0/0
 gcloud compute firewall-rules create allow-3000 --action=ALLOW --rules=tcp:3000 --source-ranges=0.0.0.0/0
 
 # Crea una direccion IP publica
-
 gcloud compute addresses create instance-public-ip --region=$REGION
 
 # Genera un par de claves SSH
-
 ssh-keygen -t rsa -b 4096 -C "${USERNAME}@example.com" -f ./keys/id_rsa_example -q -N ""
 
 # Agrega nuestra clave publica a la metadata del proyecto GCP
-
 gcloud compute project-info add-metadata --metadata "ssh-keys=${USERNAME}:$(cat ./keys/id_rsa_example.pub)"
 
 # Crea la instancia en GCP
-
 gcloud compute instances create web-server \
  --zone="$ZONE" \
     --machine-type=e2-micro \
@@ -48,11 +43,9 @@ gcloud compute instances create web-server \
  --address=instance-public-ip
 
 # El siguiente comando es el que elimina la instancia GCP
-
 gcloud compute instances delete web-server --zone=us-east1-b
 
 # El siguiente comando nos permite conectarnos mediante SSH a la VM.
-
 ssh -i .keys/id_rsa_example johndoe@<IP_PUBLICA_VM>
 ```
 
