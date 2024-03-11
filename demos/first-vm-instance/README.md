@@ -1,9 +1,12 @@
 # Documentación
-Creamos la carpeta /keys, luego ejecutamos el comando para crear las claves SSH del usuario. Luego, actualizamos el proyecto GCP con las claves generadas anteriormente.
-
-Una vez realizado esto ya podriamos crear la maquina incluyendo el script init.sh o ingresar via SSH y descargar los paquetes manualmente.
 
 ## Objetivo: Crear VM en GCP y poner a correr web-server en puerto 3000
+
+Creamos la carpeta `keys`, ejecutamos el comando para crear las claves SSH del usuario y actualizamos el proyecto GCP para validar las claves generadas anteriormente.
+
+Una vez realizado esto, ya podriamos crear la maquina virtual y para lo cuál tenemos dos opciones:
+- Incluir un script de inicialización (init.sh) donde se ejecuten los comandos para la instalación de paquetes
+- Ingresar via SSH y descargar los paquetes manualmente una vez que la máquina ya se encuentra activa.
 
 ### 1. Script de inicialización de la instancia en GCP.
 
