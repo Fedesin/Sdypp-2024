@@ -42,5 +42,4 @@ Este es un simple programa cliente-servidor en Node.js que utiliza sockets TCP p
 
 ## Notas
 
-- Este programa está diseñado para ser un ejemplo educativo simple y puede no ser adecuado para entornos de producción sin modificaciones adicionales.
 - Asegúrate de tener los puertos necesarios abiertos en tu firewall para permitir la comunicación.
