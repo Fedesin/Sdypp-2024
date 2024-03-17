@@ -1,7 +1,7 @@
 const net = require('net');
 const http = require('http');
 
-const PORT = 3000;
+const PORT = 3001;
 
 const server = net.createServer((socket) => {
 	socket.on('data', (data) => {
@@ -39,4 +39,4 @@ const statusServer = http.createServer((req, res) => {
 	}
 });
 
-statusServer.listen(8080);
+statusServer.listen(8081);

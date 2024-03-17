@@ -23,13 +23,13 @@ Elabore un código de servidor TCP para B que espere el saludo de A y lo respond
 
 ### Servidor (`server.js`)
 
--   Escucha conexiones entrantes en el puerto `3000`.
+-   Escucha conexiones entrantes en el puerto `3001`.
 -   Repite cualquier mensaje recibido del cliente.
 -   Implementa un endpoint `getStatus` para verificar el estado del servidor.
 
 ### Cliente (`client.js`)
 
--   Conecta al servidor que escucha en el puerto `3000`.
+-   Conecta al servidor que escucha en el puerto `3001`.
 -   Espera la entrada del usuario desde la consola y envía los mensajes al servidor.
 -   Muestra los mensajes recibidos del servidor en la consola.
 

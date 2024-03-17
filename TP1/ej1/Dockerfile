@@ -10,5 +10,5 @@ COPY "server.js" "server.js"
 CMD [ "node", "server.js" ]
 
 # Exposing server port
-EXPOSE 3000
-EXPOSE 8080
+EXPOSE 3001
+EXPOSE 8081

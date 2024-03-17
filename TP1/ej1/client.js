@@ -1,8 +1,8 @@
 const net = require('net');
 
 const options = {
-	port: 3000,
-	host: '0.0.0.0',
+	port: 3001,
+	host: 'localhost',
 };
 
 const client = net.createConnection(options, () => {
