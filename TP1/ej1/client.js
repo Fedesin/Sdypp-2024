@@ -1,46 +1,30 @@
 const net = require('net');
 
-const client = new net.Socket();
+const options = {
+	port: 3000,
+	host: '0.0.0.0',
+};
 
+const client = net.createConnection(options, () => {
+	console.log('Conectado al servidor');
+	waitForUserInput();
+});
 
-// Función para verificar el estado del servidor
-function checkServerStatus() {
-    const options = {
-        port: 3000,
-        host: 'localhost'
-    };
+client.on('close', () => {
+	console.log('Conexión cerrada');
+});
 
-    const req = net.connect(options, () => {
-        console.log('El servidor está encendido');
-        req.end();
-    });
-
-    req.on('error', (err) => {
-        console.log('El servidor está apagado');
-    });
-}
-
-// Verificar el estado del servidor antes de hacer alguna operación
-checkServerStatus();
-
-// Lógica para enviar un mensaje al servidor
-client.connect(3000, 'localhost', () => {
-    console.log('Conectado al servidor');
-    waitForUserInput();
+client.on('data', (data) => {
+	console.log(`\n Respuesta del servidor: ${data.toString()} \n`);
+	process.stdout.write('Ingrese otro mensaje para enviar al servidor: ');
 });
 
 // Función para esperar la entrada del usuario y enviarla al servidor
 function waitForUserInput() {
-    process.stdout.write('Ingrese un mensaje para enviar al servidor: ');
+	process.stdout.write('Ingrese un mensaje para enviar al servidor: ');
 
-    process.stdin.on('data', (data) => {
-        const message = data.toString().trim();
-        client.write(message);
-
-        process.stdout.write('Ingrese otro mensaje para enviar al servidor o presione CTRL+C para salir: ');
-    });
+	process.stdin.on('data', (data) => {
+		const message = data.toString().trim();
+		client.write(message);
+	});
 }
-
-client.on('close', () => {
-    console.log('Conexión cerrada');
-});
