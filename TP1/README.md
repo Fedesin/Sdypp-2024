@@ -1,6 +1,6 @@
 # Trabajo práctico 1
 
-## Conceptos básicos para la construcción de Sistemas Distribuidos.
+## Conceptos básicos para la construcción de Sistemas Distribuidos
 
 ### Indice
 
