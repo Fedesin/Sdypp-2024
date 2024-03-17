@@ -1,10 +1,16 @@
 const net = require('net');
 
-const server = net.createServer((socket) => {
-    socket.on('data', (data) => {
-        console.log('Cliente conectado');
-        console.log('Mensaje recibido del cliente:', data.toString());
-        socket.write(data);
+const server = net.createServer(socket => {
+    console.log('Cliente conectado');
+
+    socket.on('data', data => {
+        const message = data.toString().trim();
+        if (message === 'getStatus') {
+            // Responder solo con el estado
+            socket.write('Servidor está vivo');
+        } else {
+            console.log('Datos recibidos desde el cliente:', message);
+        }
     });
 
     socket.on('end', () => {
@@ -12,17 +18,7 @@ const server = net.createServer((socket) => {
     });
 });
 
-server.listen(3000, () => {
-    console.log('Servidor escuchando en el puerto 3000');
-});
-
-// Endpoint getStatus
-server.on('request', (req, res) => {
-    if (req.url === '/getStatus') {
-        res.writeHead(200);
-        res.end();
-    } else {
-        res.writeHead(404);
-        res.end('Endpoint no encontrado');
-    }
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Servidor TCP escuchando en el puerto ${PORT}`);
 });
