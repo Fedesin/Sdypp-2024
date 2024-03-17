@@ -11,7 +11,16 @@ const client = net.createConnection(options, () => {
 });
 
 client.on('close', () => {
-	console.log('Conexión cerrada');
+console.log('Conexión cerrada, intentando reconectar...');
+    // Intentar reconectar después de 1 segundo
+    setTimeout(() => {
+        client = net.createConnection(options, () => {
+            console.log('Conectado al servidor');
+            // Envía el saludo nuevamente al reconectar
+            client.write("Hola, servidor!");
+            waitForUserInput();
+        });
+    }, 1000);
 });
 
 client.on('data', (data) => {

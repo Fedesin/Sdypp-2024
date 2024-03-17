@@ -13,6 +13,10 @@ const server = net.createServer((socket) => {
 			})
 		);
 	});
+	// Manejo del evento de error en el socket del cliente
+    socket.on('error', (err) => {
+        console.error('Error en el socket del cliente:', err.message);
+    });
 });
 
 server.listen(PORT, () => {
