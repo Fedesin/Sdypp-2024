@@ -1,6 +1,6 @@
-# Cliente-Servidor TCP en Node.js
+# HIT 1
 
-Este es un simple programa cliente-servidor en Node.js que utiliza sockets TCP para la comunicación. El servidor recibe un mensaje del cliente y lo repite de vuelta al cliente.
+Elabore un código de servidor TCP para B que espere el saludo de A y lo responda. Luego, elabore un código de cliente TCP para A que se conecte con B y lo salude.
 
 ## Uso
 
