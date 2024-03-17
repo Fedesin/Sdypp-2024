@@ -1,6 +1,8 @@
 const net = require('net');
 const http = require('http');
 
+const PORT = 3000;
+
 const server = net.createServer((socket) => {
 	socket.on('data', (data) => {
 		console.log('Mensaje recibido del cliente:', data.toString());
@@ -13,8 +15,8 @@ const server = net.createServer((socket) => {
 	});
 });
 
-server.listen(3000, () => {
-	console.log('Servidor escuchando en el puerto 3000');
+server.listen(PORT, () => {
+	console.log(`Servidor TCP escuchando en el puerto ${PORT}`);
 });
 
 server.on('connection', (req, res) => {
