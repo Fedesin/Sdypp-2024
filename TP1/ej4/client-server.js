@@ -63,11 +63,10 @@ function connectToServer() {
 	client.on('error', (error) => {
 		console.error('Error en la conexión:', error.message);
 		client.destroy();
-		setTimeout(connectToServer, 5000); // Intentar reconexión después de 10 segundos
 	});
 }
 
-connectToServer();
+setTimeout(connectToServer, 10000);
 
 const statusServer = http.createServer((req, res) => {
 	if (req.url === '/status') {
