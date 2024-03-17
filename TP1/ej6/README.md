@@ -38,6 +38,7 @@ Es decir, el objetivo de este HIT es incorporar un nuevo tipo de nodo (D) que ac
 -   Escucha conexiones entrantes en el puerto `3006`.
 -   Registra a los nodos que se conectan a el
 -   Cuando un nodo se registra, le entrega información necesaria para conectarse al resto de nodos que ya se encuentran registrados
+-   Implementa un endpoint `/status` para verificar el estado del servidor.
 
 ### Nodo tipo C (`server.js`)
 
