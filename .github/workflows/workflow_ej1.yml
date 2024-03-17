@@ -1,0 +1,16 @@
+name: Workflow for HIT 1
+
+on:
+    push:
+        paths:
+            - 'TP1/ej1/**'
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run Commands
+              run: |
+                  echo "👋🏼 Hello world!"
+                  echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+                  echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+                  echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
