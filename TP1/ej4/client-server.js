@@ -46,7 +46,9 @@ function connectToServer() {
 
 	client.connect(remoteAddress, () => {
 		console.log('Conexión establecida con servidor remoto.');
-		client.write(`Hola, soy un cliente tipo C.`);
+		client.write(
+			`Hola, soy un cliente tipo C. Conectado desde ${remoteAddress.host}:${remoteAddress.port}`
+		);
 	});
 
 	client.on('data', (data) => {
