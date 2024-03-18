@@ -101,6 +101,7 @@ function connectToNode(node) {
 	client.on('data', (data) => {
 		console.log('Mensaje recibido desde el nodo ', node);
 		console.log(data.toString());
+		client.end()
 	});
 
 	client.on('error', (error) => {

@@ -3,7 +3,7 @@ const http = require('http');
 
 const PORT = 3006;
 
-const nodes = [];
+let nodes = [];
 
 const server = net.createServer((socket) => {
 	socket.on('data', (data) => {
@@ -33,7 +33,7 @@ const server = net.createServer((socket) => {
 			});
 
 			nodes.push({ host: params.host, port: params.port });
-
+			
 			socket.on('error', (err) => {
 				console.log(err)
 			})
