@@ -59,14 +59,21 @@ function connectToContactServer() {
 
 	client.on('data', (data) => {
 		console.log('Mensaje recibido desde el servidor:', data.toString());
-		const params = JSON.parse(data.toString());
-		if (params.nodes.length > 0) {
-			console.log('Enviando saludos a los nodos...');
-			handleHandshakes(params.nodes);
-		} else {
-			console.log(
-				'Este es el primer nodo registrado en el contact server!'
-			);
+		const { status, message, nodes } = JSON.parse(data.toString());
+		if (status === 'OK') {
+			console.log(message);
+			if (params.nodes.length > 0) {
+				console.log('Enviando saludos a los nodos...');
+				handleHandshakes(nodes);
+			} else {
+				console.log(
+					'Este es el primer nodo registrado en el servidor de contactos!'
+				);
+			}
+		}
+
+		if (status === 'ERROR') {
+			console.log(message);
 		}
 	});
 
