@@ -70,7 +70,7 @@ function connectToContactServer() {
 		}
 	});
 
-	client.on('error', (error) => {
+	client.on('error', () => {
 		console.log(
 			'Error en la conexión con el servidor de contactos. Intentando reconectar...'
 		);
@@ -104,7 +104,6 @@ function connectToNode(node) {
 
 	client.on('error', (error) => {
 		console.error('Error en la conexión con nodo ', node);
-		console.error('Error Message: ', error.message);
 	});
 }
 
