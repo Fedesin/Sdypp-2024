@@ -3,12 +3,14 @@ const http = require('http');
 const { register } = require('module');
 
 const PORT = 3007;
-const WINDOW_SIZE = 10000;
+const WINDOW_SIZE = 60000;
 
-const nodes = [];
-const socketNodes = [];
-const waitingNodes = [];
+const nodes = []; // Nodos activos
+const socketNodes = []; // Nodos + socket para informarles cuando están activos
+const waitingNodes = []; // Nodos en espera
 
+
+// Al principio, cada nodo se registra en la lista de espera para la siguiente ventana
 const server = net.createServer((socket) => {
 	socket.on('data', (data) => {
 		console.log('Mensaje recibido del cliente:', data.toString());
@@ -68,6 +70,8 @@ const server = net.createServer((socket) => {
 	});
 });
 
+
+// Registro de nodos en lista de espera
 function registerNode(params, socket) 
 {
 	waitingNodes.map((node) => {
@@ -104,6 +108,8 @@ const statusServer = http.createServer((req, res) => {
 
 statusServer.listen(8087);
 
+// Cada 60 segundos se cambia la lista de nodos activos por la lista de nodos en espera
+// La lista de nodos en espera se vacía
 setInterval(() => {
 				
 	console.log('');
