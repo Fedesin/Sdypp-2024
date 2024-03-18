@@ -5,14 +5,13 @@ const http = require('http');
 const args = process.argv.slice(2);
 if (args.length !== 2) {
 	console.log(
-		'Uso: node program.js <ip_cliente> <puerto_cliente> '
+		'Uso: node program.js <ip_servidor_registro> <puerto_servidor_registro> '
 	);
 	process.exit(1);
 }
 
-const serverAddress = { host: "localhost", port: 0 };
+const serverAddress = { host: 'localhost', port: 0 };
 const remoteAddress = { host: args[0], port: parseInt(args[1]) };
-//const httpPort = args[4];
 
 // Crear servidor
 const server = net.createServer((socket) => {
@@ -36,7 +35,6 @@ const server = net.createServer((socket) => {
 	});
 });
 
-
 server.listen(0, serverAddress.host, () => {
 	serverAddress.port = server.address().port;
 	console.log(
@@ -44,17 +42,17 @@ server.listen(0, serverAddress.host, () => {
 	);
 });
 
-
 // Crear cliente y conectarse a servidor de contactos
 function connectToContactServer() {
-
 	const client = new net.Socket();
 
 	client.connect(remoteAddress, () => {
-		console.log('Conexión establecida con servidor el servidor de contactos.');
+		console.log(
+			'Conexión establecida con servidor el servidor de contactos.'
+		);
 		const message = JSON.stringify({
 			port: serverAddress.port,
-			host: serverAddress.host
+			host: serverAddress.host,
 		});
 		client.write(message);
 	});
@@ -66,7 +64,9 @@ function connectToContactServer() {
 			console.log('Enviando saludos a los nodos...');
 			handleHandshakes(params.nodes);
 		} else {
-			console.log('Este es el primer nodo registrado en el contact server!')
+			console.log(
+				'Este es el primer nodo registrado en el contact server!'
+			);
 		}
 	});
 
@@ -79,12 +79,11 @@ function connectToContactServer() {
 	});
 }
 
-
 // Envío de saludo a lista de nodos
 function handleHandshakes(nodes) {
-	nodes.map(node => {
-		connectToNode(node)
-	})
+	nodes.map((node) => {
+		connectToNode(node);
+	});
 }
 
 // Crear cliente y conectarse al otro nodo
@@ -100,8 +99,8 @@ function connectToNode(node) {
 	});
 
 	client.on('data', (data) => {
-		console.log('Mensaje recibido desde el nodo ',node);
-		console.log(data.toString())
+		console.log('Mensaje recibido desde el nodo ', node);
+		console.log(data.toString());
 	});
 
 	client.on('error', (error) => {
@@ -109,8 +108,6 @@ function connectToNode(node) {
 		console.error('Error Message: ', error.message);
 	});
 }
-
-connectToContactServer()
 
 const statusServer = http.createServer((req, res) => {
 	if (req.url === '/status') {
@@ -129,3 +126,6 @@ const statusServer = http.createServer((req, res) => {
 });
 
 statusServer.listen(0);
+
+setTimeout(connectToContactServer, 5000);
+
