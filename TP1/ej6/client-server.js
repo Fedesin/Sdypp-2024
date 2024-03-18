@@ -65,7 +65,6 @@ function connectToContactServer() {
 		if (params.nodes.length > 0) {
 			console.log('Enviando saludos a los nodos...');
 			handleHandshakes(params.nodes);
-			console.log('Saludos enviados :)');
 		} else {
 			console.log('Este es el primer nodo registrado en el contact server!')
 		}
@@ -88,17 +87,13 @@ function connectToContactServer() {
 // Envío de saludo a lista de nodos
 function handleHandshakes(nodes) {
 	nodes.map(node => {
-		console.log('Intentando conexión a nodo ', node)
-		console.log('...')
 		connectToNode(node)
 	})
-	console.log('Saludos enviados a todos los nodos registrados :)')
 }
 
 // Crear cliente y conectarse al otro nodo
 function connectToNode(node) {
 	const client = new net.Socket();
-
 	client.connect(node, () => {
 		console.log('Conexión establecida con nodo ', node);
 		const message = JSON.stringify({
