@@ -10,12 +10,20 @@ const server = net.createServer((socket) => {
 		console.log('Mensaje recibido del cliente:', data.toString());
 		try {
 			const params = JSON.parse(data.toString());
-			console.log(params);
+
 			if (
 				!params.hasOwnProperty('port') ||
 				!params.hasOwnProperty('host')
 			) {
 				throw new Error('Parámetros de registro inválidos');
+			}
+
+			if (Number.isNaN(params.port)) {
+				throw new Error('El puerto debe ser un número');
+			}
+
+			if (params.host.length === 0) {
+				throw new Error('El host no puede estar vacío');
 			}
 
 			socket.write(
@@ -35,8 +43,23 @@ const server = net.createServer((socket) => {
 			nodes.push({ host: params.host, port: params.port });
 			
 			socket.on('error', (err) => {
-				console.log(err)
-			})
+				console.log(err);
+			});
+
+			socket.on('close', () => {
+				nodes.forEach((node) => {
+					try {
+						const client = new net.Socket();
+						client.connect(port, host, () => {
+							client.write('ping');
+						});
+					} catch (error) {
+						console.log(node, nodes);
+						nodes.splice(nodes.indexOf(node), 1);
+					}
+				});
+				console.log('Cliente desconectado.');
+			});
 		} catch (error) {
 			socket.write(
 				JSON.stringify({
