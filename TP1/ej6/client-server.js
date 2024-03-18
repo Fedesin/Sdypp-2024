@@ -61,6 +61,14 @@ function connectToContactServer() {
 
 	client.on('data', (data) => {
 		console.log('Mensaje recibido desde el servidor:', data.toString());
+		const params = JSON.parse(data.toString());
+		if (params.nodes.length > 0) {
+			console.log('Enviando saludos a los nodos...');
+			handleHandshakes(params.nodes);
+			console.log('Saludos enviados :)');
+		} else {
+			console.log('Este es el primer nodo registrado en el contact server!')
+		}
 	});
 
 	client.on('close', () => {
@@ -77,28 +85,39 @@ function connectToContactServer() {
 }
 
 
+// Envío de saludo a lista de nodos
+function handleHandshakes(nodes) {
+	nodes.map(node => {
+		console.log('Intentando conexión a nodo ', node)
+		console.log('...')
+		connectToNode(node)
+	})
+	console.log('Saludos enviados a todos los nodos registrados :)')
+}
+
 // Crear cliente y conectarse al otro nodo
-function connectToServer() {
+function connectToNode(node) {
 	const client = new net.Socket();
 
-	client.connect(remoteAddress, () => {
-		console.log('Conexión establecida con servidor remoto.');
+	client.connect(node, () => {
+		console.log('Conexión establecida con nodo ', node);
 		const message = JSON.stringify({
 			sended: new Date().toISOString(),
-			message: `Hola, soy un cliente tipo C. Conectado desde ${remoteAddress.host}:${remoteAddress.port}`,
+			message: `Hola, soy un cliente tipo C. Conectado desde ${serverAddress.host}:${serverAddress.port}`,
 		});
 		client.write(message);
 	});
 
 	client.on('data', (data) => {
-		console.log('Mensaje recibido desde el servidor:', data.toString());
+		console.log('Mensaje recibido desde el nodo ',node);
+		console.log(data.toString())
 	});
 
 	client.on('close', () => {
 		console.log(
 			'Error en la conexión con el servidor. Intentando reconectar...'
 		);
-		setTimeout(connectToServer, 10000); // Intentar reconexión después de 10 segundos
+		setTimeout(connectToNode(node), 10000); // Intentar reconexión después de 10 segundos
 	});
 
 	client.on('error', (error) => {
@@ -125,4 +144,4 @@ const statusServer = http.createServer((req, res) => {
 	}
 });
 
-statusServer.listen(8006);
+statusServer.listen(0);

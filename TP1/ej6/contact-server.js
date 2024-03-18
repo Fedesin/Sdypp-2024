@@ -22,7 +22,7 @@ const server = net.createServer((socket) => {
 				JSON.stringify({
 					status: 'OK',
 					message: 'Nodo registrado con éxito',
-					nodes,
+					nodes: nodes,
 				})
 			);
 
