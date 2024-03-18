@@ -3,7 +3,7 @@ const http = require('http');
 const { register } = require('module');
 
 const PORT = 3007;
-const WINDOW_SIZE = 60000;
+const WINDOW_SIZE = 5000;
 
 const nodes = []; // Nodos activos
 const socketNodes = []; // Nodos + socket para informarles cuando están activos
@@ -13,7 +13,9 @@ const waitingNodes = []; // Nodos en espera
 // Al principio, cada nodo se registra en la lista de espera para la siguiente ventana
 const server = net.createServer((socket) => {
 	socket.on('data', (data) => {
+
 		console.log('Mensaje recibido del cliente:', data.toString());
+
 		try {
 			const params = JSON.parse(data.toString());
 
@@ -87,7 +89,7 @@ server.listen(PORT, () => {
 });
 
 server.on('connection', (req, res) => {
-	console.log('Cliente conectado');
+	console.log('Cliente Registrado para la siguiente ventana');
 });
 
 const statusServer = http.createServer((req, res) => {
@@ -135,7 +137,9 @@ setInterval(() => {
 			JSON.stringify({
 				status: 'OK',
 				message: 'Es tiempo de saludar!!',
-				nodes: nodes,
+				// Envía todos los nodos menos el mismo a quien se lo envía
+				// ( No funciona :( )
+				nodes: nodes.filter((currNode) => currNode != {port:node.port, host:node.host}),
 			})
 		);
 	})
