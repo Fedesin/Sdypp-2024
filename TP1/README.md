@@ -12,3 +12,8 @@
 | 04  | [HIT 4](https://github.com/Fedesin/Sdypp-2024/tree/main/TP1/ej4)<br> | Agregar despues |
 | 05  | [HIT 5](https://github.com/Fedesin/Sdypp-2024/tree/main/TP1/ej5)<br> | Agregar despues |
 | 06  | [HIT 6](https://github.com/Fedesin/Sdypp-2024/tree/main/TP1/ej6)<br> | Agregar despues |
+
+### TODO
+
+- [ ] Agregar registro de logs en todos los ejercicios
+- [ ] Definir los status endpoints para cada uno de los servicios
