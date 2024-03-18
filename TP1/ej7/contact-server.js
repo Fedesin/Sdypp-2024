@@ -6,7 +6,7 @@ const PORT = 3007;
 const WINDOW_SIZE = 10000;
 
 const nodes = [];
-const nodesData = [];
+const socketNodes = [];
 const waitingNodes = [];
 
 const server = net.createServer((socket) => {
@@ -111,20 +111,20 @@ setInterval(() => {
 	console.log('');
 	
 	nodes.length = 0;
-	nodesData.length = 0;
+	socketNodes.length = 0;
 	
 	console.log('Nodos: ');
 	console.log('[');
 	let i = 0;
 	waitingNodes.map((node) => {
 		nodes.push({port: node.port, host: node.host});
-		nodesData.push(node);
+		socketNodes.push(node);
 		i++;
 		console.log('- Nodo ', i,': ', node.host,':',node.port, ',');
 	});
 	console.log(']');
 
-	nodesData.forEach(node => {
+	socketNodes.forEach(node => {
 		node.socket.write(
 			JSON.stringify({
 				status: 'OK',
