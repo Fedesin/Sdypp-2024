@@ -70,15 +70,11 @@ function connectToContactServer() {
 		}
 	});
 
-	client.on('close', () => {
-		console.log(
-			'Error en la conexión con el servidor. Intentando reconectar...'
-		);
-		setTimeout(connectToContactServer, 10000); // Intentar reconexión después de 10 segundos
-	});
-
 	client.on('error', (error) => {
-		console.error('Error en la conexión:', error.message);
+		console.log(
+			'Error en la conexión con el servidor de contactos. Intentando reconectar...'
+		);
+		console.error('Error Message: ', error.message);
 		client.destroy();
 	});
 }
@@ -108,20 +104,13 @@ function connectToNode(node) {
 		console.log(data.toString())
 	});
 
-	client.on('close', () => {
-		console.log(
-			'Error en la conexión con el servidor. Intentando reconectar...'
-		);
-		setTimeout(connectToNode(node), 10000); // Intentar reconexión después de 10 segundos
-	});
-
 	client.on('error', (error) => {
-		console.error('Error en la conexión:', error.message);
-		client.destroy();
+		console.error('Error en la conexión con nodo ', node);
+		console.error('Error Message: ', error.message);
 	});
 }
 
-setTimeout(connectToContactServer, 10000);
+connectToContactServer()
 
 const statusServer = http.createServer((req, res) => {
 	if (req.url === '/status') {

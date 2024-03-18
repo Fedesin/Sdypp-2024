@@ -33,6 +33,10 @@ const server = net.createServer((socket) => {
 			});
 
 			nodes.push({ host: params.host, port: params.port });
+
+			socket.on('error', (err) => {
+				console.log(err)
+			})
 		} catch (error) {
 			socket.write(
 				JSON.stringify({
