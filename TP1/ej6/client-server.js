@@ -74,8 +74,7 @@ function connectToContactServer() {
 		console.log(
 			'Error en la conexión con el servidor de contactos. Intentando reconectar...'
 		);
-		console.error('Error Message: ', error.message);
-		client.destroy();
+		setTimeout(connectToContactServer, 10000);
 	});
 }
 
@@ -109,23 +108,4 @@ function connectToNode(node) {
 	});
 }
 
-const statusServer = http.createServer((req, res) => {
-	if (req.url === '/status') {
-		res.writeHead(200, { 'Content-Type': 'application/json' });
-		res.end(
-			JSON.stringify({
-				service: 'Cliente/Servidor TCP',
-				status: 'OK',
-				message: 'Servidor funcionando correctamente',
-			})
-		);
-	} else {
-		res.writeHead(404, { 'Content-Type': 'text/plain' });
-		res.end('Ruta no encontrada');
-	}
-});
-
-statusServer.listen(0);
-
-setTimeout(connectToContactServer, 5000);
-
+connectToContactServer();
