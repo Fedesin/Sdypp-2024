@@ -23,10 +23,14 @@ const server = net.createServer((socket) => {
 	socket.on('data', (data) => {
 		console.log('Mensaje recibido del cliente:', data.toString());
 		// Respondemos al cliente
-		const message = JSON.stringify({
-			sended: new Date().toISOString(),
-			message: `Saludos desde el servidor ${serverAddress.host}:${serverAddress.port}`,
-		});
+		const message = JSON.stringify(
+			{
+				sended: new Date().toISOString(),
+				message: `Saludos desde el servidor ${serverAddress.host}:${serverAddress.port}`,
+			},
+			null,
+			2
+		);
 		socket.write(message);
 	});
 
@@ -94,21 +98,31 @@ function handleHandshakes(nodes) {
 // Crear cliente y conectarse al otro nodo
 function connectToNode(node) {
 	const client = new net.Socket();
-	client.connect(node, () => {
-		console.log('Conexión establecida con nodo ', node);
-		const message = JSON.stringify({
-			sended: new Date().toISOString(),
-			message: `Hola, soy un cliente tipo C. Conectado desde ${serverAddress.host}:${serverAddress.port}`,
+	try {
+		client.connect(node, () => {
+			console.log('Conexión establecida con nodo ', node);
+			const message = JSON.stringify(
+				{
+					sended: new Date().toISOString(),
+					message: `Hola, soy un cliente tipo C. Conectado desde ${serverAddress.host}:${serverAddress.port}`,
+				},
+				null,
+				2
+			);
+			client.write(message);
 		});
-		client.write(message);
-	});
+	} catch (error) {
+		console.error(
+			`El nodo ${node} no está disponible. Error en la conexión`
+		);
+	}
 
 	client.on('data', (data) => {
 		console.log('Mensaje recibido desde el nodo ', node);
 		console.log(data.toString());
 	});
 
-	client.on('error', (error) => {
+	client.on('error', () => {
 		console.error('Error en la conexión con nodo ', node);
 	});
 }
