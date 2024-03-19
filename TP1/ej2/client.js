@@ -1,31 +1,41 @@
-const net = require('net');
+const dgram = require('dgram');
+const readline = require('readline');
 
-const host = '127.0.0.1';
-const port = 3002;
+const HOST = process.argv[2] || '127.0.0.1';
+const PORT = 3002;
 
-function connectToServer() {
-	const client = new net.Socket();
+const client = dgram.createSocket('udp4');
 
-	client.connect(port, host, () => {
-		console.log('Conexión establecida con B.');
-		client.write('Hola, soy A.');
-	});
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-	client.on('data', (data) => {
-		console.log('Mensaje recibido de B:', data.toString());
-	});
+client.on('message', (response, remoteInfo) => {
+  console.log(`Respuesta del servidor: ${remoteInfo.address}:${remoteInfo.port}:`, response.toString());
+  rl.setPrompt('Introduce un mensaje (o "exit" para cerrar la conexión): ');
+  rl.prompt();
+});
 
-	client.on('close', () => {
-		console.log(
-			'\nLa conexión con B se ha cerrado inesperadamente. Intentando reconectar...\n'
-		);
-		setTimeout(connectToServer, 10000); // Intentar reconexión después de 10 segundos
-	});
+rl.on('line', (input) => {
+  if (input.toLowerCase() === 'exit') {
+    client.close();
+    rl.close();
+  } else {
+    client.send(input, 0, input.length, PORT, HOST, (error) => {
+      if (error) {
+        console.error('Error al enviar mensaje:', error.message);
+        client.close();
+        rl.close();
+      }
+    });
+  }
+});
 
-	client.on('error', (error) => {
-		console.error('Error en la conexión:', error.message);
-		client.destroy();
-	});
-}
+rl.on('close', () => {
+  console.log('Conexión cerrada.');
+  client.close();
+});
 
-connectToServer();
+console.log('Introduce un mensaje (o "exit" para cerrar la conexión):');
+rl.prompt();
