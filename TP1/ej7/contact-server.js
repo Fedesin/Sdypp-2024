@@ -2,7 +2,7 @@ const net = require('net');
 const http = require('http');
 
 const PORT = 3007;
-const WINDOW_SIZE = 20000; // 60 segundos
+const WINDOW_SIZE = 60000; // 60 segundos
 
 let nodes = []; // Nodos activos
 let socketNodes = []; // Nodos + socket para informarles cuando están activos
