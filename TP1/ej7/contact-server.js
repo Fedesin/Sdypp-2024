@@ -2,11 +2,11 @@ const net = require('net');
 const http = require('http');
 
 const PORT = 3007;
-const WINDOW_SIZE = 60000; // 60 segundos
+const WINDOW_SIZE = 20000; // 60 segundos
 
-const nodes = []; // Nodos activos
-const socketNodes = []; // Nodos + socket para informarles cuando están activos
-const waitingNodes = []; // Nodos en espera
+let nodes = []; // Nodos activos
+let socketNodes = []; // Nodos + socket para informarles cuando están activos
+let waitingNodes = []; // Nodos en espera
 
 // Al principio, cada nodo se registra en la lista de espera para la siguiente ventana
 const server = net.createServer((socket) => {
@@ -36,6 +36,7 @@ const server = net.createServer((socket) => {
 			socket.write(
 				JSON.stringify({
 					status: 'OK',
+					time: new Date().toISOString(),
 					message:
 						'Nodo registrado con éxito para la siguiente ventana',
 				})
@@ -47,11 +48,10 @@ const server = net.createServer((socket) => {
 				nodes.forEach((node) => {
 					try {
 						const client = new net.Socket();
-						client.connect(port, host, () => {
+						client.connect(node.port, node.host, () => {
 							client.write('ping');
 						});
 					} catch (error) {
-						console.log(node, nodes);
 						nodes.splice(nodes.indexOf(node), 1);
 					}
 				});
@@ -82,8 +82,8 @@ server.listen(PORT, () => {
 	console.log(`Servidor TCP escuchando en el puerto ${PORT}`);
 });
 
-server.on('connection', (req, res) => {
-	console.log('Cliente Registrado para la siguiente ventana');
+server.on('connection', () => {
+	console.log('Nodo registrado para la siguiente ventana');
 });
 
 const statusServer = http.createServer((req, res) => {
@@ -92,6 +92,7 @@ const statusServer = http.createServer((req, res) => {
 		res.end(
 			JSON.stringify({
 				service: 'Servidor de registro',
+				time: new Date().toISOString(),
 				status: 'OK',
 				message: 'Servidor funcionando correctamente',
 			})
@@ -111,38 +112,38 @@ setInterval(() => {
 	console.log('Actualizando lista de nodos registrados: ');
 	console.log('');
 
-	nodes.length = 0;
-	socketNodes.length = 0;
+	nodes = [];
+	socketNodes = [];
 
-	console.log('Nodos: ');
-	console.log('[');
-	let i = 0;
-	waitingNodes.map((node) => {
-		nodes.push({ port: node.port, host: node.host });
-		socketNodes.push(node);
-		i++;
-		console.log('- Nodo ', i, ': ', node.host, ':', node.port, ',');
-	});
-	console.log(']');
+	if (waitingNodes.length > 0) {
+		console.log('Nodos: ');
+		console.log('[');
+		waitingNodes.map((node, index) => {
+			nodes.push({ port: node.port, host: node.host });
+			socketNodes.push(node);
+			console.log(`- Nodo ${index + 1}: ${node.host}:${node.port},`);
+		});
+		console.log(']');
 
-	socketNodes.forEach((node) => {
-		node.socket.write(
-			JSON.stringify({
-				status: 'OK',
-				message: 'Es tiempo de saludar!!',
-				// Envía todos los nodos menos el mismo a quien se lo envía
-				// ( No funciona :( )
-				nodes: nodes.filter(
-					(currNode) =>
-						currNode != { port: node.port, host: node.host }
-				),
-			})
-		);
-	});
+		socketNodes.forEach(({ host, port, socket }) => {
+			socket.write(
+				JSON.stringify({
+					status: 'OK',
+					message: 'Es momento de enviar saludo!',
+					// Envía todos los nodos menos el mismo a quien se lo envía
+					nodes: nodes.filter(
+						(currentNode) =>
+							currentNode.port !== port ||
+							currentNode.host !== host
+					),
+				})
+			);
+		});
 
-	console.log('');
-	console.log('Lisa de nodos actualizada');
-	console.log('');
+		console.log('');
+		console.log('Lista de nodos actualizada');
+		console.log('');
+	}
 
-	waitingNodes.length = 0;
+	waitingNodes = [];
 }, WINDOW_SIZE);
