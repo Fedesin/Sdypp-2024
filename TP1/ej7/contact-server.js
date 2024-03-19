@@ -1,19 +1,16 @@
 const net = require('net');
 const http = require('http');
-const { register } = require('module');
 
 const PORT = 3007;
-const WINDOW_SIZE = 5000;
+const WINDOW_SIZE = 60000; // 60 segundos
 
 const nodes = []; // Nodos activos
 const socketNodes = []; // Nodos + socket para informarles cuando están activos
 const waitingNodes = []; // Nodos en espera
 
-
 // Al principio, cada nodo se registra en la lista de espera para la siguiente ventana
 const server = net.createServer((socket) => {
 	socket.on('data', (data) => {
-
 		console.log('Mensaje recibido del cliente:', data.toString());
 
 		try {
@@ -25,11 +22,11 @@ const server = net.createServer((socket) => {
 			) {
 				throw new Error('Parámetros de registro inválidos');
 			}
-		
+
 			if (Number.isNaN(params.port)) {
 				throw new Error('El puerto debe ser un número');
 			}
-		
+
 			if (params.host.length === 0) {
 				throw new Error('El host no puede estar vacío');
 			}
@@ -39,13 +36,12 @@ const server = net.createServer((socket) => {
 			socket.write(
 				JSON.stringify({
 					status: 'OK',
-					message: 'Nodo registrado con éxito para la siguiente ventana',
+					message:
+						'Nodo registrado con éxito para la siguiente ventana',
 				})
 			);
 
-			socket.on('error', (err) => {
-				
-			});
+			socket.on('error', (err) => {});
 
 			socket.on('close', () => {
 				nodes.forEach((node) => {
@@ -72,10 +68,8 @@ const server = net.createServer((socket) => {
 	});
 });
 
-
 // Registro de nodos en lista de espera
-function registerNode(params, socket) 
-{
+function registerNode(params, socket) {
 	waitingNodes.map((node) => {
 		if (node.port === params.port && node.host === params.host) {
 			throw new Error('Nodo ya registrado');
@@ -113,42 +107,42 @@ statusServer.listen(8087);
 // Cada 60 segundos se cambia la lista de nodos activos por la lista de nodos en espera
 // La lista de nodos en espera se vacía
 setInterval(() => {
-				
 	console.log('');
 	console.log('Actualizando lista de nodos registrados: ');
 	console.log('');
-	
+
 	nodes.length = 0;
 	socketNodes.length = 0;
-	
+
 	console.log('Nodos: ');
 	console.log('[');
 	let i = 0;
 	waitingNodes.map((node) => {
-		nodes.push({port: node.port, host: node.host});
+		nodes.push({ port: node.port, host: node.host });
 		socketNodes.push(node);
 		i++;
-		console.log('- Nodo ', i,': ', node.host,':',node.port, ',');
+		console.log('- Nodo ', i, ': ', node.host, ':', node.port, ',');
 	});
 	console.log(']');
 
-	socketNodes.forEach(node => {
+	socketNodes.forEach((node) => {
 		node.socket.write(
 			JSON.stringify({
 				status: 'OK',
 				message: 'Es tiempo de saludar!!',
 				// Envía todos los nodos menos el mismo a quien se lo envía
 				// ( No funciona :( )
-				nodes: nodes.filter((currNode) => currNode != {port:node.port, host:node.host}),
+				nodes: nodes.filter(
+					(currNode) =>
+						currNode != { port: node.port, host: node.host }
+				),
 			})
 		);
-	})
+	});
 
 	console.log('');
 	console.log('Lisa de nodos actualizada');
 	console.log('');
-
-
 
 	waitingNodes.length = 0;
 }, WINDOW_SIZE);
