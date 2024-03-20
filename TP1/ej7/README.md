@@ -32,7 +32,11 @@ Recuerde almacenar las inscripciones en un archivo de texto con formato JSON. Es
 
 7. Si quiere registrar más de dos nodos C, repita el paso 6 la cantidad de veces que considere.
 
-## Funcionalidades
+##  Utilidades
+
+Para obtener la imagen docker ingrese lo siguiente:
+
+```docker pull fedesin31/serverej7```
 
 ### Servidor de registro (`contact-server.js`)
 
