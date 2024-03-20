@@ -62,7 +62,7 @@ function connectToContactServer() {
 		const { status, message, nodes } = JSON.parse(data.toString());
 		if (status === 'OK') {
 			console.log(message);
-			if (params.nodes.length > 0) {
+			if (nodes.length > 0) {
 				console.log('Enviando saludos a los nodos...');
 				handleHandshakes(nodes);
 			} else {
