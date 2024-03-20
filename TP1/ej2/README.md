@@ -19,7 +19,11 @@ Revise el código de A para implementar una funcionalidad que permita la reconex
     node client.js
     ```
 
-## Funcionalidades
+## Utilidades
+
+-  Con el siguiente comando podemos obtener la imagen docker
+
+```docker pull fedesin31/serverej2
 
 ### Servidor (`server.js`)
 

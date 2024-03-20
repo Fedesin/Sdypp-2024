@@ -1,6 +1,6 @@
 const net = require('net');
 
-const host = '127.0.0.1';
+const host = process.argv[2]||'127.0.0.1';
 const port = 3002;
 
 function connectToServer() {
