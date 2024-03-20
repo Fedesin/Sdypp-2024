@@ -19,7 +19,18 @@ Modifique el programa C de manera tal que los mensajes se envíen en formato JSO
     node client-server.js localhost 3050 localhost 3005 8005
     ```
 
-## Funcionalidades
+## Utilidades
+
+Para obtener la imagen docker ingrese lo siguiente:
+
+```docker pull fedesin31/server-clientej5```
+
+Para ejecutar el primer contenedor ingrese lo siguiente:
+
+```docker run -ti --rm -p 3000:3000 server-clientej5:server-clientej5 client-server.js 0.0.0.0 3000 172.17.0.3 3003 3030```
+
+Para ejecutar el segundo contenedor ingrese lo siguiente:
+```docker run -ti --rm -p 3003:3003 server-clientej5:server-clientej5 client-server.js 0.0.0.0 3003 172.17.0.2 3000 3030```
 
 ### Servidor (`client-server.js`)
 
