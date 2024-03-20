@@ -75,14 +75,18 @@ const statusServer = http.createServer((req, res) => {
 		res.writeHead(200, { 'Content-Type': 'application/json' });
 		res.end(
 			JSON.stringify({
+				time: new Date().toISOString(),
 				service: 'Cliente/Servidor TCP',
 				status: 'OK',
 				message: 'Servidor funcionando correctamente',
 			})
 		);
 	} else {
-		res.writeHead(404, { 'Content-Type': 'text/plain' });
-		res.end('Ruta no encontrada');
+		res.writeHead(404, { 'Content-Type': 'application/json' });
+		JSON.stringify({
+			status: 'WARNING',
+			message: 'Ruta no encontrada',
+		});
 	}
 });
 

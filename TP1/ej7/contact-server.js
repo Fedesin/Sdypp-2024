@@ -86,25 +86,6 @@ server.on('connection', () => {
 	console.log('Nodo registrado para la siguiente ventana');
 });
 
-const statusServer = http.createServer((req, res) => {
-	if (req.url === '/status') {
-		res.writeHead(200, { 'Content-Type': 'application/json' });
-		res.end(
-			JSON.stringify({
-				service: 'Servidor de registro',
-				time: new Date().toISOString(),
-				status: 'OK',
-				message: 'Servidor funcionando correctamente',
-			})
-		);
-	} else {
-		res.writeHead(404, { 'Content-Type': 'text/plain' });
-		res.end('Ruta no encontrada');
-	}
-});
-
-statusServer.listen(8087);
-
 // Cada 60 segundos se cambia la lista de nodos activos por la lista de nodos en espera
 // La lista de nodos en espera se vacía
 setInterval(() => {
@@ -147,3 +128,25 @@ setInterval(() => {
 
 	waitingNodes = [];
 }, WINDOW_SIZE);
+
+const statusServer = http.createServer((req, res) => {
+	if (req.url === '/status') {
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.end(
+			JSON.stringify({
+				time: new Date().toISOString(),
+				service: 'Servidor de registro',
+				status: 'OK',
+				message: 'Servidor funcionando correctamente',
+			})
+		);
+	} else {
+		res.writeHead(404, { 'Content-Type': 'application/json' });
+		JSON.stringify({
+			status: 'WARNING',
+			message: 'Ruta no encontrada',
+		});
+	}
+});
+
+statusServer.listen(8087);

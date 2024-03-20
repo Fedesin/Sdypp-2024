@@ -9,6 +9,7 @@ async function getStatus(url) {
 	} catch (error) {
 		console.error('Error:', error);
 		return {
+			time: new Date().toISOString(),
 			status: 'ERROR',
 			message: 'El servicio no está disponible',
 		};

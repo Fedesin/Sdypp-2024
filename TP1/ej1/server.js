@@ -14,9 +14,9 @@ const server = net.createServer((socket) => {
 		);
 	});
 	// Manejo del evento de error en el socket del cliente
-    socket.on('error', (err) => {
-        console.error('Error en el socket del cliente:', err.message);
-    });
+	socket.on('error', (err) => {
+		console.error('Error en el socket del cliente:', err.message);
+	});
 });
 
 server.listen(PORT, () => {
@@ -32,14 +32,18 @@ const statusServer = http.createServer((req, res) => {
 		res.writeHead(200, { 'Content-Type': 'application/json' });
 		res.end(
 			JSON.stringify({
+				time: new Date().toISOString(),
 				service: 'Servidor socket TCP',
 				status: 'OK',
 				message: 'Servidor funcionando correctamente',
 			})
 		);
 	} else {
-		res.writeHead(404, { 'Content-Type': 'text/plain' });
-		res.end('Ruta no encontrada');
+		res.writeHead(404, { 'Content-Type': 'application/json' });
+		JSON.stringify({
+			status: 'WARNING',
+			message: 'Ruta no encontrada',
+		});
 	}
 });
 
