@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+const HOST = 'localhost';
+
 async function getStatus(url) {
 	try {
 		const res = await fetch(url);
@@ -9,7 +11,6 @@ async function getStatus(url) {
 	} catch (error) {
 		console.error('Error:', error);
 		return {
-			time: new Date().toISOString(),
 			status: 'ERROR',
 			message: 'El servicio no está disponible',
 		};
@@ -17,7 +18,7 @@ async function getStatus(url) {
 }
 
 app.get('/status/1', async (request, response) => {
-	const status = await getStatus('http://localhost:8081/status');
+	const status = await getStatus(`http://${HOST}:8081/status`);
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
 
@@ -25,7 +26,7 @@ app.get('/status/1', async (request, response) => {
 });
 
 app.get('/status/2', async (request, response) => {
-	const status = await getStatus('http://localhost:8082/status');
+	const status = await getStatus(`http://${HOST}:8082/status`);
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
 
@@ -33,7 +34,7 @@ app.get('/status/2', async (request, response) => {
 });
 
 app.get('/status/3', async (request, response) => {
-	const status = await getStatus('http://localhost:8083/status');
+	const status = await getStatus(`http://${HOST}:8083/status`);
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
 
@@ -41,8 +42,8 @@ app.get('/status/3', async (request, response) => {
 });
 
 app.get('/status/4', async (request, response) => {
-	const status1 = await getStatus('http://localhost:8084/status');
-	const status2 = await getStatus('http://localhost:8004/status');
+	const status1 = await getStatus(`http://${HOST}:8084/status`);
+	const status2 = await getStatus(`http://${HOST}:8004/status`);
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
 
@@ -55,8 +56,8 @@ app.get('/status/4', async (request, response) => {
 });
 
 app.get('/status/5', async (request, response) => {
-	const status1 = await getStatus('http://localhost:8085/status');
-	const status2 = await getStatus('http://localhost:8005/status');
+	const status1 = await getStatus(`http://${HOST}:8085/status`);
+	const status2 = await getStatus(`http://${HOST}:8005/status`);
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
 
@@ -69,7 +70,7 @@ app.get('/status/5', async (request, response) => {
 });
 
 app.get('/status/6', async (request, response) => {
-	const status = await getStatus('http://localhost:8086/status');
+	const status = await getStatus(`http://${HOST}:8086/status`);
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
 
@@ -77,7 +78,7 @@ app.get('/status/6', async (request, response) => {
 });
 
 app.get('/status/7', async (request, response) => {
-	const status = await getStatus('http://localhost:8087/status');
+	const status = await getStatus(`http://${HOST}:8087/status`);
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
 
