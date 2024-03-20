@@ -19,7 +19,15 @@ Refactoriza el código de los programas A y B en un único programa, que funcion
     node client-server.js localhost 3040 localhost 3004 8004
     ```
 
-## Funcionalidades
+## Utilidades
+-  Con el siguiente comando podemos obtener la imagen docker
+
+```docker pull fedesin31/server-clientej4
+```
+-  Para ejecutar el docker run usamos el siguiente comando
+
+```docker run -ti --rm server-clientej4:server-clientej4 client-server.js 172.17.0.2 3002 localhost 3001 3003
+```
 
 ### Servidor (`client-server.js`)
 
