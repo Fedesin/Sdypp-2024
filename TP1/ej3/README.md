@@ -19,7 +19,11 @@ Modifique el código de B para que si el proceso A cierra la conexión (por ejem
     node client.js
     ```
 
-## Funcionalidades
+## Utilidades
+
+-  Con el siguiente comando podemos obtener la imagen docker
+
+```docker pull fedesin31/serverej3
 
 ### Servidor (`server.js`)
 
