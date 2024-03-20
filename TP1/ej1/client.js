@@ -2,7 +2,7 @@ const net = require('net');
 
 const options = {
 	port: 3001,
-	host: 'localhost',
+	host: process.argv[2] || 'localhost',
 };
 
 const client = net.createConnection(options, () => {
