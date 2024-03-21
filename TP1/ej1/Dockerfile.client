@@ -1,0 +1,20 @@
+# Use alpine as base image
+FROM node:hydrogen-alpine3.18
+
+# Copy 
+COPY ["./src","/usr/src"]
+
+# Set the working directory
+WORKDIR /usr/src
+
+RUN apk add --update nodejs npm
+
+#COPY package.json /usr/src/
+# Installing dependencies
+#RUN npm install
+
+
+# Expose the port
+#EXPOSE 3001
+
+CMD ["sh", "-c", "node /usr/src/client.js $SERVER_HOST"]
