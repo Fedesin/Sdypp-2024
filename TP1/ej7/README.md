@@ -36,6 +36,10 @@ Recuerde almacenar las inscripciones en un archivo de texto con formato JSON. Es
 Para obtener la imagen docker ingrese lo siguiente:
 
 ```bash
+docker pull fedesin31/client-serverej7
+```
+
+```bash
 docker pull fedesin31/serverej7
 ```
 
