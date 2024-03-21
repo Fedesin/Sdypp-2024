@@ -21,16 +21,10 @@ Modifique el programa C de manera tal que los mensajes se envíen en formato JSO
 
 ## Utilidades
 
-Para obtener la imagen docker ingrese lo siguiente:
+-   Con el siguiente comando podemos ejecutar los contenedores
 
 ```bash
-docker pull fedesin31/server-clientej5
-```
-
-Para ejecutar el primer contenedor ingrese lo siguiente:
-
-```bash
-docker run -ti --rm -p 3000:3000 server-clientej5:server-clientej5 client-server.js 0.0.0.0 3000 172.17.0.3 3003 3030
+docker compose up
 ```
 
 Para ejecutar el segundo contenedor ingrese lo siguiente:
