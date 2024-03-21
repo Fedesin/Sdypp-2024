@@ -18,5 +18,5 @@ ARG 5
 CMD ["node", "client-server.js","$1","$2","$3","$4","$5"]
 
 # Exposing server port que el cliente requiere
-EXPOSE $4
+EXPOSE $2
 EXPOSE $5

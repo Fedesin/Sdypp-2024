@@ -16,21 +16,15 @@ Refactoriza el código de los programas A y B en un único programa, que funcion
 5. En la segunda terminal, navega hasta la ubicación de los archivos y ejecuta el segundo nodo C:
 
     ```bash
-    node client-server.js localhost 3040 localhost 3004 8004
+    node client-server.js localhost 3040 localhost 3004 8040
     ```
 
 ## Utilidades
 
--   Con el siguiente comando podemos obtener la imagen docker
+-   Con el siguiente comando podemos ejecutar los contenedores
 
 ```bash
-docker pull fedesin31/server-clientej4
-```
-
--   Para ejecutar el docker run usamos el siguiente comando
-
-```bash
-docker run -ti --rm server-clientej4:server-clientej4 client-server.js 172.17.0.2 3002 localhost 3001 3003
+docker compose up
 ```
 
 ### Servidor (`client-server.js`)
