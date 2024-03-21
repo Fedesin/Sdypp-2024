@@ -3,8 +3,12 @@ services:
     node-c-1:
         image: fedesin31/server-clientej4
         container_name: node-c-1
+        port:
+            - '8084:8084'
         command: node client-server.js 0.0.0.0 3004 node-c-2 3040 8084
     node-c-2:
         image: fedesin31/server-clientej4
         container_name: node-c-2
+        port:
+            - '8040:8040'
         command: node client-server.js 0.0.0.0 3040 node-c-1 3004 8040
