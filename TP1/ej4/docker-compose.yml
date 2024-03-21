@@ -1,13 +1,13 @@
 version: '3'
 services:
     node-c-1:
-        image: server-client
+        image: fedesin31/server-clientej4
         container_name: node-c-1
         ports:
             - '8084:8084'
         command: node client-server.js 0.0.0.0 3004 node-c-2 3040 8084
     node-c-2:
-        image: server-client
+        image: fedesin31/server-clientej4
         container_name: node-c-2
         ports:
             - '8040:8040'
