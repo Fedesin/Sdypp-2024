@@ -1,5 +1,20 @@
 const net = require('net');
 const http = require('http');
+const os = require('os');
+
+const interfaces = os.networkInterfaces();
+
+let dirip = 'localhost';
+
+for (const name of Object.keys(interfaces)) {
+  for (const iface of interfaces[name]) {
+    // Skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+    if (!iface.internal && iface.family === 'IPv4') {
+      dirip = iface.address;
+    }
+  }
+}
+
 
 // Obtener argumentos de la línea de comandos
 const args = process.argv.slice(2);
@@ -10,7 +25,7 @@ if (args.length !== 2) {
 	process.exit(1);
 }
 
-const serverAddress = { host: 'localhost', port: 0 };
+const serverAddress = { host: dirip, port: 0 };
 const remoteAddress = { host: args[0], port: parseInt(args[1]) };
 
 // Crear servidor
