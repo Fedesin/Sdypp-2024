@@ -6,7 +6,7 @@ Refactoriza el código de los programas A y B en un único programa, que funcion
 
 1. Asegúrate de tener Node.js instalado en tu sistema.
 2. Clona este repositorio.
-3. Abre dos terminales.
+3. Abre dos terminales
 4. En la primera terminal, navega hasta la ubicación de los archivos y ejecuta el primer nodo C:
 
     ```bash
