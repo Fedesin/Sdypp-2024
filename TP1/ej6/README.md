@@ -10,7 +10,7 @@ Es decir, el objetivo de este HIT es incorporar un nuevo tipo de nodo (D) que ac
 
 1. Asegúrate de tener Node.js instalado en tu sistema.
 2. Clona este repositorio.
-3. Abrí como mínimo 3 terminales.
+3. Abrí como mínimo 3 terminales
 4. En la primera terminal, parate en el directorio de la aplicación y ejecuta el servidor de registro:
 
     ```bash
