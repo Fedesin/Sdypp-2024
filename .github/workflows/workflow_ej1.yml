@@ -20,10 +20,16 @@ jobs:
                   username: ${{ secrets.DOCKER_HUB_USERNAME }}
                   password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-            - name: Build Docker image
-              run: |
-                  docker build -t your-docker-username/tcp-server-1:latest .
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v2
+              with:
+                  context: ./TP1/ej1/
+                  push: true
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/serverej1:latest
+                  # - name: Build Docker image
+                  #   run: |
+                  #       docker build -t your-docker-username/tcp-server-1:latest .
 
-            - name: Push Docker image to Docker Hub
-              run: |
-                  docker push your-docker-username/tcp-server-1:latest
+                  # - name: Push Docker image to Docker Hub
+                  #   run: |
+                  #       docker push your-docker-username/tcp-server-1:latest
