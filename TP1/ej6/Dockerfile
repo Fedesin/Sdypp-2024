@@ -13,3 +13,4 @@ CMD ["node", "contact-server.js"]
 
 # Exposing server port que el cliente requiere
 EXPOSE 3006
+EXPOSE 8086
