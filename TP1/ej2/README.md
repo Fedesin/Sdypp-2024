@@ -27,6 +27,8 @@ Revise el código de A para implementar una funcionalidad que permita la reconex
 docker pull fedesin31/serverej2
 ```
 
+La imagen ya se encuentra actualizada con solo pushear el codigo
+
 ### Servidor (`server.js`)
 
 -   Escucha conexiones entrantes en el puerto `3002`.
