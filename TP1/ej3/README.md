@@ -21,9 +21,11 @@ Modifique el código de B para que si el proceso A cierra la conexión (por ejem
 
 ## Utilidades
 
--  Con el siguiente comando podemos obtener la imagen docker
+-   Con el siguiente comando podemos obtener la imagen docker
 
-```docker pull fedesin31/serverej3```
+```bash
+docker pull fedesin31/serverej3
+```
 
 ### Servidor (`server.js`)
 

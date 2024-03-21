@@ -20,8 +20,12 @@ Elabore un código de servidor TCP para B que espere el saludo de A y lo respond
     ```
 
 ## Utilidades
+
 Esta subido el servidor a docker hub y se lo puede obtener con el siguiente comando
-```docker pull fedesin31/serverej1```
+
+```bash
+docker pull fedesin31/serverej1
+```
 
 ### Servidor (`server.js`)
 

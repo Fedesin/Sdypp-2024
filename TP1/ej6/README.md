@@ -35,7 +35,9 @@ Es decir, el objetivo de este HIT es incorporar un nuevo tipo de nodo (D) que ac
 
 Para obtener la imagen docker ingrese lo siguiente:
 
-```docker pull fedesin31/serverej6```
+```bash
+docker pull fedesin31/serverej6
+```
 
 ### Servidor de registro (`contact-server.js`)
 

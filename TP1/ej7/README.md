@@ -6,7 +6,6 @@ Para simplificar el problema, imagine que D lleva dos registros, un listado de l
 
 Recuerde almacenar las inscripciones en un archivo de texto con formato JSON. Esto facilitará el seguimiento ordenado de las ejecuciones y asegurará la verificación de los resultados esperados.
 
-
 ## Uso
 
 1. Asegúrate de tener Node.js instalado en tu sistema.
@@ -32,14 +31,15 @@ Recuerde almacenar las inscripciones en un archivo de texto con formato JSON. Es
 
 7. Si quiere registrar más de dos nodos C, repita el paso 6 la cantidad de veces que considere.
 
-##  Utilidades
+## Utilidades
 
 Para obtener la imagen docker ingrese lo siguiente:
 
-```docker pull fedesin31/serverej7```
+```bash
+docker pull fedesin31/serverej7
+```
 
 ### Servidor de registro (`contact-server.js`)
-
 
 -   Escucha conexiones entrantes en el puerto `3007`.
 -   Lleva un registro de los nodos conectados a él utilizando ventanas de tiempo.
