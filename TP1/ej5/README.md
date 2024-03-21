@@ -6,7 +6,7 @@ Modifique el programa C de manera tal que los mensajes se envíen en formato JSO
 
 1. Asegúrate de tener Node.js instalado en tu sistema.
 2. Clona este repositorio.
-3. Abre dos terminales.
+3. Abre dos terminales
 4. En la primera terminal, navega hasta la ubicación de los archivos y ejecuta el primer nodo C:
 
     ```bash
