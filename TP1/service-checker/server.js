@@ -43,7 +43,7 @@ app.get('/status/3', async (request, response) => {
 
 app.get('/status/4', async (request, response) => {
 	const status1 = await getStatus(`http://${HOST}:8084/status`);
-	const status2 = await getStatus(`http://${HOST}:8004/status`);
+	const status2 = await getStatus(`http://${HOST}:8040/status`);
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
 
@@ -57,7 +57,7 @@ app.get('/status/4', async (request, response) => {
 
 app.get('/status/5', async (request, response) => {
 	const status1 = await getStatus(`http://${HOST}:8085/status`);
-	const status2 = await getStatus(`http://${HOST}:8005/status`);
+	const status2 = await getStatus(`http://${HOST}:8050/status`);
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
 
