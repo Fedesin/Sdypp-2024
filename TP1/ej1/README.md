@@ -6,7 +6,7 @@ Elabore un código de servidor TCP para B que espere el saludo de A y lo respond
 
 1. Asegúrate de tener Node.js instalado en tu sistema.
 2. Clona este repositorio o descarga los archivos `server.js` y `client.js`.
-3. Abre dos terminales.
+3. Abre dos terminales
 4. En la primera terminal, navega hasta la ubicación de los archivos y ejecuta el servidor:
 
     ```bash
