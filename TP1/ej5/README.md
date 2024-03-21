@@ -27,9 +27,6 @@ Modifique el programa C de manera tal que los mensajes se envíen en formato JSO
 docker compose up
 ```
 
-Para ejecutar el segundo contenedor ingrese lo siguiente:
-`docker run -ti --rm -p 3003:3003 server-clientej5:server-clientej5 client-server.js 0.0.0.0 3003 172.17.0.2 3000 3030`
-
 ### Servidor (`client-server.js`)
 
 -   Escucha conexiones entrantes en la IP + PUERTO indicado para recibir saludos.
