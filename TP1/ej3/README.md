@@ -21,10 +21,11 @@ Modifique el código de B para que si el proceso A cierra la conexión (por ejem
 
 ## Utilidades
 
--   Con el siguiente comando podemos obtener la imagen docker
+Esta subido el servidor a docker hub. Se lo puede obtener y ejecutar con los siguientes comando
 
 ```bash
 docker pull fedesin31/serverej3
+docker run -d -p 3003:3003 -p 8083:8083 fedesin31/serverej3
 ```
 
 ### Servidor (`server.js`)

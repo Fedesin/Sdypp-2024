@@ -21,10 +21,11 @@ Revise el código de A para implementar una funcionalidad que permita la reconex
 
 ## Utilidades
 
--   Con el siguiente comando podemos obtener la imagen docker
+Esta subido el servidor a docker hub. Se lo puede obtener y ejecutar con los siguientes comando
 
 ```bash
 docker pull fedesin31/serverej2
+docker run -d -p 3002:3002 -p 8082:8082 fedesin31/serverej2
 ```
 
 La imagen ya se encuentra actualizada con solo pushear el codigo
