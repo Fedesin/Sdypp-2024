@@ -1,0 +1,31 @@
+version: '3'
+services:
+    contact-server:
+        image: fedesin31/serverej7
+        container_name: contact-server
+        ports:
+            - '8087:8087'
+    node-c-1:
+        depends_on:
+            - contact-server
+        image: fedesin31/client-serverej7
+        ports:
+            - '8007:8007'
+        container_name: node-c-1
+        command: node client-server.js contact-server 3007 8007
+    node-c-2:
+        depends_on:
+            - contact-server
+        image: fedesin31/client-serverej7
+        ports:
+            - '8017:8017'
+        container_name: node-c-2
+        command: node client-server.js contact-server 3007 8017
+    node-c-3:
+        depends_on:
+            - contact-server
+        image: fedesin31/client-serverej7
+        ports:
+            - '8027:8027'
+        container_name: node-c-3
+        command: node client-server.js contact-server 3007 8027

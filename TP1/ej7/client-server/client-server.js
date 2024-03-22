@@ -7,27 +7,26 @@ const interfaces = os.networkInterfaces();
 let dirip = 'localhost';
 
 for (const name of Object.keys(interfaces)) {
-  for (const iface of interfaces[name]) {
-    // Skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
-    if (!iface.internal && iface.family === 'IPv4') {
-      dirip = iface.address;
-    }
-  }
+	for (const iface of interfaces[name]) {
+		// Skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+		if (!iface.internal && iface.family === 'IPv4') {
+			dirip = iface.address;
+		}
+	}
 }
-
-
 
 // Obtener argumentos de la línea de comandos
 const args = process.argv.slice(2);
 if (args.length !== 2) {
 	console.log(
-		'Uso: node program.js <ip_servidor_registro> <puerto_servidor_registro> '
+		'Uso: node program.js <ip_servidor_registro> <puerto_servidor_registro> <puerto_http_status_endpoint>'
 	);
 	process.exit(1);
 }
 
 const serverAddress = { host: dirip, port: 0 };
 const remoteAddress = { host: args[0], port: parseInt(args[1]) };
+const httpPort = parseInt(args[2]);
 
 // Crear servidor
 const server = net.createServer((socket) => {
@@ -144,3 +143,25 @@ function connectToNode(node) {
 }
 
 connectToContactServer();
+
+const statusServer = http.createServer((req, res) => {
+	if (req.url === '/status') {
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.end(
+			JSON.stringify({
+				time: new Date().toISOString(),
+				status: 'OK',
+				service: 'Cliente/Servidor TCP',
+				message: 'Servidor funcionando correctamente',
+			})
+		);
+	} else {
+		res.writeHead(404, { 'Content-Type': 'application/json' });
+		JSON.stringify({
+			status: 'WARNING',
+			message: 'Ruta no encontrada',
+		});
+	}
+});
+
+statusServer.listen(httpPort);
