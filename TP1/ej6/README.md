@@ -33,14 +33,10 @@ Es decir, el objetivo de este HIT es incorporar un nuevo tipo de nodo (D) que ac
 
 ## Utilidades
 
-Para obtener la imagen docker ingrese lo siguiente:
+-   Con el siguiente comando podemos ejecutar los contenedores
 
 ```bash
-docker pull fedesin31/client-serverej6
-```
-
-```bash
-docker pull fedesin31/serverej6
+docker compose up
 ```
 
 ### Servidor de registro (`contact-server.js`)
