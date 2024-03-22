@@ -11,11 +11,23 @@ async function getStatus(url) {
 	} catch (error) {
 		console.error('Error:', error);
 		return {
+			time: new Date().toISOString(),
 			status: 'ERROR',
-			message: 'El servicio no está disponible',
+			message: 'El servicio no esta disponible',
 		};
 	}
 }
+
+app.get('/status/0', async (request, response) => {
+	const status = {
+		time: new Date().toISOString(),
+		status: 'OK',
+		service: 'Servidor de checkeo de estado',
+		message: 'El servicio funcionando correctamente',
+	};
+
+	response.end(JSON.stringify(status));
+});
 
 app.get('/status/1', async (request, response) => {
 	const status = await getStatus(`http://${HOST}:8081/status`);
@@ -70,19 +82,43 @@ app.get('/status/5', async (request, response) => {
 });
 
 app.get('/status/6', async (request, response) => {
-	const status = await getStatus(`http://${HOST}:8086/status`);
+	const services = [];
+
+	let status = await getStatus(`http://${HOST}:8086/status`);
+	services.push(status);
+
+	status = await getStatus(`http://${HOST}:8006/status`);
+	services.push(status);
+
+	status = await getStatus(`http://${HOST}:8016/status`);
+	services.push(status);
+
+	status = await getStatus(`http://${HOST}:8026/status`);
+	services.push(status);
+
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
-
-	response.end(JSON.stringify(status));
+	response.end(JSON.stringify(services));
 });
 
 app.get('/status/7', async (request, response) => {
-	const status = await getStatus(`http://${HOST}:8087/status`);
+	const services = [];
+
+	let status = await getStatus(`http://${HOST}:8087/status`);
+	services.push(status);
+
+	status = await getStatus(`http://${HOST}:8007/status`);
+	services.push(status);
+
+	status = await getStatus(`http://${HOST}:8017/status`);
+	services.push(status);
+
+	status = await getStatus(`http://${HOST}:8027/status`);
+	services.push(status);
+
 	response.setHeader('Content-Type', 'application/json');
 	response.status(200);
-
-	response.end(JSON.stringify(status));
+	response.end(JSON.stringify(services));
 });
 
 app.listen(8000, () => {
