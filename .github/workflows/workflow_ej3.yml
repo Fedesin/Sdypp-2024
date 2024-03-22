@@ -21,6 +21,6 @@ jobs:
             - name: Build and push Docker image
               uses: docker/build-push-action@v2
               with:
-                  context: ./TP1/ej3/
+                  context: ./TP1/ej3/server
                   push: true
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/serverej3:latest

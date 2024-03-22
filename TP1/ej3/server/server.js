@@ -1,5 +1,6 @@
 const net = require('net');
 const http = require('http');
+const { logger } = require('./plugin/logger');
 
 const port = 3003;
 
@@ -9,15 +10,33 @@ const server = net.createServer((socket) => {
 	socket.on('data', (data) => {
 		console.log('Mensaje recibido de A:', data.toString());
 		socket.write('Hola, soy B.');
+		logger.log({
+			level: 'info',
+			time: new Date().toISOString(),
+			service: 'Servidor TCP',
+			message: `Mensaje recibido de cliente A: ${data.toString()}`,
+		});
 	});
 
 	socket.on('close', () => {
 		console.log('Un cliente A ha cerrado la conexión.');
 		console.log('Esperando conexiones...');
+		logger.log({
+			level: 'info',
+			time: new Date().toISOString(),
+			service: 'Servidor TCP',
+			message: `Un cliente A ha cerrado la conexión`,
+		});
 	});
 
 	socket.on('error', (error) => {
 		console.error('Error en la conexión:', error.message);
+		logger.log({
+			level: 'error',
+			time: new Date().toISOString(),
+			service: 'Servidor TCP',
+			message: `Error en el socket del cliente: ${err.message}`,
+		});
 	});
 });
 

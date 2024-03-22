@@ -1,5 +1,6 @@
 const net = require('net');
 const http = require('http');
+const { logger } = require('./plugin/logger');
 
 const PORT = 3002;
 
@@ -12,10 +13,22 @@ const server = net.createServer((socket) => {
 				receivedMessage: data.toString(),
 			})
 		);
+		logger.log({
+			level: 'info',
+			time: new Date().toISOString(),
+			service: 'Servidor TCP',
+			message: `Mensaje recibido del cliente: ${data.toString()}`,
+		});
 	});
 	// Manejo del evento de error en el socket del cliente
 	socket.on('error', (err) => {
 		console.error('Error en el socket del cliente:', err.message);
+		logger.log({
+			level: 'error',
+			time: new Date().toISOString(),
+			service: 'Servidor TCP',
+			message: `Error en el socket del cliente: ${err.message}`,
+		});
 	});
 });
 
@@ -25,6 +38,12 @@ server.listen(PORT, () => {
 
 server.on('connection', (req, res) => {
 	console.log('Cliente conectado');
+	logger.log({
+		level: 'info',
+		time: new Date().toISOString(),
+		service: 'Servidor TCP',
+		message: `Cliente conectado al servidor TCP`,
+	});
 });
 
 const statusServer = http.createServer((req, res) => {

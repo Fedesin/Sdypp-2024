@@ -5,10 +5,14 @@ ENV NODE_ENV development
 WORKDIR /node-app
 
 COPY "server.js" "server.js"
+COPY "package.json" "package.json"
+COPY "plugin/logger.js" "plugin/logger.js"
+
+RUN npm install
 
 # Starting our application
 CMD [ "node", "server.js" ]
 
 # Exposing server port
-EXPOSE 3002
-EXPOSE 8082
+EXPOSE 3003
+EXPOSE 8083
