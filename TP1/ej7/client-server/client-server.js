@@ -17,7 +17,7 @@ for (const name of Object.keys(interfaces)) {
 
 // Obtener argumentos de la línea de comandos
 const args = process.argv.slice(2);
-if (args.length !== 2) {
+if (args.length !== 3) {
 	console.log(
 		'Uso: node program.js <ip_servidor_registro> <puerto_servidor_registro> <puerto_http_status_endpoint>'
 	);
