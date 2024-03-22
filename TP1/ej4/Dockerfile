@@ -5,6 +5,10 @@ ENV NODE_ENV development
 WORKDIR /node-app
 
 COPY "client-server.js" "client-server.js"
+COPY "package.json" "package.json"
+COPY "plugin/logger.js" "plugin/logger.js"
+
+RUN npm install
 
 ARG 1
 ARG 2
@@ -20,3 +24,7 @@ CMD ["node", "client-server.js","$1","$2","$3","$4","$5"]
 # Exposing server port que el cliente requiere
 EXPOSE $2
 EXPOSE $5
+
+
+
+

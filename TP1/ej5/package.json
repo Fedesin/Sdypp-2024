@@ -1,0 +1,15 @@
+{
+  "name": "ej5",
+  "version": "1.0.0",
+  "description": "Modifique el programa C de manera tal que los mensajes se envíen en formato JSON, serializar y deserializar los mismos al enviar/recibir.",
+  "main": "client-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "winston": "^3.12.0"
+  }
+}

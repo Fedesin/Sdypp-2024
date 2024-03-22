@@ -5,6 +5,11 @@ ENV NODE_ENV development
 WORKDIR /node-app
 
 COPY "client-server.js" "client-server.js"
+COPY "package.json" "package.json"
+COPY "plugin/logger.js" "plugin/logger.js"
+
+RUN npm install
+
 
 ARG 1
 ARG 2

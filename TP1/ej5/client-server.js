@@ -1,5 +1,6 @@
 const net = require('net');
 const http = require('http');
+const { logger } = require('./plugin/logger');
 
 // Obtener argumentos de la línea de comandos
 const args = process.argv.slice(2);
@@ -21,6 +22,13 @@ const server = net.createServer((socket) => {
 		socket.remoteAddress + ':' + socket.remotePort
 	);
 
+	logger.log({
+		level: 'info',
+		time: new Date().toISOString(),
+		service: 'Servidor TCP',
+		message: `Cliente conectado desde ${socket.remoteAddress}:${socket.remotePort}`,
+	});
+
 	socket.on('data', (data) => {
 		console.log('Mensaje recibido del cliente:', data.toString());
 		// Respondemos al cliente
@@ -29,10 +37,24 @@ const server = net.createServer((socket) => {
 			message: `Saludos desde el servidor ${serverAddress.host}:${serverAddress.port}`,
 		});
 		socket.write(message);
+
+		logger.log({
+			level: 'info',
+			time: new Date().toISOString(),
+			service: 'Servidor TCP',
+			message: `Mensaje recibido de cliente A: ${data.toString()}`,
+		});
 	});
 
 	socket.on('error', (err) => {
 		console.error('Error en el cliente:', err.message);
+
+		logger.log({
+			level: 'error',
+			time: new Date().toISOString(),
+			service: 'Servidor TCP',
+			message: `Error en el socket del cliente: ${err.message}`,
+		});
 	});
 });
 
