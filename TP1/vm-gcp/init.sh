@@ -23,7 +23,7 @@ sudo apt install -y docker-compose
 
 # I want to clone a repository from GitHub
 git clone https://github.com/Fedesin/Sdypp-2024.git
-cd Sdypp-2024/TP1/
+cd /Sdypp-2024/TP1/
 
 
 #ejecutamos la imagen del ejercicio 1
