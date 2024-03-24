@@ -45,16 +45,6 @@ const server = net.createServer((socket) => {
 			socket.on('error', (err) => {});
 
 			socket.on('close', () => {
-				nodes.forEach((node) => {
-					try {
-						const client = new net.Socket();
-						client.connect(node.port, node.host, () => {
-							client.write('ping');
-						});
-					} catch (error) {
-						nodes.splice(nodes.indexOf(node), 1);
-					}
-				});
 				console.log('Cliente desconectado.');
 			});
 		} catch (error) {
