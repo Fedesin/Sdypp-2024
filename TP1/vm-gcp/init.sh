@@ -1,5 +1,10 @@
 #!/bin/bash
 
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+
+# Update package list
+sudo apt update
+
 # Update package list
 sudo apt update
 
@@ -7,13 +12,21 @@ sudo apt update
 curl -fsSL https://get.docker.com/ -o get-docker.sh
 sudo sh get-docker.sh
 
+# Install Node.js
+sudo apt install -y nodejs
+
+# Install npm
+sudo apt install -y npm
+
 # I want to clone a repository from GitHub
 git clone https://github.com/Fedesin/Sdypp-2024.git
 cd Sdypp-2024/TP1/
 
 #ejecutamos el service checker
-docker pull fedesin31/tp1-service-checker
-docker run -d -p 8000:8000 fedesin31/tp1-service-checker
+cd service-checker
+npm install
+node server.js
+cd ..
 
 #ejecutamos la imagen del ejercicio 1
 docker pull fedesin31/serverej1

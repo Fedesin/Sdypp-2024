@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const HOST = '35.227.40.69';
+const HOST = 'localhost';
 
 async function getStatus(url) {
 	try {
