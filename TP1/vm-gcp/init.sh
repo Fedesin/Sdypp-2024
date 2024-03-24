@@ -18,15 +18,13 @@ sudo apt install -y nodejs
 # Install npm
 sudo apt install -y npm
 
+# Install docker-compose
+sudo apt install -y docker-compose
+
 # I want to clone a repository from GitHub
 git clone https://github.com/Fedesin/Sdypp-2024.git
 cd Sdypp-2024/TP1/
 
-#ejecutamos el service checker
-cd service-checker
-npm install
-node server.js
-cd ..
 
 #ejecutamos la imagen del ejercicio 1
 docker pull fedesin31/serverej1
@@ -63,4 +61,10 @@ cd ..
 #ejecutamos la imagen del ejercicio 7
 cd ej7
 docker compose -d 
+cd ..
+
+#ejecutamos el service checker
+cd service-checker
+npm install 
+node server.js
 cd ..
