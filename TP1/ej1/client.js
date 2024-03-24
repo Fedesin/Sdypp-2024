@@ -7,7 +7,7 @@ const options = {
 
 const client = net.createConnection(options, () => {
 	console.log('Conectado al servidor TCP');
-	client.write('Hola, soy A.');
+	client.write('Hola, soy Al pacino xd.');
 });
 
 client.on('close', () => {
