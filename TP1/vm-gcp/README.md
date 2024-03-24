@@ -1,17 +1,25 @@
-# Documentación
+# Documentación de creación de VM
 
 ## Objetivo: Crear VM en GCP y poder ejecutar todos los ejercicios del TP1
 
-Ejecutamos el comando
+Ejecutamos el script `runner.sh` para iniciar la VM en la nube.
 
+```bash
 sh runner.sh
+```
 
-que dentro va a configurar toda la maquina virtual de gcp con el nombre TP1 
+Como resultado, se inicia la máquina virtual de GCP con el nombre **tp1**
 
-y dentro del runner.sh va a correr los comandos especificados en init.sh
+Al iniciarse la instancia, se ejecuta el script init.sh para iniciar cada uno de los contenedores.
 
-# El siguiente comando nos permite conectarnos mediante SSH a la VM.
-``` ssh -i .keys/id_rsa_example sdyppg1@<IP_PUBLICA_VM> ```
+### El siguiente comando nos permite conectarnos mediante SSH a la VM.
+
+```bash
 ssh -i keys/id_rsa_example sdyppg1@35.227.40.69
-## Para matar la vm de gcloud usamos el siguiente comando
+```
+
+### Para matar la vm de gcloud usamos el siguiente comando
+
+```bash
 gcloud compute instances delete tp1 --zone=us-east1-b
+```
