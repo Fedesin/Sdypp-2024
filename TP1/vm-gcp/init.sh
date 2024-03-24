@@ -23,7 +23,7 @@ sudo apt install -y docker-compose
 
 # I want to clone a repository from GitHub
 git clone https://github.com/Fedesin/Sdypp-2024.git
-cd /Sdypp-2024/TP1/
+cd Sdypp-2024/TP1/
 
 
 #ejecutamos la imagen del ejercicio 1
@@ -42,25 +42,25 @@ docker run -d -p 3003:3003 -p 8083:8083 fedesin31/serverej3
 
 #ejecutamos la imagen del ejercicio 4
 cd ej4
-docker compose -d 
+docker compose up -d 
 cd ..
 
 #ejecutamos la imagen del ejercicio 5
 
 cd ej5
-docker compose -d 
+docker compose up -d 
 cd ..
 
 
 #ejecutamos la imagen del ejercicio 6
 
 cd ej6
-docker compose -d 
+docker compose up -d 
 cd ..
 
 #ejecutamos la imagen del ejercicio 7
 cd ej7
-docker compose -d 
+docker compose up -d 
 cd ..
 
 #ejecutamos el service checker
