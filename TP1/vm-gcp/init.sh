@@ -67,4 +67,3 @@ cd ..
 cd service-checker
 npm install 
 node server.js
-cd ..

@@ -2,7 +2,7 @@ version: '3'
 services:
     node-c-1:
         image: fedesin31/server-clientej5
-        container_name: node-c-1
+        container_name: node-c-1-ej5
         ports:
             - '8085:8085'
         command: node client-server.js 0.0.0.0 3005 node-c-2 3050 8085
@@ -10,5 +10,5 @@ services:
         image: fedesin31/server-clientej5
         ports:
             - '8050:8050'
-        container_name: node-c-2
+        container_name: node-c-2-ej5
         command: node client-server.js 0.0.0.0 3050 node-c-1 3005 8050
