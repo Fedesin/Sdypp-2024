@@ -8,8 +8,8 @@ curl -fsSL https://get.docker.com/ -o get-docker.sh
 sudo sh get-docker.sh
 
 # I want to clone a repository from GitHub
-#git clone https://github.com/Fedesin/Sdypp-2024.git
-#cd Sdypp-2024/TP1/
+git clone https://github.com/Fedesin/Sdypp-2024.git
+cd Sdypp-2024/TP1/
 
 #ejecutamos el service checker
 docker pull fedesin31/tp1-service-checker
@@ -28,3 +28,26 @@ docker run -d -p 3002:3002 -p 8082:8082 fedesin31/serverej2
 #ejecutamos la imagen del ejercicio 3
 docker pull fedesin31/serverej3
 docker run -d -p 3003:3003 -p 8083:8083 fedesin31/serverej3
+
+#ejecutamos la imagen del ejercicio 4
+cd ej4
+docker compose -d 
+cd ..
+
+#ejecutamos la imagen del ejercicio 5
+
+cd ej5
+docker compose -d 
+cd ..
+
+
+#ejecutamos la imagen del ejercicio 6
+
+cd ej6
+docker compose -d 
+cd ..
+
+#ejecutamos la imagen del ejercicio 7
+cd ej7
+docker compose -d 
+cd ..
