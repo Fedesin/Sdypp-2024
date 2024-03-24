@@ -17,7 +17,8 @@ gcloud compute firewall-rules create allow-8000 --action=ALLOW --rules=tcp:8000 
 gcloud compute addresses create instance-public-ip --region=$REGION
 
 #* Generate an SSH key pair
-# -f ./id_rsa_example: Specifies the output file name and location (./ represents the current directory).
+mkdir keys
+# -f ./keys/id_rsa_example: Specifies the output file name and location (./ represents the current directory).
 # -q: Suppresses the key generation progress and non-error messages.
 # -N "": Specifies an empty passphrase for the key pair.
 ssh-keygen -t rsa -b 4096 -C "${USERNAME}@example.com" -f ./keys/id_rsa_example -q -N ""
@@ -37,6 +38,3 @@ gcloud compute instances create tp1 \
     --metadata="ssh-keys=$USERNAME:$(cat ./keys/id_rsa_example.pub)" \
     --metadata-from-file user-data=./init.sh \
     --address=instance-public-ip
-
-#! Delete the VM instance
-# gcloud compute instances delete web-server --zone=us-east1-b
