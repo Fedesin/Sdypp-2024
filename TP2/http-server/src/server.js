@@ -11,5 +11,5 @@ server.use(express.json());
 server.use(router);
 
 server.listen(port, host, () => {
-	console.log(`Example app listening on ${host}:${port}`);
+	console.log(`Server listening on ${host}:${port}`);
 });
