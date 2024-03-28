@@ -4,6 +4,8 @@ export class TaskController {
 	
 
 	sum = (request, response) => {
+		
+		console.log("Realizando suma")
 		const task = new Task();
 
 		const body = request.body;
@@ -11,6 +13,7 @@ export class TaskController {
 		const params = body.params;
 
 		const result = task.sum(params);
+		console.log("result: ", result)
 		response.end(JSON.stringify({ result }));
 	};
 

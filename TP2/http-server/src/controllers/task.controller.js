@@ -11,14 +11,18 @@ export class TaskController {
 			console.log("params: ", request.body)
 			console.log("task: ", task)
 			
-			const response = await fetch(`http://localhost:5000/task/${task}`, {
+			const res = await fetch(`http://localhost:5000/task/${task}`, {
 				method: 'POST',
 				body: JSON.stringify({ params }),
+				headers: {
+          'Content-Type': 'application/json'
+        }
 			});
 
-			const data = await response.json();
+			const data = await res.json();
+			console.log(data)
 			const result = data.result;
-			response.status(200);
+			response.status(200)
 			response.end(
 				JSON.stringify({
 					message: `Tarea ${task} ejecutada exitosamente`,
@@ -26,13 +30,13 @@ export class TaskController {
 				})
 			);
 		} catch (error) {
-			response.status(400);
+			response.status(400)
 			response.end(
 				JSON.stringify({
-					message: `Error al ejecutar la tarea ${task}`,
-					result,
+					message: `Error al ejecutar la tarea ${task}`
 				})
 			);
+			console.log(error)
 		}
 	};
 }

@@ -1,7 +1,8 @@
-const URL = 'http://localhots:3000/api/execute'
+const URL = 'http://localhost:3000/api/execute'
 
 async function callTask(url) {
 	try {
+    
     const params = {
       image: 'sum-task',
       task: 'sum',
@@ -11,6 +12,9 @@ async function callTask(url) {
     const response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(params),
+        headers: {
+          'Content-Type': 'application/json'
+        }
     });
 
 		const result = await response.json();
@@ -27,4 +31,6 @@ async function callTask(url) {
 	}
 }
 
-console.log(callTask(URL))
+callTask(URL).then(result => {
+  console.log(result)
+})
