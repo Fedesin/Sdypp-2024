@@ -4,7 +4,8 @@ async function callTask(url) {
 	try {
     
     const params = {
-      image: 'sum-task',
+      image: 'fedesin31/sum-task',
+      port: 5000,
       task: 'sum',
       params: [1,2,3,4]
     };
