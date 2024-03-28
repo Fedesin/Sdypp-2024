@@ -7,9 +7,6 @@ export class TaskController {
 
 		// Enviar petición HTTP para que la tarea se ejecute con los parámetros (task, params).
 		try {
-			console.log('params: ', request.body);
-			console.log('task: ', task);
-
 			// `http://{container-name}:${port}/task/${task}`
 			const res = await fetch(`http://localhost:${port}/task/${task}`, {
 				method: 'POST',
@@ -20,7 +17,6 @@ export class TaskController {
 			});
 
 			const data = await res.json();
-			console.log(data);
 			const result = data.result;
 			response.status(200);
 			response.end(
@@ -36,7 +32,7 @@ export class TaskController {
 					message: `Error al ejecutar la tarea ${task}`,
 				})
 			);
-			console.log(error);
+			console.error(error);
 		}
 	};
 }
