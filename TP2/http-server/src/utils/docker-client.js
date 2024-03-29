@@ -63,11 +63,13 @@ export class DockerClient {
 							return;
 						}
 
+						// Demora en resolver la promesa para asegurarse que el contenedor se esté ejecutando.
 						setTimeout(() => {
 							console.log('Container started successfully');
 							resolve(true);
 						}, 10000);
 
+						// Tras 90 segundos, detiene el contenedor.
 						setTimeout(() => {
 							console.log('Stopping container ...');
 							container.stop((err) => {
@@ -81,7 +83,7 @@ export class DockerClient {
 								}
 								console.log('Container stopped successfully');
 							});
-						}, 60000);
+						}, 90000);
 					});
 				}
 			);
