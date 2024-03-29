@@ -3,7 +3,7 @@ const URL = 'http://localhost:3000/api/execute';
 async function callTask(url) {
 	try {
 		const params = {
-			image: 'fedesin31/tp2-',
+			image: 'fedesin31/tp2-task-suma',
 			port: 5000,
 			task: 'sum',
 			tag: 'latest',
@@ -19,7 +19,7 @@ async function callTask(url) {
 		const result = await response.json();
 		return result;
 	} catch (error) {
-		console.log("E");
+		console.log('E');
 		console.error(error);
 		return {
 			time: new Date().toISOString(),
