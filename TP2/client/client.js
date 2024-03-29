@@ -3,7 +3,7 @@ const URL = 'http://localhost:3000/api/execute';
 async function callTask(url) {
 	try {
 		const params = {
-			image: 'fedesin31/t2-task-suma',
+			image: 'fedesin31/tp2-task-suma',
 			port: 5000,
 			task: 'sum',
 			tag: 'latest',
