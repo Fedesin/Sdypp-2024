@@ -1,4 +1,4 @@
-name: Workflow for HIT 6
+name: Workflow for HIT 6 - TP 1
 
 on:
     push:
