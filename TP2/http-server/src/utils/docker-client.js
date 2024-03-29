@@ -67,6 +67,21 @@ export class DockerClient {
 							console.log('Container started successfully');
 							resolve(true);
 						}, 10000);
+
+						setTimeout(() => {
+							console.log('Stopping container ...');
+							container.stop((err) => {
+								if (err) {
+									console.error(
+										'Error stopping container:',
+										err
+									);
+									reject(false);
+									return;
+								}
+								console.log('Container stopped successfully');
+							});
+						}, 60000);
 					});
 				}
 			);
