@@ -1,9 +1,14 @@
+import { DockerClient } from '../utils/docker-client';
+
 export class TaskController {
 	executeGenericTask = async (request, response) => {
-		const { body } = request;
-		const { image, port, task, params } = body;
+		const docker = new DockerClient();
 
-		// TODO: Levantar contenedor con la imagen (image, port)
+		const { body } = request;
+		const { image, port, tag, task, params } = body;
+
+		docker.pull(image);
+		docker.run(image, tag, port);
 
 		// Enviar petición HTTP para que la tarea se ejecute con los parámetros (task, params).
 		try {
