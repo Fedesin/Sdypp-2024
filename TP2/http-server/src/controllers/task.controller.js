@@ -1,4 +1,4 @@
-import { DockerClient } from '../utils/docker-client';
+import { DockerClient } from '../utils/docker-client.js';
 
 export class TaskController {
 	executeGenericTask = async (request, response) => {

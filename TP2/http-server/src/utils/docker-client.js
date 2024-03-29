@@ -1,4 +1,4 @@
-const Dockerode = require('dockerode');
+import Dockerode from 'dockerode';
 
 export class DockerClient {
 	constructor() {
