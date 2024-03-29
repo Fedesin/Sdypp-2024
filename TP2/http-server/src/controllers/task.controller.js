@@ -7,8 +7,8 @@ export class TaskController {
 		const { body } = request;
 		const { image, port, tag, task, params } = body;
 
-		docker.pull(image);
-		docker.run(image, tag, port);
+		await docker.pull(image);
+		await docker.run(image, tag, port);
 
 		// Enviar petición HTTP para que la tarea se ejecute con los parámetros (task, params).
 		try {

@@ -32,6 +32,7 @@ export class DockerClient {
 
 	async run(image, tag, port) {
 		return new Promise((resolve, reject) => {
+			console.log('Creating container ...');
 			this.docker.createContainer(
 				{
 					Image: `${image}:${tag}`,
@@ -62,8 +63,10 @@ export class DockerClient {
 							return;
 						}
 
-						console.log('Container started successfully');
-						resolve(true);
+						setTimeout(() => {
+							console.log('Container started successfully');
+							resolve(true);
+						}, 10000);
 					});
 				}
 			);
