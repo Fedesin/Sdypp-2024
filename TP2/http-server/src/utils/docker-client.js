@@ -37,17 +37,18 @@ export class DockerClient {
 				{
 					Image: `${image}:${tag}`,
 					ExposedPorts: {
-						'80/tcp': {},
+						[`${port}/tcp`]: {},
 					},
 					HostConfig: {
 						PortBindings: {
-							'80/tcp': [
+							[`${port}/tcp`]: [
 								{
 									HostPort: `${port}`,
 								},
 							],
 						},
 					},
+					name: `task-${port}`,
 				},
 				(err, container) => {
 					if (err) {
@@ -82,6 +83,18 @@ export class DockerClient {
 									return;
 								}
 								console.log('Container stopped successfully');
+							});
+
+							container.remove((err) => {
+								if (err) {
+									console.error(
+										'Error removing container:',
+										err
+									);
+									reject(false);
+									return;
+								}
+								console.log('Container removed successfully');
 							});
 						}, 90000);
 					});
