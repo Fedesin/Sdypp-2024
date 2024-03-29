@@ -6,21 +6,25 @@ export class TaskController {
 
 		const { body } = request;
 		const { image, port, tag, task, params } = body;
-
+		console.log(body);
 		await docker.pull(image);
+		console.log(image);
 		await docker.run(image, tag, port);
+		console.log(image, tag, port);
 
 		// Enviar petición HTTP para que la tarea se ejecute con los parámetros (task, params).
 		try {
-			// `http://{container-name}:${port}/task/${task}`
-			const res = await fetch(`http://localhost:${port}/task/${task}`, {
+			// `http://tarea-${port}}:${port}/task/${task}`
+			const name = `tarea-${port}`
+			//const dirip = await docker.getIPByName(name);
+			const res = await fetch(`http://0.0.0.0:${port}/task/${task}`, {
 				method: 'POST',
 				body: JSON.stringify({ params }),
 				headers: {
 					'Content-Type': 'application/json',
 				},
 			});
-
+			console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
 			const data = await res.json();
 			const result = data.result;
 			response.status(200);
