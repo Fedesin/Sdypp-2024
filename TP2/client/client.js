@@ -6,6 +6,7 @@ async function callTask(url) {
 			image: 'fedesin31/sum-task',
 			port: 5000,
 			task: 'sum',
+			tag: 'latest',
 			params: [1, 2, 3, 4],
 		};
 
