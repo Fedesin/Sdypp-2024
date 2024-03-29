@@ -36,12 +36,13 @@ export class DockerClient {
 			this.docker.createContainer(
 				{
 					Image: `${image}:${tag}`,
+					name:`tarea-${port}`,
 					ExposedPorts: {
-						'80/tcp': {},
+						[`${port}/tcp`]: {},
 					},
 					HostConfig: {
 						PortBindings: {
-							'80/tcp': [
+							[`${port}/tcp`]: [
 								{
 									HostPort: `${port}`,
 								},
@@ -87,6 +88,35 @@ export class DockerClient {
 					});
 				}
 			);
+		});
+	}
+
+
+	async getIPByName(containerName) {
+        return new Promise((resolve, reject) => {
+            this.docker.listContainers({ all: true }, (err, containers) => {
+                if (err) {
+                    console.error('Error listing containers:', err);
+                    reject(err);
+                    return;
+                }
+
+                const container = containers.find(container => container.Names.includes('/' + containerName));
+                if (!container) {
+                    reject(new Error(`Container with name ${containerName} not found`));
+                    return;
+                }
+
+                const containerObj = this.docker.getContainer(container.Id);
+                containerObj.inspect((err, data) => {
+                    if (err) {
+                        console.error('Error inspecting container:', err);
+                        reject(err);
+                        return;
+                    }
+                    resolve(data.NetworkSettings.IPAddress);
+				});
+			})
 		});
 	}
 }
