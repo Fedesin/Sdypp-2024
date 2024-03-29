@@ -9,6 +9,7 @@ export class TaskController {
 		console.log(body);
 		await docker.pull(image);
 		console.log(image);
+		//arriba esta bien
 		await docker.run(image, tag, port);
 		console.log(image, tag, port);
 
@@ -17,7 +18,7 @@ export class TaskController {
 			// `http://tarea-${port}}:${port}/task/${task}`
 			const name = `tarea-${port}`
 			//const dirip = await docker.getIPByName(name);
-			const res = await fetch(`http://0.0.0.0:${port}/task/${task}`, {
+			const res = await fetch(`http://180.0.0.0:${port}/task/${task}`, {
 				method: 'POST',
 				body: JSON.stringify({ params }),
 				headers: {

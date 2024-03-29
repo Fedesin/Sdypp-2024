@@ -69,7 +69,7 @@ export class DockerClient {
 						setTimeout(() => {
 							console.log('Container started successfully');
 							resolve(true);
-						}, 10000);
+						}, 20000);
 
 						// Tras 90 segundos, detiene el contenedor.
 						setTimeout(() => {
