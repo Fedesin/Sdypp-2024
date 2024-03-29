@@ -22,3 +22,23 @@ HOST = localhost
 ```bash
 npm run dev
 ```
+
+## Instrucciones de ejecución (Docker)
+
+1. Crear red docker
+
+```bash
+docker network create generic-task-network
+```
+
+2. Hacer un build de la imagen
+
+```bash
+docker build -t http-server .
+```
+
+3. Ejecutar el contenedor
+
+```bash
+docker run -p 3000:3000 --name server --network generic-task-network -v /var/run/docker.sock:/var/run/docker.sock http-server
+```
