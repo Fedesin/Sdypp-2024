@@ -1,4 +1,5 @@
 import Dockerode from 'dockerode';
+import { logger } from '../plugin/logger.js';
 
 export class DockerClient {
 	constructor() {
@@ -20,6 +21,12 @@ export class DockerClient {
 					stream,
 					() => {
 						console.log('Image pulled successfully');
+						logger.log({
+							level: 'info',
+							time: new Date().toISOString(),
+							service: 'Servidor HTTP',
+							message: `Imagen  ${image} descargada con éxito.`,
+						});
 						resolve(true);
 					},
 					(progress) => {
@@ -73,6 +80,12 @@ export class DockerClient {
 						// Demora en resolver la promesa para asegurarse que el contenedor se esté ejecutando.
 						setTimeout(() => {
 							console.log('Container started successfully');
+							logger.log({
+								level: 'info',
+								time: new Date().toISOString(),
+								service: 'Servidor HTTP',
+								message: `Contenedor creado con éxito con la imagen ${image}.`,
+							});
 							resolve(true);
 						}, 20000);
 
@@ -101,6 +114,12 @@ export class DockerClient {
 									console.log(
 										'Container stopped successfully'
 									);
+									logger.log({
+										level: 'info',
+										time: new Date().toISOString(),
+										service: 'Servidor HTTP',
+										message: `El contenedor fue detenido y removido con éxito.`,
+									});
 								});
 							});
 						}, 90000);

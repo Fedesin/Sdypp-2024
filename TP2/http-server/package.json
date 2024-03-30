@@ -13,6 +13,7 @@
 	"dependencies": {
 		"dockerode": "^4.0.2",
 		"dotenv": "^16.4.5",
-		"express": "^4.19.2"
+		"express": "^4.19.2",
+		"winston": "^3.13.0"
 	}
 }
