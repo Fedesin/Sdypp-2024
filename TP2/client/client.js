@@ -9,6 +9,9 @@ async function callTask(url) {
 			tag: 'latest',
 			params: [1, 2, 3, 4],
 		};
+
+		console.log('Ejecutando tarea remota...');
+
 		const response = await fetch(url, {
 			method: 'POST',
 			body: JSON.stringify(params),
