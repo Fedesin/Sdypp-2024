@@ -7,11 +7,6 @@ ZONE=us-east1-b
 gcloud compute firewall-rules create allow-http --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0
 gcloud compute firewall-rules create allow-ssh --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:22 --source-ranges=0.0.0.0/0
 gcloud compute firewall-rules create allow-3000 --action=ALLOW --rules=tcp:3000 --source-ranges=0.0.0.0/0
-gcloud compute firewall-rules create allow-3001 --action=ALLOW --rules=tcp:3001 --source-ranges=0.0.0.0/0
-gcloud compute firewall-rules create allow-3002 --action=ALLOW --rules=tcp:3002 --source-ranges=0.0.0.0/0
-gcloud compute firewall-rules create allow-3003 --action=ALLOW --rules=tcp:3003 --source-ranges=0.0.0.0/0
-gcloud compute firewall-rules create allow-8000 --action=ALLOW --rules=tcp:8000 --source-ranges=0.0.0.0/0
-
 
 #* Create a public IP address
 gcloud compute addresses create instance-public-ip --region=$REGION
