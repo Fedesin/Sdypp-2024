@@ -24,3 +24,10 @@ jobs:
                   context: ./TP2/task-service
                   push: true
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp2-task-suma:latest
+
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v2
+              with:
+                  context: ./TP2/http-server
+                  push: true
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp2-http-server:latest
