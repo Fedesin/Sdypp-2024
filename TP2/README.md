@@ -6,7 +6,7 @@
 
 Implemente un servidor que resuelva “tareas genéricas” o “pre-compiladas.
 
-Status endpoint: http://35.227.40.69:3000/api/status
+**Status endpoint: http://35.227.40.69:3000/api/status**
 
 #### Instrucciones de ejecucion
 
