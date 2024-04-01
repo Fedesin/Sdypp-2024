@@ -6,6 +6,8 @@
 
 Implemente un servidor que resuelva “tareas genéricas” o “pre-compiladas.
 
+Status endpoint: http://35.227.40.69:3000/api/status
+
 #### Instrucciones de ejecucion
 
 El servidor ya se encuentra corriendo en la nube. Por lo tanto, solo hay que ejecutar la aplicación cliente que se comunicará con él para indicar la ejecución
