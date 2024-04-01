@@ -23,13 +23,13 @@ gcloud compute project-info add-metadata --metadata "ssh-keys=${USERNAME}:$(cat 
 
 #* Creates the VM instance
 #--metadata-from-file user-data=./init.sh \ este script ejecuta los comandos al iniciar la maquina de instalar los paquetes.
-gcloud compute instances create tp1 \
+gcloud compute instances create tp2 \
     --zone="$ZONE" \
     --machine-type=e2-micro \
     --preemptible \
     --image-family=ubuntu-2204-lts \
     --image-project=ubuntu-os-cloud \
-    --tags=tp1 \
+    --tags=tp2 \
     --metadata="ssh-keys=$USERNAME:$(cat ./keys/id_rsa_example.pub)" \
     --metadata-from-file user-data=./init.sh \
     --address=instance-public-ip
