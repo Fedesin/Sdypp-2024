@@ -57,16 +57,26 @@ node client.js
   
   - **Message Queues:** Se podría utilizar un sistema de colas de mensajes para encolar las tareas a ejecutar y que los trabajadores (workers) las procesen de forma asíncrona. Esto es útil en escenarios donde se necesita una comunicación asíncrona y una gestión de tareas distribuidas.
   
-  - **Sockets TCP:** Los sockets TCP podrían ser utilizados para establecer una conexión de red entre el cliente y el servidor, permitiendo la comunicación bidireccional y la transferencia de datos de manera eficiente. Con esta tecnología, el cliente podría enviar solicitudes al servidor para ejecutar tareas remotas, y el servidor podría enviar los resultados de vuelta al cliente a través de la misma conexión TCP
-  
+  - **Sockets TCP:** Los sockets TCP podrían ser utilizados para establecer una conexión de red entre el cliente y el servidor, permitiendo la comunicación bidireccional y la transferencia de datos de manera eficiente. Con esta tecnología, el cliente podría enviar solicitudes al servidor para ejecutar tareas remotas, y el servidor podría enviar los resultados de vuelta al cliente a través de la misma conexión TCP.
+
+  - **Sistemas de colaboración en tiempo real (RTC):** Herramientas como WebRTC o sistemas de sockets en tiempo real como Socket.io pueden ser utilizados para la comunicación bidireccional entre el cliente y el servidor, permitiendo la ejecución de tareas remotas en tiempo real.
+
+  - **Arquitecturas basadas en eventos:** Utilizar un sistema de publicación/suscripción (pub/sub) como Apache Kafka, Amazon SNS/SQS o sistemas de eventos distribuidos para manejar eventos y desencadenar la ejecución de tareas basadas en esos eventos.
+    
+  - **Funciones como servicio (FaaS):** Plataformas de computación sin servidor como AWS Lambda, Azure Functions o Google Cloud Functions permiten ejecutar código en respuesta a eventos sin necesidad de administrar la infraestructura subyacente.
+    
+
 - **¿Qué consideraciones deberían tenerse en cuenta al elegir una tecnología alternativa para garantizar la eficacia y la escalabilidad del sistema?**
   
   Al elegir una tecnología alternativa para garantizar la eficacia y la escalabilidad del sistema, es importante tener en cuenta varias consideraciones clave:
   - **Requisitos del sistema:** Comprender los requisitos específicos del sistema, incluyendo el volumen de datos, la frecuencia de las solicitudes, los tiempos de respuesta esperados y la carga de trabajo prevista. Esto ayudará a determinar qué tecnología es la más adecuada para satisfacer las necesidades del sistema.
-  - **Escalabilidad:** Evaluar la capacidad de la tecnología para escalar horizontal y verticalmente según sea necesario. Esto incluye considerar cómo la tecnología maneja el aumento en el número de usuarios, la cantidad de datos y la complejidad de las operaciones.
-  - **Rendimiento:** Analizar el rendimiento de la tecnología en términos de velocidad de procesamiento, latencia, uso de recursos y capacidad para manejar cargas de trabajo pesadas.
+  - **Escalabilidad:** La tecnología elegida debe ser capaz de escalar horizontal y verticalmente para manejar un aumento en la carga de trabajo y el número de tareas a ejecutar.
+  - **Rendimiento:** Se debe evaluar el rendimiento de la tecnología en términos de latencia, tiempo de respuesta y capacidad para manejar grandes volúmenes de tareas concurrentes. 
   - **Interoperabilidad:** Evaluar la capacidad de la tecnología para integrarse con otras herramientas y sistemas existentes en el entorno de operación. La interoperabilidad puede facilitar la adopción y el uso de la tecnología en el contexto de un ecosistema más amplio.
   - **Seguridad:** Asegurarse de que la tecnología cumpla con los requisitos de seguridad necesarios para proteger los datos y las comunicaciones del sistema. Esto incluye considerar aspectos como la autenticación, la autorización, el cifrado y la protección contra vulnerabilidades conocidas.
+  - **Costo:** Se debe considerar el costo total de propiedad (TCO) de la tecnología, incluyendo costos de infraestructura, mantenimiento y soporte.
+  - **Despliegue y mantenimiento:** La tecnología elegida debe ser fácil de desplegar, configurar y mantener, con herramientas y APIs claras y bien documentadas.
+  - **Fiabilidad y tolerancia a fallos:** La tecnología debe ser robusta y tener mecanismos integrados para manejar fallos de manera adecuada, como el reintento de ejecución de tareas o la recuperación de fallos de nodo.
 
 #### Desacoplamiento y Escalabilidad
 - A pesar de que la solución es escalable, se observa una limitación en términos de sincronización entre las partes. ¿Qué estrategias o técnicas podrían implementarse para desacoplar las diferentes partes del sistema y mejorar su escalabilidad?
@@ -92,6 +102,7 @@ node client.js
 
 #### Escalabilidad y Rendimiento
 - ¿Cómo se podría escalar vertical u horizontalmente el servicio para manejar cargas de trabajo variables y picos de tráfico?
+
   Para escalar vertical u horizontalmente el servicio y manejar cargas de trabajo variables y picos de tráfico, se pueden implementar las siguientes estrategias:
 
   - **Escalado vertical:** Implica aumentar los recursos de hardware, como la capacidad de procesamiento, la memoria y el almacenamiento, en el servidor que ejecuta el servicio. Esto puede implicar migrar a una instancia de servidor más potente o agregar más recursos, como CPU y RAM, a la instancia existente.
