@@ -31,14 +31,8 @@ npm run dev
 docker network create generic-task-network
 ```
 
-2. Hacer un build de la imagen
+2. Ejecutar el contenedor
 
 ```bash
-docker build -t http-server .
-```
-
-3. Ejecutar el contenedor
-
-```bash
-docker run -p 3000:3000 --name server --network generic-task-network -v /var/run/docker.sock:/var/run/docker.sock http-server
+docker run -p 3000:3000 --name server --network generic-task-network -v /var/run/docker.sock:/var/run/docker.sock fedesin31/tp2-http-server
 ```
