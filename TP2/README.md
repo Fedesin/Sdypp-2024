@@ -34,12 +34,12 @@ node client.js
     
   El servicio centralizado puede proporcionar una capa de abstracción sobre la ejecución de tareas en los microservicios. Esto facilita la gestión y supervisión de las tareas en toda la arquitectura de microservicios, ya que todas las solicitudes de ejecución de tareas pasan a través del mismo punto de entrada.
     
-  Cada tarea genérica se puede implementar como un microservicio independiente. Es decir, cada microservicio puede ser encapsulado en su propia imagen Docker y ejecutado de manera independiente. El servicio centralizado puede manejar las solicitudes de ejecución de cada microservicio, iniciándolos cuando sea necesario y deteniéndolos cuando ya no se necesiten.
-  
+  Cada tarea genérica se puede implementar como un microservicio independiente. Es decir, cada microservicio puede ser encapsulado en su propia imagen Docker y ejecutado de manera independiente.  De esta manera, podría estar alojado en un servicio de nube como en este caso fue Docker Hub, permitiendo al servidor ejecutar diversos microservicios de manera dinámica.
+
+  El servicio centralizado puede proporcionar una capa de abstracción sobre la ejecución de tareas en los microservicios. Esto facilita la gestión y supervisión de las tareas en toda la arquitectura de microservicios, ya que todas las solicitudes de ejecución de tareas pasan a través del mismo punto de entrada.
+
 - **¿Cómo estos servicios podrían beneficiar a las empresas o proyectos en términos de eficiencia, escalabilidad y flexibilidad?**
 
-  Estos servicios pueden proporcionar varios beneficios a las empresas o proyectos en términos de *eficiencia*, *escalabilidad* y *flexibilidad*.
-    
   Al utilizarse una arquitectura basada en microservicios, donde cada servicio es independiente y se encarga de una funcionalidad específica, el sistema se vuelve más **flexible** y **adaptable a cambios**. Los equipos de desarrollo pueden realizar cambios en un servicio sin afectar a otros servicios, lo que facilita la iteración rápida y la evolución continua del sistema.
     
   Al utilizar una tecnología de contenedores, se puede lograr una **utilización óptima de los recursos disponibles,** aprovechando los recursos de manera más eficiente. Además, el uso de contenedores permite que los servicios puedan ser **desplegados de manera rápida y consistente en cualquier entorno**. Esto facilita la implementación y la gestión de la infraestructura, ya que los servicios pueden ser desplegados de manera uniforme en diferentes entornos, como entornos locales de desarrollo, servidores de pruebas y entornos de producción. 
