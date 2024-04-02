@@ -49,9 +49,24 @@ node client.js
   Por ultimo, al distribuir la carga de trabajo entre múltiples contenedores, el sistema se vuelve más **resiliente a fallos**. Si un contenedor falla, el sistema puede redirigir las solicitudes a otros contenedores en funcionamiento, lo que reduce el impacto de los fallos en la disponibilidad del servicio.
   
 #### Alternativas de stack tecnológico
-- Además de la arquitectura basada en un Servidor HTTP, ¿qué otras tecnologías alternativas podrían haber sido empleadas para implementar la ejecución de tareas remotas?
+- **Además de la arquitectura basada en un Servidor HTTP, ¿qué otras tecnologías alternativas podrían haber sido empleadas para implementar la ejecución de tareas remotas?**
   
-- ¿Qué consideraciones deberían tenerse en cuenta al elegir una tecnología alternativa para garantizar la eficacia y la escalabilidad del sistema?
+  Además de una arquitectura basada en un Servidor HTTP, existen otras tecnologías alternativas que podrían haber sido empleadas para implementar la ejecución de tareas remotas. Algunas de estas tecnologías incluyen:
+
+  a. **RPC (Remote Procedure Call):** Se podría implementar un sistema basado en RPC donde el cliente llama a procedimientos remotos en el servidor para ejecutar tareas.
+  
+  b. **Message Queues:** Se podría utilizar un sistema de colas de mensajes para encolar las tareas a ejecutar y que los trabajadores (workers) las procesen de forma asíncrona. Esto es útil en escenarios donde se necesita una comunicación asíncrona y una gestión de tareas distribuidas.
+  
+  c. **Sockets TCP:** Los sockets TCP podrían ser utilizados para establecer una conexión de red entre el cliente y el servidor, permitiendo la comunicación bidireccional y la transferencia de datos de manera eficiente. Con esta tecnología, el cliente podría enviar solicitudes al servidor para ejecutar tareas remotas, y el servidor podría enviar los resultados de vuelta al cliente a través de la misma conexión TCP
+  
+- **¿Qué consideraciones deberían tenerse en cuenta al elegir una tecnología alternativa para garantizar la eficacia y la escalabilidad del sistema?**
+  
+  Al elegir una tecnología alternativa para garantizar la eficacia y la escalabilidad del sistema, es importante tener en cuenta varias consideraciones clave:
+  - **Requisitos del sistema:** Comprender los requisitos específicos del sistema, incluyendo el volumen de datos, la frecuencia de las solicitudes, los tiempos de respuesta esperados y la carga de trabajo prevista. Esto ayudará a determinar qué tecnología es la más adecuada para satisfacer las necesidades del sistema.
+  - **Escalabilidad:** Evaluar la capacidad de la tecnología para escalar horizontal y verticalmente según sea necesario. Esto incluye considerar cómo la tecnología maneja el aumento en el número de usuarios, la cantidad de datos y la complejidad de las operaciones.
+  - **Rendimiento:** Analizar el rendimiento de la tecnología en términos de velocidad de procesamiento, latencia, uso de recursos y capacidad para manejar cargas de trabajo pesadas.
+  - **Interoperabilidad:** Evaluar la capacidad de la tecnología para integrarse con otras herramientas y sistemas existentes en el entorno de operación. La interoperabilidad puede facilitar la adopción y el uso de la tecnología en el contexto de un ecosistema más amplio.
+  - **Seguridad:** Asegurarse de que la tecnología cumpla con los requisitos de seguridad necesarios para proteger los datos y las comunicaciones del sistema. Esto incluye considerar aspectos como la autenticación, la autorización, el cifrado y la protección contra vulnerabilidades conocidas.
 
 #### Desacoplamiento y Escalabilidad
 - A pesar de que la solución es escalable, se observa una limitación en términos de sincronización entre las partes. ¿Qué estrategias o técnicas podrían implementarse para desacoplar las diferentes partes del sistema y mejorar su escalabilidad?
