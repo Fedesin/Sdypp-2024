@@ -53,11 +53,11 @@ node client.js
   
   Además de una arquitectura basada en un Servidor HTTP, existen otras tecnologías alternativas que podrían haber sido empleadas para implementar la ejecución de tareas remotas. Algunas de estas tecnologías incluyen:
 
-  a. **RPC (Remote Procedure Call):** Se podría implementar un sistema basado en RPC donde el cliente llama a procedimientos remotos en el servidor para ejecutar tareas.
+  - **RPC (Remote Procedure Call):** Se podría implementar un sistema basado en RPC donde el cliente llama a procedimientos remotos en el servidor para ejecutar tareas.
   
-  b. **Message Queues:** Se podría utilizar un sistema de colas de mensajes para encolar las tareas a ejecutar y que los trabajadores (workers) las procesen de forma asíncrona. Esto es útil en escenarios donde se necesita una comunicación asíncrona y una gestión de tareas distribuidas.
+  - **Message Queues:** Se podría utilizar un sistema de colas de mensajes para encolar las tareas a ejecutar y que los trabajadores (workers) las procesen de forma asíncrona. Esto es útil en escenarios donde se necesita una comunicación asíncrona y una gestión de tareas distribuidas.
   
-  c. **Sockets TCP:** Los sockets TCP podrían ser utilizados para establecer una conexión de red entre el cliente y el servidor, permitiendo la comunicación bidireccional y la transferencia de datos de manera eficiente. Con esta tecnología, el cliente podría enviar solicitudes al servidor para ejecutar tareas remotas, y el servidor podría enviar los resultados de vuelta al cliente a través de la misma conexión TCP
+  - **Sockets TCP:** Los sockets TCP podrían ser utilizados para establecer una conexión de red entre el cliente y el servidor, permitiendo la comunicación bidireccional y la transferencia de datos de manera eficiente. Con esta tecnología, el cliente podría enviar solicitudes al servidor para ejecutar tareas remotas, y el servidor podría enviar los resultados de vuelta al cliente a través de la misma conexión TCP
   
 - **¿Qué consideraciones deberían tenerse en cuenta al elegir una tecnología alternativa para garantizar la eficacia y la escalabilidad del sistema?**
   
