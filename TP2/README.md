@@ -92,5 +92,15 @@ node client.js
 
 #### Escalabilidad y Rendimiento
 - ¿Cómo se podría escalar vertical u horizontalmente el servicio para manejar cargas de trabajo variables y picos de tráfico?
+  Para escalar vertical u horizontalmente el servicio y manejar cargas de trabajo variables y picos de tráfico, se pueden implementar las siguientes estrategias:
+
+  - **Escalado vertical:** Implica aumentar los recursos de hardware, como la capacidad de procesamiento, la memoria y el almacenamiento, en el servidor que ejecuta el servicio. Esto puede implicar migrar a una instancia de servidor más potente o agregar más recursos, como CPU y RAM, a la instancia existente.
+    Por otro lado, se puede buscar optimizar y ajustar la configuración del servidor y del software para aprovechar al máximo los recursos disponibles y mejorar el rendimiento del sistema. 
+      
+  - **Escalado horizontal:** implica implementar un sistema de balanceo de carga para distribuir las solicitudes entre múltiples instancias del servicio que se ejecutan en varios servidores. Esto puede ayudar a distribuir la carga de manera uniforme y mejorar la capacidad de respuesta del sistema.
+    Utilizar tecnologías de contenedores, como Docker o Kubernetes, para crear y gestionar múltiples instancias del servicio de manera rápida y eficiente. Esto facilita la escalabilidad horizontal al permitir la creación rápida de nuevos contenedores según sea necesario para manejar picos de tráfico.
+    Utilizar servicios en la nube que ofrecen capacidades de escalado automático, como Google Kubernetes Engine (GKE). Estos servicios pueden ajustar automáticamente la cantidad de recursos asignados a las instancias del servicio en función de la carga de trabajo en tiempo real, lo que garantiza un rendimiento óptimo sin intervención manual.
+      
+  - Una estrategia eficaz podría ser **combinar ambas técnicas**, escalando verticalmente para manejar cargas de trabajo más pesadas y escalando horizontalmente para distribuir la carga y aumentar la capacidad de procesamiento de manera más flexible y eficiente. Por ejemplo, se podría comenzar escalando verticalmente para satisfacer la demanda inicial y luego, si la carga de trabajo continúa aumentando, implementar la escalabilidad horizontal para agregar más capacidad de procesamiento según sea necesario.
   
 - ¿Qué consideraciones de diseño y configuración podrían influir en el rendimiento y la escalabilidad del servicio a largo plazo?
