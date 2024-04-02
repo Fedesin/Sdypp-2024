@@ -14,7 +14,7 @@ npm install
 
 ```
 PORT = 3000
-HOST = localhost
+HOST = 0.0.0.0
 ```
 
 3. Iniciar la aplicación
