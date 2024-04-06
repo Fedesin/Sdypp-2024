@@ -80,6 +80,12 @@ node client.js
 
 #### Desacoplamiento y Escalabilidad
 - A pesar de que la solución es escalable, se observa una limitación en términos de sincronización entre las partes. ¿Qué estrategias o técnicas podrían implementarse para desacoplar las diferentes partes del sistema y mejorar su escalabilidad?
+
+  Una estrategia para lograr una solución no limitante en términos de sincronización entre partes sería utilizar un message broker como RabbitMQ, ya que de esta manera se consigue desacoplar las diferentes partes del sistema y mejorar su escalabilidad al hacer que la comunicación entre los componentes sea asincrónica. 
+
+  Utilizando un message broker, los componentes del sistema pueden comunicarse de forma independiente sin necesidad de conocer la ubicación o el estado de los demás. Esto reduce el acoplamiento entre los diferentes servicios, lo que facilita cambios y actualizaciones en el futuro.
+
+   Ademas, al permitir que los mensajes se envíen de forma asincrónica, un message broker permite que los componentes del sistema trabajen de manera independiente y escalen de manera individual según sea necesario. Esto facilita la escalabilidad horizontal, ya que nuevos nodos o instancias pueden agregarse fácilmente para manejar cargas de trabajo adicionales.
   
 - ¿Cómo afectaría la implementación de un sistema de mensajería o eventos en la arquitectura para abordar la limitación de sincronización y mejorar la escalabilidad del sistema?
   
