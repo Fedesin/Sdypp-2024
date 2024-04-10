@@ -87,7 +87,13 @@ node client.js
 
    Además, al permitir que los mensajes se envíen de forma asincrónica, un message broker permite que los componentes del sistema trabajen de manera independiente y escalen de manera individual según sea necesario. Esto facilita la escalabilidad horizontal, ya que nuevos nodos o instancias pueden agregarse fácilmente para manejar cargas de trabajo adicionales.
   
-- ¿Cómo afectaría la implementación de un sistema de mensajería o eventos en la arquitectura para abordar la limitación de sincronización y mejorar la escalabilidad del sistema?
+- ¿Cómo afectaría la implementación de un sistema de mensajería o eventos en la arquitectura para abordar la limitación de sincronización y mejorar la escalabilidad del sistema?ç
+
+  Para implementar un sistema de mensajería o eventos debemos introducir un intermediario de mensajería entre el cliente, el servidor y el servicio tarea. Podemos utilizar una tecnología de mensajería como RabbitMQ o Apache Kafka para gestionar la comunicación asíncrona entre los componentes del sistema. 
+
+  Luego, en lugar de comunicarse directamente entre el cliente, el servidor y el servicio tarea, los componentes enviarán mensajes o eventos al intermediario de mensajería, que luego los enrutará según sea necesario.
+
+  Por último necesitaremos definir el formato de los mensajes o eventos que se enviarán entre los componentes del sistema. Esto podría ser JSON u otro formato adecuado para representar la información necesaria para ejecutar tareas y enviar resultados.
   
 - ¿Qué ventajas y desventajas tendría la introducción de un patrón de comunicación asíncrona en comparación con la comunicación síncrona actualmente utilizada?
 
