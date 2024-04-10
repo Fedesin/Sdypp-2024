@@ -129,8 +129,24 @@ node client.js
 
 #### Seguridad y Autenticación
 - **¿Qué medidas de seguridad y autenticación deberían implementarse en este servicio para proteger los datos y garantizar la integridad de las transacciones entre el cliente y el servidor?**
+
+   Para proteger los datos y garantizar la integridad de las transacciones entre el cliente y el servidor, se deben implementar, como mínimo, algunas medidas de seguridad como el cifrado, autenticación y la autorización.
   
+  Utilizar encriptación para proteger los datos confidenciales durante su transmisión entre el cliente y el servidor, así como mientras están en reposo en el sistema de almacenamiento. Esto ayuda a prevenir la interceptación y el acceso no autorizado a los datos.
+
+  Además, utilizar métodos de autenticación sólidos, como tokens de acceso, certificados SSL/TLS y autenticación de dos factores, para verificar la identidad de los usuarios y asegurar que solo usuarios autorizados puedan acceder al servicio.
+
+  Por último, implementar un sistema de autorización y control de acceso, que especifique los permisos y los niveles de acceso de cada usuario o grupo de usuarios. Esto garantiza que sólo se conceda acceso a los recursos y datos necesarios para cada usuario.
+
 - **¿Cómo se podría mejorar la seguridad de las comunicaciones entre el cliente y el servidor, especialmente al considerar la transferencia de datos sensibles?**
+
+  Los **certificados SSL** y el **protocolo HTTPS** desempeñan un papel fundamental en la protección de datos sensibles durante la transferencia de información entre dos dispositivos a través de la web.
+
+  Los certificados SSL actúan como credenciales digitales que autentican la identidad de un sitio web y cifran la comunicación entre el cliente y el servidor. Emitidos por autoridades de certificación confiables, estos certificados contienen información sobre la identidad del titular del certificado, como el nombre del dominio y la entidad emisora, y se utilizan para establecer una conexión segura y cifrada.
+
+  Cuando un usuario accede a un sitio web protegido por un certificado SSL, su navegador establece una conexión segura utilizando el protocolo HTTPS en lugar de HTTP estándar. HTTPS utiliza cifrado SSL/TLS (cifrado en capa de transporte) para proteger los datos durante la transferencia entre el cliente y el servidor. Este cifrado garantiza que los datos transmitidos no puedan ser interceptados ni modificados por terceros no autorizados, lo que proporciona una capa adicional de seguridad para la comunicación en línea.
+
+  La adopción generalizada de certificados SSL y HTTPS es fundamental para mejorar la comunicación entre cliente y servidor, ya que garantizan la confidencialidad, integridad y autenticidad de la información transmitida a través de la web. 
 
 #### Gestión de Errores y Resiliencia
 - **¿Qué estrategias deberían implementarse para gestionar errores y fallos en el servicio, tanto en el lado del cliente como en el del servidor?**
