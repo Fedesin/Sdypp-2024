@@ -79,7 +79,7 @@ node client.js
   - **Fiabilidad y tolerancia a fallos:** La tecnología debe ser robusta y tener mecanismos integrados para manejar fallos de manera adecuada, como el reintento de ejecución de tareas o la recuperación de fallos de nodo.
 
 #### Desacoplamiento y Escalabilidad
-- A pesar de que la solución es escalable, se observa una limitación en términos de sincronización entre las partes. ¿Qué estrategias o técnicas podrían implementarse para desacoplar las diferentes partes del sistema y mejorar su escalabilidad?
+- **A pesar de que la solución es escalable, se observa una limitación en términos de sincronización entre las partes. ¿Qué estrategias o técnicas podrían implementarse para desacoplar las diferentes partes del sistema y mejorar su escalabilidad?**
 
   Una estrategia para lograr una solución no limitante en términos de sincronización entre partes sería utilizar un message broker como RabbitMQ, ya que de esta manera se consigue desacoplar las diferentes partes del sistema y mejorar su escalabilidad al hacer que la comunicación entre los componentes sea asincrónica. 
 
@@ -87,7 +87,7 @@ node client.js
 
    Además, al permitir que los mensajes se envíen de forma asincrónica, un message broker permite que los componentes del sistema trabajen de manera independiente y escalen de manera individual según sea necesario. Esto facilita la escalabilidad horizontal, ya que nuevos nodos o instancias pueden agregarse fácilmente para manejar cargas de trabajo adicionales.
   
-- ¿Cómo afectaría la implementación de un sistema de mensajería o eventos en la arquitectura para abordar la limitación de sincronización y mejorar la escalabilidad del sistema?ç
+- **¿Cómo afectaría la implementación de un sistema de mensajería o eventos en la arquitectura para abordar la limitación de sincronización y mejorar la escalabilidad del sistema?**
 
   Para implementar un sistema de mensajería o eventos debemos introducir un intermediario de mensajería entre el cliente, el servidor y el servicio tarea. Podemos utilizar una tecnología de mensajería como RabbitMQ o Apache Kafka para gestionar la comunicación asíncrona entre los componentes del sistema. 
 
@@ -95,7 +95,7 @@ node client.js
 
   Por último necesitaremos definir el formato de los mensajes o eventos que se enviarán entre los componentes del sistema. Esto podría ser JSON u otro formato adecuado para representar la información necesaria para ejecutar tareas y enviar resultados.
   
-- ¿Qué ventajas y desventajas tendría la introducción de un patrón de comunicación asíncrona en comparación con la comunicación síncrona actualmente utilizada?
+- **¿Qué ventajas y desventajas tendría la introducción de un patrón de comunicación asíncrona en comparación con la comunicación síncrona actualmente utilizada?**
 
   La comunicación síncrona implica una interacción en tiempo real entre los nodos del sistema, donde los mensajes se envían y reciben de manera inmediata. Por otro lado, la comunicación asíncrona permite que los mensajes se envíen y reciban en momentos diferentes, sin la necesidad de que los nodos estén activos simultáneamente.
   La elección entre estos enfoques depende de diversos factores, como la latencia tolerada, la disponibilidad de los nodos y la consistencia de los datos.
@@ -128,22 +128,47 @@ node client.js
   
 
 #### Seguridad y Autenticación
-- ¿Qué medidas de seguridad y autenticación deberían implementarse en este servicio para proteger los datos y garantizar la integridad de las transacciones entre el cliente y el servidor?
+- **¿Qué medidas de seguridad y autenticación deberían implementarse en este servicio para proteger los datos y garantizar la integridad de las transacciones entre el cliente y el servidor?**
   
-- ¿Cómo se podría mejorar la seguridad de las comunicaciones entre el cliente y el servidor, especialmente al considerar la transferencia de datos sensibles?
+- **¿Cómo se podría mejorar la seguridad de las comunicaciones entre el cliente y el servidor, especialmente al considerar la transferencia de datos sensibles?**
 
 #### Gestión de Errores y Resiliencia
-- ¿Qué estrategias deberían implementarse para gestionar errores y fallos en el servicio, tanto en el lado del cliente como en el del servidor?
+- **¿Qué estrategias deberían implementarse para gestionar errores y fallos en el servicio, tanto en el lado del cliente como en el del servidor?**
   
-- ¿Cómo se podría diseñar el sistema para ser más resiliente ante posibles fallos de red o problemas de disponibilidad de recursos?
+- **¿Cómo se podría diseñar el sistema para ser más resiliente ante posibles fallos de red o problemas de disponibilidad de recursos?**
 
 #### Monitorización y Diagnóstico
-- ¿Qué herramientas y técnicas podrían utilizarse para monitorear y diagnosticar el rendimiento y el estado del servicio en tiempo real?
+- **¿Qué herramientas y técnicas podrían utilizarse para monitorear y diagnosticar el rendimiento y el estado del servicio en tiempo real?**
+
+  La monitorización y alertas permiten a un sistema decirnos cuando algo está roto, o quizás, cuando va a romperse. Para monitorear y diagnosticar el rendimiento y el estado del servicio en tiempo real en sistemas
+ distribuidos, existen varias herramientas y técnicas disponibles.
+
+  Para el de *monitoreo de infraestructura*, existen herramientas como **Prometheus**, el cuál es un sistema de monitoreo y alerta de código abierto diseñado para escalar y ser altamente adaptable a diferentes entornos. Permite recopilar métricas de sistemas distribuidos y generar alertas en tiempo real. También otra herramienta como **Grafana**, la cuál se integra bien con la anterior y con otras fuentes de datos para proporcionarnos visualizaciones personalizadas y tableros de control que permiten supervisar el rendimiento del sistema en tiempo real.
+
+  Para el *análisis de logs*, tenemos herramientas como el ELK Stack que incluye tres herramientas: Elasticsearch, Logstash, Kibana. Esta pila de herramientas permite recopilar, procesar y visualizar registros en tiempo real. **Elasticsearch** almacena los datos de registro, **Logstash** los procesa y **Kibana** proporciona una interfaz de usuario para la visualización y el análisis de los registros.
+
+  Para el *monitoreo de actividad de red*, tenemos **Wireshark**, la cuál es una herramienta de análisis de protocolos de red que permite capturar y analizar el tráfico de red en tiempo real. Puede ser útil para diagnosticar problemas de rendimiento y seguridad en sistemas distribuidos.
+
+  Por último, para la *supervisión de contenedores y orquestadores*, tenemos **Docker Stats** y **Kubernetes Metrics API**. Estas herramientas proporcionan métricas de rendimiento y estado de contenedores y clústeres de Kubernetes, permitiendo monitorear y diagnosticar problemas en tiempo real.
   
-- ¿Qué métricas serían importantes de rastrear para evaluar el rendimiento y la eficacia del servicio?
+- **¿Qué métricas serían importantes de rastrear para evaluar el rendimiento y la eficacia del servicio?**
+
+    - **Tiempo de respuesta**. Mide el tiempo que tarda el servicio en responder a una solicitud. Esto puede incluir el tiempo de procesamiento en el servidor, así como el tiempo de latencia de red. Un tiempo de respuesta más bajo generalmente indica un mejor rendimiento del servicio.
+
+    - **Tasa de errores**. Rastrea el número de solicitudes que resultan en errores. Esta métrica cuantifica la tasa de solicitudes fallidas. Los errores pueden ser explícitos (como los errores HTTP 500), implícitos (por ejemplo, una respuesta correcta HTTP 200 con contenido erróneo), o definidos por política (por ejemplo, cualquier solicitud que exceda un tiempo de respuesta comprometido se considera un error). Monitorear errores requiere una estrategia que abarque desde la detección de fallos completos en el balanceador de carga hasta pruebas de sistema de extremo a extremo para errores más sutiles. Una alta tasa de errores puede indicar problemas en el servicio que deben abordarse.
+       
+    - **Latencia**. Representa el tiempo total que tarda una solicitud en viajar desde el cliente hasta el servidor y viceversa. Una baja latencia es crucial para garantizar una experiencia de usuario fluida y ágil. Se refiere al tiempo que tarda en procesarse una solicitud. Es importante distinguir entre las solicitudes que han sido atendidas y las solicitudes fallidas. Por ejemplo, un error HTTP 500 por la pérdida de conexión con una base de datos u otro backend puede procesarse rápidamente, pero sigue siendo un indicador de fallo. Por tanto, incluir estos errores en el cálculo de la latencia general puede llevar a interpretaciones erróneas. Además, un error lento es aún más problemático que un error rápido, lo que hace vital rastrear la latencia de los errores.
+
+    - **Disponibilidad**. Mide la proporción de tiempo durante el cual el servicio está disponible y operativo. Una alta disponibilidad es fundamental para garantizar la accesibilidad del servicio a los usuarios finales.
+
+    - **Utilización de recursos**. Rastrea la cantidad de recursos del sistema, como CPU, memoria y almacenamiento, que están siendo utilizados por el servicio. Esto ayuda a identificar posibles cuellos de botella y a   optimizar el uso de recursos.
+  La saturación no solo se mide por el uso actual, sino también por la capacidad del sistema para manejar cargas crecientes. La latencia suele ser un indicador anticipado de saturación, y medir tiempos de respuesta en percentiles altos (como el 99%) en ventanas cortas de tiempo puede alertar tempranamente sobre posibles saturaciones. También es importante predecir la saturación inminente, como un disco duro que se llenará en unas horas.
+
+    - **Tamaño de la cola**. En entornos donde se utilizan colas de mensajes, rastrear el tamaño de la cola puede ayudar a evaluar la eficacia del sistema para manejar la carga de trabajo entrante y detectar posibles problemas de congestión.
+
 
 #### Escalabilidad y Rendimiento
-- ¿Cómo se podría escalar vertical u horizontalmente el servicio para manejar cargas de trabajo variables y picos de tráfico?
+- **¿Cómo se podría escalar vertical u horizontalmente el servicio para manejar cargas de trabajo variables y picos de tráfico?**
 
   Para escalar vertical u horizontalmente el servicio y manejar cargas de trabajo variables y picos de tráfico, se pueden implementar las siguientes estrategias:
 
@@ -154,6 +179,6 @@ node client.js
     Utilizar tecnologías de contenedores, como Docker o Kubernetes, para crear y gestionar múltiples instancias del servicio de manera rápida y eficiente. Esto facilita la escalabilidad horizontal al permitir la creación rápida de nuevos contenedores según sea necesario para manejar picos de tráfico.
     Utilizar servicios en la nube que ofrecen capacidades de escalado automático, como Google Kubernetes Engine (GKE). Estos servicios pueden ajustar automáticamente la cantidad de recursos asignados a las instancias del servicio en función de la carga de trabajo en tiempo real, lo que garantiza un rendimiento óptimo sin intervención manual.
       
-  - Una estrategia eficaz podría ser **combinar ambas técnicas**, escalando verticalmente para manejar cargas de trabajo más pesadas y escalando horizontalmente para distribuir la carga y aumentar la capacidad de procesamiento de manera más flexible y eficiente. Por ejemplo, se podría comenzar escalando verticalmente para satisfacer la demanda inicial y luego, si la carga de trabajo continúa aumentando, implementar la escalabilidad horizontal para agregar más capacidad de procesamiento según sea necesario.
+  Una estrategia eficaz podría ser **combinar ambas técnicas**, escalando verticalmente para manejar cargas de trabajo más pesadas y escalando horizontalmente para distribuir la carga y aumentar la capacidad de procesamiento de manera más flexible y eficiente. Por ejemplo, se podría comenzar escalando verticalmente para satisfacer la demanda inicial y luego, si la carga de trabajo continúa aumentando, implementar la escalabilidad horizontal para agregar más capacidad de procesamiento según sea necesario.
   
-- ¿Qué consideraciones de diseño y configuración podrían influir en el rendimiento y la escalabilidad del servicio a largo plazo?
+- ¿**Qué consideraciones de diseño y configuración podrían influir en el rendimiento y la escalabilidad del servicio a largo plazo?**
