@@ -85,11 +85,41 @@ node client.js
 
   Utilizando un message broker, los componentes del sistema pueden comunicarse de forma independiente sin necesidad de conocer la ubicación o el estado de los demás. Esto reduce el acoplamiento entre los diferentes servicios, lo que facilita cambios y actualizaciones en el futuro.
 
-   Ademas, al permitir que los mensajes se envíen de forma asincrónica, un message broker permite que los componentes del sistema trabajen de manera independiente y escalen de manera individual según sea necesario. Esto facilita la escalabilidad horizontal, ya que nuevos nodos o instancias pueden agregarse fácilmente para manejar cargas de trabajo adicionales.
+   Además, al permitir que los mensajes se envíen de forma asincrónica, un message broker permite que los componentes del sistema trabajen de manera independiente y escalen de manera individual según sea necesario. Esto facilita la escalabilidad horizontal, ya que nuevos nodos o instancias pueden agregarse fácilmente para manejar cargas de trabajo adicionales.
   
 - ¿Cómo afectaría la implementación de un sistema de mensajería o eventos en la arquitectura para abordar la limitación de sincronización y mejorar la escalabilidad del sistema?
   
 - ¿Qué ventajas y desventajas tendría la introducción de un patrón de comunicación asíncrona en comparación con la comunicación síncrona actualmente utilizada?
+
+  La comunicación síncrona implica una interacción en tiempo real entre los nodos del sistema, donde los mensajes se envían y reciben de manera inmediata. Por otro lado, la comunicación asíncrona permite que los mensajes se envíen y reciban en momentos diferentes, sin la necesidad de que los nodos estén activos simultáneamente.
+  La elección entre estos enfoques depende de diversos factores, como la latencia tolerada, la disponibilidad de los nodos y la consistencia de los datos.
+
+  | Característica | Comunicación sincrónica | Comunicación asincrónica |
+  |---|---|---|
+  | **Interacción en tiempo real** | Sí | No |
+  | **Simplicidad** | Alta | Baja |
+  | **Orden** | Sí | No |
+  | **Latencia** | Baja | Alta |
+  | **Escalabilidad** | Baja | Alta |
+  | **Disponibilidad** | Baja | Alta |
+  | **Eficiencia** | Baja | Alta |
+  
+  **Ventajas de la comunicación asíncrona**
+    
+    a. *Tolerancia a fallos*. La comunicación asíncrona puede ser más robusta frente a fallos de red o de los nodos. Si un nodo emisor o receptor no está disponible en el momento exacto de la comunicación, los mensajes           pueden almacenarse temporalmente y enviarse/recibirse en otro momento.
+    
+    b. *Escalabilidad*. En sistemas distribuidos con un gran número de nodos, la comunicación asíncrona puede escalar mejor que la comunicación síncrona. Esto se debe a que no todos los nodos necesitan estar activos               simultáneamente, lo que reduce la carga en la red y los recursos del sistema.
+    
+    c. *Flexibilidad* en el tiempo de respuesta: Los nodos pueden procesar mensajes según su disponibilidad y prioridades, lo que permite una mayor flexibilidad en el tiempo de respuesta. Esto es especialmente útil en             sistemas donde las operaciones pueden tomar diferentes cantidades de tiempo o donde ciertas tareas tienen prioridad sobre otras.
+    
+    d. *Mejora del rendimiento*. En algunas situaciones, la comunicación asíncrona puede mejorar el rendimiento general del sistema al evitar bloqueos y esperas innecesarias. Los nodos pueden continuar con otras tareas           mientras esperan la respuesta a un mensaje, en lugar de quedarse inactivos y bloqueados
+  
+  **Desventajas de la comunicación asíncrona**
+  
+    a. *Posible pérdida de coherencia*: En sistemas distribuidos donde la consistencia de los datos es crítica, la comunicación asíncrona puede dificultar la garantía de la coherencia de los datos entre los nodos. Si los           mensajes se entregan en momentos diferentes, podría haber discrepancias en los datos entre los nodos.
+    
+    b. *Posible sobrecarga de mensajería*: En sistemas donde hay una gran cantidad de mensajes asíncronos en circulación al mismo tiempo, puede producirse una sobrecarga en la red y un exceso de los recursos del sistema           debido al procesamiento, encolado y enrutamiento de mensajes.
+  
 
 #### Seguridad y Autenticación
 - ¿Qué medidas de seguridad y autenticación deberían implementarse en este servicio para proteger los datos y garantizar la integridad de las transacciones entre el cliente y el servidor?
