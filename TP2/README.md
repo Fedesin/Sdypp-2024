@@ -150,8 +150,24 @@ node client.js
 
 #### Gestión de Errores y Resiliencia
 - **¿Qué estrategias deberían implementarse para gestionar errores y fallos en el servicio, tanto en el lado del cliente como en el del servidor?**
+
+  En el lado del cliente, será crucial implementar mecanismos efectivos para el manejo de errores. Esto implica implementar un manejo adecuado de excepciones en el código del cliente para capturar errores y responder de manera apropiada. Esto podría incluir la visualización de mensajes de error amigables para el usuario o la ejecución de acciones de recuperación.
+
+  Además, se deberán aplicar técnicas de recuperación de errores para permitir que la aplicación cliente se recupere cuando se produzcan fallos. Esto podría incluir configurar el cliente para que realice automáticamente reintentos en caso de que se produzca un error temporal, como una conexión perdida o un tiempo de espera agotado. Establece un límite en el número de intentos para evitar la degradación del rendimiento.
+
+  Del lado del servidor, es importante contar con múltiples instancias del servicio desplegadas en diferentes ubicaciones geográficas para distribuir la carga y aumentar la tolerancia a fallos. Utiliza técnicas de replicación de datos para mantener la coherencia entre las instancias.
+
+  Además, diseñar el sistema para que sea tolerante a fallos, lo que significa que pueda seguir funcionando de manera aceptable incluso cuando ocurran fallos parciales. Esto podría implicar la implementación de redundancia en los componentes críticos y el diseño de protocolos de comunicación robustos.
+
+  Es sumamente importante implementar un sistema para registrar y analizar activamente los errores y excepciones que ocurran en el servidor, utilizando herramientas de registro para recopilar información detallada sobre los errores, así como también realizar un monitoreo constante de los componentes clave y la configuración de alertas para notificar al equipo de operaciones sobre posibles problemas.
   
 - **¿Cómo se podría diseñar el sistema para ser más resiliente ante posibles fallos de red o problemas de disponibilidad de recursos?**
+
+  Dividiendo el sistema en componentes independientes y autónomos (microservicios) que puedan funcionar de forma independiente unos de otros. Esto permite que el sistema continúe operando incluso si uno o varios microservicios fallan.
+
+  Además, se deberían implementar redundancia y escalabilidad mediante la utilización de múltiples servidores y capacidad de escalado automático. 
+
+  Por último, la opción de implementar un balanceo de carga permite distribuir uniformemente la carga entre los servidores disponibles y el uso de cache reduce la dependencia de recursos externos al mantener ciertos datos y operaciones accesibles localmente. 
 
 #### Monitorización y Diagnóstico
 - **¿Qué herramientas y técnicas podrían utilizarse para monitorear y diagnosticar el rendimiento y el estado del servicio en tiempo real?**
