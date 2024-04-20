@@ -11,6 +11,6 @@ export class TaskController {
 
 		const result = task.multiplication(params);
 		console.log('Multiplication result: ', result);
-		response.end(JSON.stringify({ 'Multiplication result': result }));
+		response.end(JSON.stringify({ result }));
 	};
 }
