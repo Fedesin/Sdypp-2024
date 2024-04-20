@@ -26,4 +26,4 @@ USER user
 CMD [ "npm", "run", "dev" ]
 
 # Exponer los puertos utilizados por el servidor
-EXPOSE 5000
+EXPOSE 5001
