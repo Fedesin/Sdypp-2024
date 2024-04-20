@@ -1,9 +1,9 @@
 export class Task {
 	multiplication = (params) => {
-		let result = 0;
+		let result = 1;
 
 		params.forEach((num) => {
-			result *= num;
+			result = result * num;
 		});
 
 		return result;
