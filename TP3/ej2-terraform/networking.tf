@@ -22,6 +22,18 @@ resource "google_compute_firewall" "allow_http" {
   }
 }
 
+resource "google_compute_firewall" "allow_https" {
+  name          = "allow-https"
+  network       = "default"
+  target_tags   = ["allow-https"]
+  source_ranges = ["0.0.0.0/0"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["443"]
+  }
+}
+
 resource "local_file" "instance_ip" {
   content         = google_compute_instance.vm_instance[0].network_interface[0].access_config[0].nat_ip
   filename        = "temp/instance_ip.txt"
