@@ -8,15 +8,16 @@
 
 -   Ejecutar terraform para crear la instancia de la VM en GCP.
 
-  ```bash
-  terraform apply -auto-approve
+```bash
+terraform init
+terraform apply -auto-approve
 
-  # Otra alternativa es ejecutar el siguiente script:
-  sh runner.sh
-  ```
+# Otra alternativa es ejecutar el siguiente script:
+sh runner.sh
+```
 
 -   Para conectarse por ssh, ejecutamos el siguiente script:
 
-  ```bash
-  sh ssh-connect.sh
-  ```
+```bash
+sh ssh-connect.sh
+```
