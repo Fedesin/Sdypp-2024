@@ -1,0 +1,5 @@
+credentials.json
+.terraform
+.keys
+temp
+terraform_output.txt
