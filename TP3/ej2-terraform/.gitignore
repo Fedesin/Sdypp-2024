@@ -3,3 +3,5 @@ credentials.json
 .keys
 temp
 terraform_output.txt
+terraform.tfstate
+terraform.tfstate.backup
