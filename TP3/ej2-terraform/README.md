@@ -6,7 +6,13 @@
 
 ## Creación de infraestructura
 
--   Ejecutar el script `runner.sh`. Este script realiza un terraform apply y obtiene las claves ssh generadas.
+-   Ejecutar terraform para crear la instancia de la VM en GCP.
+
+```bash
+terraform apply -auto-approve
+```
+
+Otra alternativa es ejecutar el siguiente script:
 
 ```bash
 sh runner.sh

@@ -22,3 +22,8 @@ resource "google_compute_firewall" "allow_http" {
   }
 }
 
+resource "local_file" "instance_ip" {
+  content         = google_compute_instance.vm_instance[0].network_interface[0].access_config[0].nat_ip
+  filename        = "temp/instance_ip.txt"
+  file_permission = "0600"
+}

@@ -10,8 +10,8 @@ resource "local_file" "ssh_private_key_pem" {
 }
 
 
-# resource "local_file" "ssh_public_key_pub" {
-#   content         = tls_private_key.ssh.public_key_openssh
-#   filename        = ".keys/ssh_public_key.pub"
-#   file_permission = "0600"
-# }
+resource "local_file" "username" {
+  content         = split("@", data.google_client_openid_userinfo.me.email)[0]
+  filename        = "temp/username.txt"
+  file_permission = "0600"
+}
