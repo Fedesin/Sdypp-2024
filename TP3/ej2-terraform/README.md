@@ -16,10 +16,13 @@ terraform apply -auto-approve
 sh runner.sh
 ```
 
--   Para conectarse por ssh, ejecutamos el siguiente script:
+-   Para conectarse por ssh, ejecutamos el siguiente script `ssh-connect.sh`:
 
 ```bash
-sh ssh-connect.sh
+username=$(cat ./temp/username.txt | tr -d '"')
+instance_ip=$(cat ./temp/instance_ip.txt | tr -d '"')
+
+ssh -i ./.keys/ssh_private_key.pem ${username}@${instance_ip}
 ```
 
 ## Compare y comente las velocidades de descarga. ¿A qué se debe esta diferencia?
@@ -34,11 +37,15 @@ Incluso, los proveedores de servicios en la nube a menudo implementan optimizaci
 
 ## Copiando un archivo a la VM en GCP
 
-Para realizar la prueba de copiar un archivo usamos el siguiente comando `scp`
+Para realizar la prueba de copiar un archivo usamos el comando `scp` dentro del siguiente script:
 
 ```
+username=$(cat ./temp/username.txt | tr -d '"')
+instance_ip=$(cat ./temp/instance_ip.txt | tr -d '"')
 
-
+# Copiamos este archivo README en la VM en la nube.
+scp -i ./.keys/ssh_private_key.pem ./README.md ${username}@${instance_ip}:/home/${username}
 ```
+![scp-local](https://github.com/Fedesin/sdypp-2024/assets/117539520/8229ee14-5767-4649-8b5d-f0cac5320dde)
+![scp-remote](https://github.com/Fedesin/sdypp-2024/assets/117539520/4a619b4b-789d-4bf1-96d4-942698fe0083)
 
-scp /ruta/local/archivo usuario@direccion_ip_instancia:/ruta/remota/donde/guardar
