@@ -80,6 +80,7 @@ Sin embargo, la confianza en una empresa y sus servicios no solo se basa en el t
 La decisión de confiar en un proveedor de servicios en la nube debe basarse en una evaluación completa de sus necesidades y de las opciones disponibles en el mercado.
 
 **6. ¿Cuáles son los proveedores más grandes? ¿Qué hace que ellos sigan siendo cada vez más grandes? ¿Qué los diferencia del siguiente nivel inferior?**
+
 Los tres proveedores de nube más grandes (AWS, Azure y GCP) han logrado su posición dominante gracias a una combinación de factores que incluyen una amplia gama de servicios, una infraestructura global confiable, un enfoque en la innovación y un fuerte compromiso con el éxito del cliente. Estos proveedores ofrecen:
 
 -   **Amplia gama de servicios**: AWS, Azure y GCP ofrecen una amplia gama de servicios en la nube que incluyen cómputo, almacenamiento, bases de datos, redes, inteligencia artificial, análisis de datos, aprendizaje automático y más. Esta variedad de servicios les permite satisfacer una amplia gama de necesidades de los clientes, desde pequeñas empresas hasta grandes corporaciones.
@@ -94,13 +95,15 @@ Lo que diferencia a estos proveedores del siguiente nivel inferior son principal
 
 **7. ¿Qué sucede cuando la Nube se cae? ¿Cómo me notifico cuando eso ocurre? ¿Mis servicios se reinician automáticamente o tengo que estar pendiente para hacerlo de manera manual? ¿Qué son los “Outages” de los proveedores Cloud?**
 
-Cuando se produce una caída, es posible que experimente una pérdida temporal de acceso a los servicios en la nube, lo que puede afectar la disponibilidad de sus aplicaciones y datos alojados en la plataforma.
+Cuando la "nube" experimenta una caída o un "outage", significa que los servicios alojados en esa infraestructura no están disponibles temporalmente. Cuando se produce una caída, es posible que experimente una pérdida temporal de acceso a los servicios en la nube, lo que puede afectar la disponibilidad de sus aplicaciones y datos alojados en la plataforma.
+
+Los "outages" o interrupciones de los proveedores de servicios en la nube se refieren a períodos de tiempo durante los cuales los servicios en la nube no están disponibles debido a problemas técnicos o de mantenimiento. Estas interrupciones pueden variar en duración y gravedad, desde breves caídas que afectan a un pequeño número de usuarios hasta interrupciones más extensas que afectan a una región geográfica completa.
 
 Los proveedores de servicios en la nube suelen proporcionar canales de comunicación para notificar a los usuarios sobre las interrupciones del servicio. Esto puede incluir paneles de estado en línea, blogs de estado, notificaciones por correo electrónico o mensajes en redes sociales. Algunos proveedores también ofrecen servicios de notificación por SMS o llamadas automáticas para informar a los clientes sobre problemas de disponibilidad.
 
-En cuanto a la recuperación de servicios, depende del proveedor y de la configuración de su infraestructura. Muchos proveedores de la nube implementan mecanismos automáticos de recuperación y escalado para minimizar el impacto de las interrupciones del servicio. Esto puede incluir la migración automática de cargas de trabajo a servidores alternativos o la redundancia de recursos para garantizar la continuidad del servicio. Sin embargo, en algunos casos, es posible que deba reiniciar manualmente sus servicios o aplicaciones una vez que se haya restablecido la disponibilidad.
+Sin embargo, pueden configurarse mecanismos de monitoreo autónomo para recibir notificaciones cuando ocurran interrupciones en tus servicios en la nube. Estos mecanismos suelen involucrar el uso de herramientas de monitoreo y gestión de la infraestructura que pueden verificar continuamente el estado de tus servicios y alertarte automáticamente en caso de un "outage" o cualquier otra anomalía.
 
-Los "outages" o interrupciones de los proveedores de servicios en la nube se refieren a períodos de tiempo durante los cuales los servicios en la nube no están disponibles debido a problemas técnicos o de mantenimiento. Estas interrupciones pueden variar en duración y gravedad, desde breves caídas que afectan a un pequeño número de usuarios hasta interrupciones más extensas que afectan a una región geográfica completa. Los proveedores de la nube suelen publicar informes detallados después de un incidente para informar a los clientes sobre la causa, la duración y las medidas tomadas para mitigar futuras interrupciones.
+En cuanto a la recuperación de servicios, depende del proveedor y de la configuración de su infraestructura. Muchos proveedores de la nube implementan mecanismos automáticos de recuperación y escalado para minimizar el impacto de las interrupciones del servicio. Esto puede incluir la migración automática de cargas de trabajo a servidores alternativos o la redundancia de recursos para garantizar la continuidad del servicio. Algunos proveedores ofrecen la opción de configurar la auto recuperación, donde los servicios afectados se reinician automáticamente una vez que la caída se ha solucionado. Sin embargo, en otros casos, puede que necesites intervenir manualmente para reiniciar tus servicios o aplicaciones una vez que se haya restablecido la disponibilidad.
 
 **8. ¿El proveedor ofrece garantías de QoS? ¿Provee mecanismos de balanceo de carga o garantía de disponibilidad? ¿Cómo se implementa la redundancia dentro del entorno?**
 
@@ -113,3 +116,4 @@ Para garantizar la disponibilidad y el rendimiento, los proveedores de la nube i
 -   Redundancia de recursos: Los proveedores de la nube implementan redundancia a nivel de infraestructura para garantizar la disponibilidad continua de los servicios. Esto puede incluir la replicación de datos y aplicaciones en múltiples ubicaciones geográficas, la implementación de zonas de disponibilidad y regiones geográficas, y el uso de copias de seguridad y sistemas de respaldo.
 
 -   Escalado automático: Los proveedores de la nube ofrecen capacidades de escalado automático que permiten ajustar dinámicamente la capacidad de los recursos en función de la demanda del usuario. Esto garantiza que los servicios puedan manejar picos de tráfico repentinos sin degradación del rendimiento o tiempos de inactividad.
+

@@ -16,15 +16,49 @@ terraform apply -auto-approve
 sh runner.sh
 ```
 
--   Para conectarse por ssh, ejecutamos el siguiente script:
+-   Para conectarse por ssh, ejecutamos el siguiente script `ssh-connect.sh`:
 
 ```bash
-sh ssh-connect.sh
+username=$(cat ./temp/username.txt | tr -d '"')
+instance_ip=$(cat ./temp/instance_ip.txt | tr -d '"')
+
+ssh -i ./.keys/ssh_private_key.pem ${username}@${instance_ip}
+```
+
+Los valores de username, instance_ip y la clave privada son obtenidos del output de terraform.
+```
+resource "local_file" "ssh_private_key_pem" {
+  content         = tls_private_key.keys.private_key_pem
+  filename        = ".keys/ssh_private_key.pem"
+  file_permission = "0600"
+}
+
+resource "local_file" "username" {
+  content         = split("@", data.google_client_openid_userinfo.me.email)[0]
+  filename        = "temp/username.txt"
+  file_permission = "0600"
+}
+
+
+resource "local_file" "instance_ip" {
+  content         = google_compute_instance.vm_instance[0].network_interface[0].access_config[0].nat_ip
+  filename        = "temp/instance_ip.txt"
+  file_permission = "0600"
+}
 ```
 
 ## Compare y comente las velocidades de descarga. ¿A qué se debe esta diferencia?
 
 Iniciamos al mismo tiempo la descarga de la ISO de Ubuntu 22 de forma local y en una instancia en GCP. Se puede notar una gran diferencia en la velocidad en la que la descarga se completa.
+
+***Descarga en VM GCP***
+
+![cloud](https://github.com/Fedesin/sdypp-2024/assets/117539520/acf05368-f216-4be2-9685-0bd91ff514b7)
+
+***Descarga local***
+
+![local](https://github.com/Fedesin/sdypp-2024/assets/117539520/837eacd6-38d3-4a59-88a1-f6a455c2d626)
+
 
 Asumimos que se debe a que la red en la que se encuentra la VM de Google Cloud puede tener un ancho de banda más alto y quizás una menor latencia en comparación con nuestra red local.
 
@@ -34,11 +68,15 @@ Incluso, los proveedores de servicios en la nube a menudo implementan optimizaci
 
 ## Copiando un archivo a la VM en GCP
 
-Para realizar la prueba de copiar un archivo usamos el siguiente comando `scp`
+Para realizar la prueba de copiar un archivo usamos el comando `scp` dentro del siguiente script:
 
 ```
+username=$(cat ./temp/username.txt | tr -d '"')
+instance_ip=$(cat ./temp/instance_ip.txt | tr -d '"')
 
-
+# Copiamos este archivo README en la VM en la nube.
+scp -i ./.keys/ssh_private_key.pem ./README.md ${username}@${instance_ip}:/home/${username}
 ```
+![scp-local](https://github.com/Fedesin/sdypp-2024/assets/117539520/8229ee14-5767-4649-8b5d-f0cac5320dde)
+![scp-remote](https://github.com/Fedesin/sdypp-2024/assets/117539520/4a619b4b-789d-4bf1-96d4-942698fe0083)
 
-scp /ruta/local/archivo usuario@direccion_ip_instancia:/ruta/remota/donde/guardar
