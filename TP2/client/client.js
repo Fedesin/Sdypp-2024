@@ -1,5 +1,4 @@
-// const URL = 'http://35.227.40.69:3000/api/execute';
-const URL = 'http://0.0.0.0:3000/api/execute';
+const URL = 'http://35.227.40.69:3000/api/execute';
 
 async function callTask(url) {
 	try {
