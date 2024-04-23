@@ -35,7 +35,7 @@ node app.js <path-to-file.json>
 
 El estado de Terraform se actualizará automáticamente siempre y cuando se creen, eliminen o modifiquen recursos a través de Terraform.
 
-Si creamos una instancia de máquina virtual en la nube, el estado reflejará esos cambios. En caso de que la instancia la eliminemos desde esta aplicación que utiliza el SDK de GCP, el estado de Terraform no notará esos cambios que ocurrieron en los recursos en la nube.
+Si creamos una instancia de máquina virtual en la nube con Terraform, el estado reflejará esos cambios. En caso de que la instancia la eliminemos desde esta aplicación que utiliza el SDK de GCP, el estado de Terraform no notará esos cambios que ocurrieron en los recursos en la nube.
 
 Algo así debería estar el estado de Terraform cuando no hay recursos siendo utilizados en la nube.
 
@@ -53,11 +53,11 @@ Algo así debería estar el estado de Terraform cuando no hay recursos siendo ut
 
 Sin embargo, al eliminar la instancia por fuera de Terraform, el contenido del archivo `terraform.tfstate` sigue igual que cuando iniciamos la VM, como si no hubiesen ocurrido cambios en la nube.
 
-Cuando volvemos a ejecutar un `terraform plan` consulta el estado actual de la nube para ver que acciones debe llevar a cabo para lograr la infraestructura deseada, por lo cuál, detecta que debe crear el recurso (vm-instance) ya que no existe más. En este paso, Terraform no actualiza el estado `terraform.tfstate`.
+Cuando volvemos a ejecutar un `terraform plan`, Terraform consulta el estado actual de la nube para ver que acciones debe llevar a cabo para lograr la infraestructura deseada, por lo cuál, detecta que debe crear el recurso (vm-instance) ya que no existe más. Si bien en la consola indica que se está refrescando el estado, en este paso Terraform no actualiza el estado `terraform.tfstate`, pero si  está consultando la infraestructura existente para obtener su estado actual y luego compararlo con la infraestructura deseada definida en los archivos de configuración.
 
 Al ejecutar `terraform apply`, comienza la creación de todos los recursos indicados en la configuración de la infraestructura. Ahora sí, al finalizar el proceso, Terraform vuelve a actualizar su estado para reflejar el estado actual de la infraestructura luego de los cambios realizados.
 
-Por último, se ejecuta un `terraform destroy` para destruir los recursos en la nube. En este momento, Terraform vuelve a actualizar su estado el cuál ahora luce algo así.
+Por último, se ejecuta un `terraform destroy` para destruir los recursos en la nube. En este momento, Terraform vuelve a actualizar su estado el cuál ahora luce algo así como al inicio.
 
 ```
 {
@@ -70,3 +70,6 @@ Por último, se ejecuta un `terraform destroy` para destruir los recursos en la 
   "check_results": null
 }
 ```
+![image](https://github.com/Fedesin/sdypp-2024/assets/117539520/76ddf27b-6a83-4951-b097-dfecdd3bd1c3)
+
+
