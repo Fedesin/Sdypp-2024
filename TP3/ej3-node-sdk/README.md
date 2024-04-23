@@ -70,6 +70,7 @@ Por último, se ejecuta un `terraform destroy` para destruir los recursos en la 
   "check_results": null
 }
 ```
-![image](https://github.com/Fedesin/sdypp-2024/assets/117539520/76ddf27b-6a83-4951-b097-dfecdd3bd1c3)
+
+![image](https://github.com/Fedesin/sdypp-2024/assets/117539520/0de28706-d2e5-483a-8274-c8384ecee1f7)
 
 
