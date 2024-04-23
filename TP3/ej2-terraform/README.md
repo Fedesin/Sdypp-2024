@@ -80,6 +80,11 @@ scp -i ./.keys/ssh_private_key.pem ./README.md ${username}@${instance_ip}:/home/
 ![scp-local](https://github.com/Fedesin/sdypp-2024/assets/117539520/8229ee14-5767-4649-8b5d-f0cac5320dde)
 ![scp-remote](https://github.com/Fedesin/sdypp-2024/assets/117539520/4a619b4b-789d-4bf1-96d4-942698fe0083)
 
-Salimos de la vm, con el comando Control + D
-Finalmente matamos la vm con el comando: terraform destroy --auto-approve
 
+Salimos de la vm, presionando 
+
+`Control + D`
+
+Finalmente matamos la vm con el comando:
+
+ `terraform destroy --auto-approve`
