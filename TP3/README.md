@@ -2,8 +2,6 @@
 
 **1. Realice un análisis FODA de la implementación de Cloud Computing.**
 
-El analisis FODA permite identificar las fortalezas, las oportunidades, las debilidades y las amenazas en un proyecto especifico, es una herramienta la cual sirve para planificar estrategicamente. Para este caso de Cloud Computing
-
 -   Fortalezas
 
     -   Flexibilidad y escalabilidad: La capacidad de aumentar o disminuir los recursos según la demanda permite una adaptación ágil a las necesidades del negocio, evitando el sobre aprovisionamiento o sub aprovisionamiento de infraestructura.
@@ -12,7 +10,7 @@ El analisis FODA permite identificar las fortalezas, las oportunidades, las debi
 
     -   Acceso global: Facilita el acceso a datos y aplicaciones desde cualquier lugar del mundo, lo que promueve la colaboración y la productividad.
 
-    -   Seguridad: Los proveedores de nube invierten fuertemente en seguridad.
+    -   Seguridad: Los proveedores de nube invierten fuertemente en seguridad, la cual puede ser mucho mejor que la que podamos implementar de forma local.
 
     -   Respaldo y recuperación de datos: Los proveedores de servicios en la nube suelen ofrecer sólidas soluciones de respaldo y recuperación de datos, lo que reduce el riesgo de pérdida de información.
 
@@ -40,28 +38,22 @@ El analisis FODA permite identificar las fortalezas, las oportunidades, las debi
 
 **2. ¿Cómo abordaría un proyecto en la nube desde 0? ¿Cómo justificaría su uso?**
 
-Para abordar un proyecto en la nube desde cero, se deben tener en cuenta diversos factores: ¿Qué se quiere lograr con la migración a la nube? ¿Mejorar la eficiencia, reducir costos, aumentar la escalabilidad? ¿Qué aplicaciones, datos e infraestructura se migrarán? ¿Se trata de una migración completa o parcial?
+Para abordar un proyecto en la nube desde cero, deberiamos tener en cuenta diversos factores como: ¿Qué se quiere lograr con la migración a la nube? ¿Qué aplicaciones, datos e infraestructura se migrarán? ¿Se trata de una migración completa o parcial? Y posteriormente mejorar la eficiencia, reducir costos, aumentar la escalabilidad.
 
-Por lo tanto, primero se deben establecer claramente los objetivos del proyecto y evaluar la viabilidad y los beneficios de la adopción de la nube. Esto implica realizar un análisis comparativo de costos, diseñar una arquitectura de solución escalable y segura, desarrollar e implementar la solución en la nube, realizar pruebas exhaustivas, monitorear y mantener la solución de forma continua.
+Por lo tanto, primero se deben establecer claramente los objetivos del proyecto y evaluar la viabilidad y los beneficios de la adopción de la nube. Esto implica realizar un análisis comparativo de costos, diseñar una arquitectura de solución escalable y segura, desarrollar e implementar la solución en la nube, realizar pruebas exhaustivas, monitorear y mantener la solución de forma continua. Tambien debemos determinar nuestros recursos y las capacidades necesarias, como de almacenamiento, potencia de procesamiento, bases de datos, redes y servicios específicos.
+Con esto ya definido, pasamos a la selección del proveedor de nube, en función de nuestras necesidades específicas, costos y características Es necesario diseñar la arquitectura del proyecto en la nube, considerando la distribución de recursos, seguridad, redundancia y escalabilidad. Con todo esto, podemos implementar el proyecto, mantenerlo en base a pruebas, y escalarlo de ser necesario.
 
-Su uso se justifica por su capacidad para ofrecer una serie de beneficios. En primer lugar, la nube proporciona una eficiencia notable en costos al eliminar la necesidad de invertir en infraestructura física costosa y su mantenimiento asociado. Con un modelo de pago por uso, las empresas pueden reducir significativamente sus gastos operativos al pagar únicamente por los recursos que consumen, lo que resulta especialmente beneficioso para proyectos con presupuestos ajustados.
-
-Además, la escalabilidad inherente de la nube permite a las organizaciones adaptarse de manera ágil y rentable a las fluctuaciones en la demanda. Esta capacidad de escalar recursos de manera rápida y sencilla es fundamental para satisfacer las necesidades cambiantes del negocio, ya sea para hacer frente a picos de tráfico repentinos o para expandir la infraestructura a medida que crece la empresa.
+Su uso se justifica por su capacidad para ofrecer una serie de beneficios. La nube proporciona una eficiencia notable en costos al eliminar la necesidad de invertir en infraestructura física costosa y su mantenimiento asociado. Con un modelo de pago por uso, las empresas pueden reducir significativamente sus gastos operativos al pagar únicamente por los recursos que consumen, lo que resulta especialmente beneficioso para proyectos con presupuestos ajustados. Además, la escalabilidad inherente de la nube permite a las organizaciones adaptarse de manera ágil y rentable a las fluctuaciones en la demanda. Esta capacidad de escalar recursos de manera rápida y sencilla es fundamental para satisfacer las necesidades cambiantes del negocio, ya sea para hacer frente a picos de tráfico repentinos o para expandir la infraestructura a medida que crece la empresa.
 
 Asimismo, la nube ofrece un acceso global sin precedentes, lo que facilita la colaboración entre equipos distribuidos geográficamente y promueve una mayor agilidad y flexibilidad en el trabajo.
 
 **3. Antes de ir a una plataforma en la nube, ¿Cuáles son las cosas esenciales que tienen que ser tenidas en cuenta por sus usuarios?**
 
-Migrar a la nube puede ser una decisión estratégica que aporta grandes beneficios a las empresas. Sin embargo, antes de dar el salto, es crucial considerar cuidadosamente diversos aspectos para garantizar una transición exitosa y segura.
-
-Antes de migrar a una plataforma en la nube, los usuarios deben considerar cuidadosamente varios aspectos esenciales para garantizar una transición exitosa. Esto incluye entender los requisitos y objetivos del negocio, seleccionar un proveedor de servicios en la nube confiable y seguro, planificar la migración de manera detallada, gestionar los costos asociados con el uso de la nube, garantizar la seguridad y el cumplimiento normativo, y asegurar la resiliencia y continuidad del negocio. Al abordar estos aspectos clave de manera integral, los usuarios pueden minimizar los riesgos y maximizar los beneficios de la migración a la nube.
+Migrar a la nube puede ser una decisión estratégica que aporta grandes beneficios a las empresas. Sin embargo, antes de dar el salto, es crucial considerar cuidadosamente diversos aspectos para garantizar una transición exitosa y segura. Los usuarios deben considerar cuidadosamente varios aspectos esenciales para garantizar una transición exitosa, como los requisitos y objetivos del negocio, seleccionar un proveedor de servicios en la nube confiable y seguro, planificar la migración de manera detallada, gestionar los costos asociados con el uso de la nube, garantizar la seguridad y el cumplimiento normativo, y asegurar la resiliencia y continuidad del negocio. Al abordar estos aspectos clave de manera integral, los usuarios pueden minimizar los riesgos y maximizar los beneficios de la migración a la nube.
 
 **4. ¿Cómo son los costos y el modelo de pago? ¿Cómo estimo mis gastos mensuales/anuales?**
 
-Los costos en la nube se basan generalmente en un modelo de "pago por uso", donde los usuarios abonan únicamente por los recursos y servicios que consumen. Esto puede incluir tiempo de utilización de instancias de servidor, almacenamiento de datos, transferencia de datos y servicios adicionales.
-
-Principalmente, los costos variarán en base a la cantidad de recursos utilizados (cuantos más recursos se consuman, mayor será el costo) y
-la ubicación en donde se soliciten los recursos (los precios pueden variar según la región donde se encuentran los centros de datos del proveedor).
+Los costos en la nube se basan generalmente en un modelo de "pago por uso", donde los usuarios abonan únicamente por los recursos y servicios que consumen. Esto puede incluir tiempo de utilización de instancias de servidor, almacenamiento de datos, transferencia de datos y servicios adicionales. Los costos variarán principalmente en base a la cantidad de recursos utilizados (cuantos más recursos se consuman, mayor será el costo) y la ubicación en donde se soliciten los recursos (los precios pueden variar según la región donde se encuentran los centros de datos del proveedor).
 
 Para estimar los gastos mensuales o anuales, es esencial comprender el consumo esperado de recursos, revisar la estructura de precios del proveedor de la nube y considerar cualquier fluctuación estacional o de demanda. Además, se pueden implementar herramientas de monitoreo y gestión para rastrear y optimizar el uso de recursos, con el objetivo fundamental de mantener los costos bajo control y cumplir con el presupuesto establecido. También existen calculadoras de costos en la nube para cada proveedor con las cuáles podríamos estimar costos en función de nuestras necesidades específicas.
 
@@ -71,13 +63,11 @@ Para estimar los gastos mensuales o anuales, es esencial comprender el consumo e
 
 -   Microsoft Azure fue lanzado en 2010, con más de 14 años de experiencia en la provisión de servicios en la nube hasta ahora.
 
--   Google Cloud Platform (GCP) fue lanzado en 2008, lo que significa que ha estado ofreciendo servicios en la nube durante más de 16 años hasta la fecha actual.
+-   Google Cloud Platform (GCP) fue lanzado en 2008, lo que significa que ha estado ofreciendo servicios en la nube durante más de 16 años hasta la actualidad.
 
 El tiempo que estas empresas han estado en el mercado ofrece una base sólida para confiar en sus procesos y servicios. Durante este tiempo, han acumulado una gran cantidad de experiencia, han mejorado sus plataformas y servicios, y han demostrado su fiabilidad a través de clientes satisfechos y casos de uso exitosos en una variedad de industrias. Además, estas empresas han invertido significativamente en la seguridad, la confiabilidad y la escalabilidad de sus servicios en la nube, lo que contribuye a la confianza en sus plataformas.
 
-Sin embargo, la confianza en una empresa y sus servicios no solo se basa en el tiempo que han estado en el mercado, sino también en su historial de seguridad, cumplimiento normativo, transparencia, soporte al cliente y otros factores. Es importante que las empresas evalúen todas estas consideraciones antes de confiar completamente en cualquier proveedor de servicios en la nube, por lo que es importante realizar una evaluación exhaustiva antes de tomar decisiones de negocio críticas.
-
-La decisión de confiar en un proveedor de servicios en la nube debe basarse en una evaluación completa de sus necesidades y de las opciones disponibles en el mercado.
+Sin embargo, la confianza en una empresa y sus servicios no solo se basa en el tiempo que han estado en el mercado, sino también en su historial de seguridad, cumplimiento normativo, transparencia, soporte al cliente y otros factores. Es importante que las empresas evalúen todas estas consideraciones antes de confiar completamente en cualquier proveedor de servicios en la nube, por lo que es importante realizar una evaluación exhaustiva antes de tomar decisiones de negocio críticas. La decisión de confiar en un proveedor de servicios en la nube debe basarse en una evaluación completa de sus necesidades y de las opciones disponibles en el mercado.
 
 **6. ¿Cuáles son los proveedores más grandes? ¿Qué hace que ellos sigan siendo cada vez más grandes? ¿Qué los diferencia del siguiente nivel inferior?**
 
