@@ -19,7 +19,7 @@ async function callTask(url) {
 		};
 
 		const multParams = {
-			image: 'fedesin31/tp2-task-mult',
+			image: 'fedesin31/tp2-task-multiplicacion',
 			port: 5001,
 			task: 'multiplication',
 			tag: 'latest',
