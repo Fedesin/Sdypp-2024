@@ -20,13 +20,13 @@ Recuerde almacenar las inscripciones en un archivo de texto con formato JSON. Es
 5. En la segunda terminal, parate en el directorio de la aplicación y ejecuta un nodo tipo C:
 
     ```bash
-    node client-server.js localhost 3007
+    node client-server.js localhost 3007 8007
     ```
 
 6. En la tercera terminal, parate en el directorio de la aplicación y ejecuta un segundo nodo tipo C:
 
     ```bash
-    node client-server.js localhost 3007
+    node client-server.js localhost 3007 8070
     ```
 
 7. Si quiere registrar más de dos nodos C, repita el paso 6 la cantidad de veces que considere.
