@@ -30,7 +30,7 @@ jobs:
               with:
                   context: ./TP2/task-multiplication
                   push: true
-                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp2-task-multiplicacion:latest
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp2-task-mult:latest
 
             - name: Build and push Docker image
               uses: docker/build-push-action@v2

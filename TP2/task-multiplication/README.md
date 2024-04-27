@@ -13,7 +13,7 @@ npm install
 2. Configurar las variables de entorno. Para esto copiar el archivo .env.example, renombrarlo a .env y completar los valores de las variables.
 
 ```
-PORT = 5000
+PORT = 5001
 HOST = localhost
 ```
 
