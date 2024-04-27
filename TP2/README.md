@@ -17,10 +17,10 @@ de un tarea.
 cd client <IP_SERVIDOR_TAREAS_REMOTAS>
 ```
 
-2. Ejecutar la aplicación cliente.
+2. Ejecutar la aplicación cliente
 
 ```bash
-node client.js
+node client.js <IP_SERVIDOR_TAREAS_GENERICAS>
 ```
 
 ### # HIT 2
