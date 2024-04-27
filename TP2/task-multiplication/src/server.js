@@ -4,8 +4,8 @@ import { router } from './routes.js';
 
 const server = express();
 
-const port = process.env.PORT || 5001;
-const host = process.env.HOST || '0.0.0.0';
+const port = 5001;
+const host = '0.0.0.0';
 
 server.use(express.json());
 server.use(router);
