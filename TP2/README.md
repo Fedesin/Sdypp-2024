@@ -14,7 +14,7 @@ de un tarea.
 1. Moverse al directorio `client`
 
 ```bash
-cd client
+cd client <IP_SERVIDOR_TAREAS_REMOTAS>
 ```
 
 2. Ejecutar la aplicación cliente.

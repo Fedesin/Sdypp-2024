@@ -1,4 +1,12 @@
-const URL = 'http://35.227.40.69:3000/api/execute';
+const args = process.argv.slice(2);
+if (args.length > 1) {
+	console.log('Uso: node client.js <ip_servidor_tareas_genericas>');
+	process.exit(1);
+}
+
+const HOST_IP = args[0] ?? 'localhost';
+
+const URL = `http://${HOST_IP}:3000/api/execute`;
 
 async function callTask(url) {
 	try {
