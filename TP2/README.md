@@ -36,8 +36,6 @@ node client.js
     
   Cada tarea genérica se puede implementar como un microservicio independiente. Es decir, cada microservicio puede ser encapsulado en su propia imagen Docker y ejecutado de manera independiente.  De esta manera, podría estar alojado en un servicio de nube como en este caso fue Docker Hub, permitiendo al servidor ejecutar diversos microservicios de manera dinámica.
 
-  El servicio centralizado puede proporcionar una capa de abstracción sobre la ejecución de tareas en los microservicios. Esto facilita la gestión y supervisión de las tareas en toda la arquitectura de microservicios, ya que todas las solicitudes de ejecución de tareas pasan a través del mismo punto de entrada.
-
 - **¿Cómo estos servicios podrían beneficiar a las empresas o proyectos en términos de eficiencia, escalabilidad y flexibilidad?**
 
   Al utilizarse una arquitectura basada en microservicios, donde cada servicio es independiente y se encarga de una funcionalidad específica, el sistema se vuelve más **flexible** y **adaptable a cambios**. Los equipos de desarrollo pueden realizar cambios en un servicio sin afectar a otros servicios, lo que facilita la iteración rápida y la evolución continua del sistema.
@@ -61,15 +59,10 @@ node client.js
 
   - **Sistemas de colaboración en tiempo real (RTC):** Herramientas como WebRTC o sistemas de sockets en tiempo real como Socket.io pueden ser utilizados para la comunicación bidireccional entre el cliente y el servidor, permitiendo la ejecución de tareas remotas en tiempo real.
 
-  - **Arquitecturas basadas en eventos:** Utilizar un sistema de publicación/suscripción (pub/sub) como Apache Kafka, Amazon SNS/SQS o sistemas de eventos distribuidos para manejar eventos y desencadenar la ejecución de tareas basadas en esos eventos.
-    
-  - **Funciones como servicio (FaaS):** Plataformas de computación sin servidor como AWS Lambda, Azure Functions o Google Cloud Functions permiten ejecutar código en respuesta a eventos sin necesidad de administrar la infraestructura subyacente.
-    
-
 - **¿Qué consideraciones deberían tenerse en cuenta al elegir una tecnología alternativa para garantizar la eficacia y la escalabilidad del sistema?**
   
   Al elegir una tecnología alternativa para garantizar la eficacia y la escalabilidad del sistema, es importante tener en cuenta varias consideraciones clave:
-  - **Requisitos del sistema:** Comprender los requisitos específicos del sistema, incluyendo el volumen de datos, la frecuencia de las solicitudes, los tiempos de respuesta esperados y la carga de trabajo prevista. Esto ayudará a determinar qué tecnología es la más adecuada para satisfacer las necesidades del sistema.
+  - **Requisitos del sistema:** Comprender los requisitos específicos del sistema, incluyendo el volumen de datos, la frecuencia de las solicitudes, los tiempos de respuesta esperados y la carga de trabajo prevista.
   - **Escalabilidad:** La tecnología elegida debe ser capaz de escalar horizontal y verticalmente para manejar un aumento en la carga de trabajo y el número de tareas a ejecutar.
   - **Rendimiento:** Se debe evaluar el rendimiento de la tecnología en términos de latencia, tiempo de respuesta y capacidad para manejar grandes volúmenes de tareas concurrentes. 
   - **Interoperabilidad:** Evaluar la capacidad de la tecnología para integrarse con otras herramientas y sistemas existentes en el entorno de operación. La interoperabilidad puede facilitar la adopción y el uso de la tecnología en el contexto de un ecosistema más amplio.
@@ -116,15 +109,15 @@ node client.js
     
     b. *Escalabilidad*. En sistemas distribuidos con un gran número de nodos, la comunicación asíncrona puede escalar mejor que la comunicación síncrona. Esto se debe a que no todos los nodos necesitan estar activos               simultáneamente, lo que reduce la carga en la red y los recursos del sistema.
     
-    c. *Flexibilidad* en el tiempo de respuesta: Los nodos pueden procesar mensajes según su disponibilidad y prioridades, lo que permite una mayor flexibilidad en el tiempo de respuesta. Esto es especialmente útil en             sistemas donde las operaciones pueden tomar diferentes cantidades de tiempo o donde ciertas tareas tienen prioridad sobre otras.
+    c. *Flexibilidad en el tiempo de respuesta*: Los nodos pueden procesar mensajes según su disponibilidad y prioridades, lo que permite una mayor flexibilidad en el tiempo de respuesta. Esto es especialmente útil en sistemas donde las operaciones pueden tomar diferentes cantidades de tiempo o donde ciertas tareas tienen prioridad sobre otras.
     
-    d. *Mejora del rendimiento*. En algunas situaciones, la comunicación asíncrona puede mejorar el rendimiento general del sistema al evitar bloqueos y esperas innecesarias. Los nodos pueden continuar con otras tareas           mientras esperan la respuesta a un mensaje, en lugar de quedarse inactivos y bloqueados
+    d. *Mejora del rendimiento*. En algunas situaciones, la comunicación asíncrona puede mejorar el rendimiento general del sistema al evitar bloqueos y esperas innecesarias. Los nodos pueden continuar con otras tareas mientras esperan la respuesta a un mensaje, en lugar de quedarse inactivos y bloqueados
   
   **Desventajas de la comunicación asíncrona**
   
-    a. *Posible pérdida de coherencia*: En sistemas distribuidos donde la consistencia de los datos es crítica, la comunicación asíncrona puede dificultar la garantía de la coherencia de los datos entre los nodos. Si los           mensajes se entregan en momentos diferentes, podría haber discrepancias en los datos entre los nodos.
+    a. *Posible pérdida de coherencia*: En sistemas distribuidos donde la consistencia de los datos es crítica, la comunicación asíncrona puede dificultar la garantía de la coherencia de los datos entre los nodos. Si los mensajes se entregan en momentos diferentes, podría haber inconsistencia en los datos entre los nodos.
     
-    b. *Posible sobrecarga de mensajería*: En sistemas donde hay una gran cantidad de mensajes asíncronos en circulación al mismo tiempo, puede producirse una sobrecarga en la red y un exceso de los recursos del sistema           debido al procesamiento, encolado y enrutamiento de mensajes.
+    b. *Posible sobrecarga de mensajería*: En sistemas donde hay una gran cantidad de mensajes asíncronos en circulación al mismo tiempo, puede producirse una sobrecarga en la red y un exceso de los recursos del sistema debido al procesamiento, encolado y enrutamiento de mensajes.
   
 
 #### Seguridad y Autenticación
@@ -144,9 +137,7 @@ node client.js
 
   Los certificados SSL actúan como credenciales digitales que autentican la identidad de un sitio web y cifran la comunicación entre el cliente y el servidor. Emitidos por autoridades de certificación confiables, estos certificados contienen información sobre la identidad del titular del certificado, como el nombre del dominio y la entidad emisora, y se utilizan para establecer una conexión segura y cifrada.
 
-  Cuando un usuario accede a un sitio web protegido por un certificado SSL, su navegador establece una conexión segura utilizando el protocolo HTTPS en lugar de HTTP estándar. HTTPS utiliza cifrado SSL/TLS (cifrado en capa de transporte) para proteger los datos durante la transferencia entre el cliente y el servidor. Este cifrado garantiza que los datos transmitidos no puedan ser interceptados ni modificados por terceros no autorizados, lo que proporciona una capa adicional de seguridad para la comunicación en línea.
-
-  La adopción generalizada de certificados SSL y HTTPS es fundamental para mejorar la comunicación entre cliente y servidor, ya que garantizan la confidencialidad, integridad y autenticidad de la información transmitida a través de la web. 
+  Cuando un usuario accede a un sitio web protegido por un certificado SSL, su navegador establece una conexión segura utilizando el protocolo HTTPS en lugar de HTTP estándar. HTTPS utiliza cifrado SSL/TLS (cifrado en capa de transporte) para proteger los datos durante la transferencia entre el cliente y el servidor. Este cifrado garantiza que los datos transmitidos no puedan ser interceptados ni modificados por terceros no autorizados, lo que proporciona una capa adicional de seguridad para la comunicación en línea. 
 
 #### Gestión de Errores y Resiliencia
 - **¿Qué estrategias deberían implementarse para gestionar errores y fallos en el servicio, tanto en el lado del cliente como en el del servidor?**
@@ -157,7 +148,7 @@ node client.js
 
   Del lado del servidor, es importante contar con múltiples instancias del servicio desplegadas en diferentes ubicaciones geográficas para distribuir la carga y aumentar la tolerancia a fallos. Utiliza técnicas de replicación de datos para mantener la coherencia entre las instancias.
 
-  Además, diseñar el sistema para que sea tolerante a fallos, lo que significa que pueda seguir funcionando de manera aceptable incluso cuando ocurran fallos parciales. Esto podría implicar la implementación de redundancia en los componentes críticos y el diseño de protocolos de comunicación robustos.
+  Además, diseñar el sistema para que sea tolerante a fallos, lo que significa que pueda seguir funcionando incluso cuando ocurran fallos. Esto podría implicar la implementación de redundancia en los componentes críticos y el diseño de protocolos de comunicación robustos.
 
   Es sumamente importante implementar un sistema para registrar y analizar activamente los errores y excepciones que ocurran en el servidor, utilizando herramientas de registro para recopilar información detallada sobre los errores, así como también realizar un monitoreo constante de los componentes clave y la configuración de alertas para notificar al equipo de operaciones sobre posibles problemas.
   
@@ -172,8 +163,7 @@ node client.js
 #### Monitorización y Diagnóstico
 - **¿Qué herramientas y técnicas podrían utilizarse para monitorear y diagnosticar el rendimiento y el estado del servicio en tiempo real?**
 
-  La monitorización y alertas permiten a un sistema decirnos cuando algo está roto, o quizás, cuando va a romperse. Para monitorear y diagnosticar el rendimiento y el estado del servicio en tiempo real en sistemas
- distribuidos, existen varias herramientas y técnicas disponibles.
+  La monitorización y alertas permiten a un sistema decirnos cuando algo está roto, o quizás, cuando va a romperse. Para monitorear y diagnosticar el rendimiento y el estado del servicio en tiempo real en sistemas distribuidos, existen varias herramientas y técnicas disponibles.
 
   Para el de *monitoreo de infraestructura*, existen herramientas como **Prometheus**, el cuál es un sistema de monitoreo y alerta de código abierto diseñado para escalar y ser altamente adaptable a diferentes entornos. Permite recopilar métricas de sistemas distribuidos y generar alertas en tiempo real. También otra herramienta como **Grafana**, la cuál se integra bien con la anterior y con otras fuentes de datos para proporcionarnos visualizaciones personalizadas y tableros de control que permiten supervisar el rendimiento del sistema en tiempo real.
 
@@ -205,13 +195,12 @@ node client.js
   Para escalar vertical u horizontalmente el servicio y manejar cargas de trabajo variables y picos de tráfico, se pueden implementar las siguientes estrategias:
 
   - **Escalado vertical:** Implica aumentar los recursos de hardware, como la capacidad de procesamiento, la memoria y el almacenamiento, en el servidor que ejecuta el servicio. Esto puede implicar migrar a una instancia de servidor más potente o agregar más recursos, como CPU y RAM, a la instancia existente.
-    Por otro lado, se puede buscar optimizar y ajustar la configuración del servidor y del software para aprovechar al máximo los recursos disponibles y mejorar el rendimiento del sistema. 
       
   - **Escalado horizontal:** implica implementar un sistema de balanceo de carga para distribuir las solicitudes entre múltiples instancias del servicio que se ejecutan en varios servidores. Esto puede ayudar a distribuir la carga de manera uniforme y mejorar la capacidad de respuesta del sistema.
-    Utilizar tecnologías de contenedores, como Docker o Kubernetes, para crear y gestionar múltiples instancias del servicio de manera rápida y eficiente. Esto facilita la escalabilidad horizontal al permitir la creación rápida de nuevos contenedores según sea necesario para manejar picos de tráfico.
+    Utilizar tecnologías de contenedores, como Docker y Kubernetes, para crear y gestionar múltiples instancias del servicio de manera rápida y eficiente. Esto facilita la escalabilidad horizontal al permitir la creación rápida de nuevos contenedores según sea necesario para manejar picos de tráfico.
     Utilizar servicios en la nube que ofrecen capacidades de escalado automático, como Google Kubernetes Engine (GKE). Estos servicios pueden ajustar automáticamente la cantidad de recursos asignados a las instancias del servicio en función de la carga de trabajo en tiempo real, lo que garantiza un rendimiento óptimo sin intervención manual.
       
-  Una estrategia eficaz podría ser **combinar ambas técnicas**, escalando verticalmente para manejar cargas de trabajo más pesadas y escalando horizontalmente para distribuir la carga y aumentar la capacidad de procesamiento de manera más flexible y eficiente. Por ejemplo, se podría comenzar escalando verticalmente para satisfacer la demanda inicial y luego, si la carga de trabajo continúa aumentando, implementar la escalabilidad horizontal para agregar más capacidad de procesamiento según sea necesario.
+  Una estrategia eficaz podría ser **combinar ambas técnicas**, escalando verticalmente para manejar cargas de trabajo más pesadas y escalando horizontalmente para distribuir la carga y aumentar la capacidad de procesamiento de manera más flexible y eficiente.
   
 - ¿**Qué consideraciones de diseño y configuración podrían influir en el rendimiento y la escalabilidad del servicio a largo plazo?**
 
