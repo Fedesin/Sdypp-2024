@@ -4,6 +4,8 @@
 
 ### # HIT 1 ( [Status endpoint](http://35.227.40.69:3000/api/status) )
 
+### # Video demostrativo ( [Clic para ver](https://www.youtube.com/watch?v=fT0KTSxT0Dc) )
+
 Implemente un servidor que resuelva “tareas genéricas” o “pre-compiladas.
 
 #### Instrucciones de ejecucion
