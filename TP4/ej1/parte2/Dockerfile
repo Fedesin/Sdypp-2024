@@ -3,7 +3,7 @@ FROM python:3.9.19-bullseye
 # Crear un usuario no root
 RUN useradd -m -d /home/nonroot -s /bin/bash nonroot
 
-WORKDIR /splitter
+WORKDIR /split-join
 
 # Instalar dependencias del sistema
 RUN apt-get update && \
@@ -15,7 +15,7 @@ COPY ./server.py server.py
 COPY ./image_utils.py image_utils.py
 
 # Cambiar la propiedad de los archivos al usuario no root
-RUN chown -R nonroot:nonroot /splitter
+RUN chown -R nonroot:nonroot /split-join
 
 # Cambiar al usuario no root
 USER nonroot
