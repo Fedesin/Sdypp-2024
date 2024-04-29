@@ -17,7 +17,7 @@ COPY ./image_utils.py image_utils.py
 # Cambiar la propiedad de los archivos al usuario no root
 RUN chown -R nonroot:nonroot /split-join
 
-# Cambiar al usuario no root
+# Cambiar al usuario no root.
 USER nonroot
 
 # Instalar las dependencias de Python
