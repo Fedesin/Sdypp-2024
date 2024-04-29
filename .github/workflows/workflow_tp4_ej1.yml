@@ -30,4 +30,4 @@ jobs:
               with:
                   context: ./TP4/ej1/parte2
                   push: true
-                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-splitter:latest
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-splitter-joiner:latest
