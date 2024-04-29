@@ -1,4 +1,4 @@
-from split import split_image
+from image_utils import split_image, join_image
 from flask import Flask, request, send_file, jsonify
 import cv2
 import numpy as np
@@ -30,7 +30,7 @@ def split():
             
             # Aplica el filtro Sobel a la imagen
             fragments = split_image(image, 2)
-            
+            join_image(fragments)
             # Devuelve la imagen procesada
             # return send_file(imagen_sobel, mimetype='image/png', as_attachment=True)
             return jsonify("parts: 2")
