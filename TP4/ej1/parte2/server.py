@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 @app.route("/api/split/<int:num_fragments>", methods=['POST'])
-def sobel(num_fragments):
+def split(num_fragments):
     if request.method == 'POST':    
         # Verificar que num_fragments esté dentro del rango permitido
         if num_fragments < 1 or num_fragments > 10:
