@@ -26,7 +26,6 @@ def split_image(image, fragments_count):
     return fragments
 
 def join_image(fragments):
-    print(fragments)
     # Cargar los fragmentos de imagen
     fragment_images = [cv2.imread(fragment) for fragment in fragments]
 
