@@ -23,4 +23,4 @@ jobs:
               with:
                   context: ./TP4/ej1-parte1
                   push: true
-                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-sobel:latest
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-p1-sobel:latest
