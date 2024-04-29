@@ -1,0 +1,21 @@
+version: '3'
+services:
+    splitter-joiner-service:
+        image: fedesin31/tp4-ej1-splitter-joiner:latest
+        container_name: splitter-joiner
+        ports:
+            - '5000:5000'
+    sobel-worker-1:
+        depends_on:
+            - splitter-joiner-service
+        image: fedesin31/tp4-ej1-sobel:latest
+        ports:
+            - '5001:5000'
+        container_name: sobel-worker-1
+    sobel-worker-2:
+        depends_on:
+            - splitter-joiner-service
+        image: fedesin31/tp4-ej1-sobel:latest
+        ports:
+            - '5002:5000'
+        container_name: sobel-worker-2
