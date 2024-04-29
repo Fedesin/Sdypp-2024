@@ -3,7 +3,7 @@ name: Workflow for Sobel - TP 2
 on:
     push:
         branches: ['main']
-        paths: ['TP4/ej1/parte1/**']
+        paths: ['TP4/ej1/']
 jobs:
     build-and-push-docker-image:
         name: Build and Push Docker Image
@@ -24,3 +24,10 @@ jobs:
                   context: ./TP4/ej1/parte1
                   push: true
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-sobel:latest
+
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v2
+              with:
+                  context: ./TP4/ej1/parte2
+                  push: true
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-splitter:latest
