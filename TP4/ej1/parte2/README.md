@@ -18,12 +18,31 @@ FRAGMENTS_COUNT = 2
 
 ```
 sobel-worker-<N>:
-    depends_on:
-        - splitter-joiner-service
     image: fedesin31/tp4-ej1-sobel:latest
-    ports:
-        - '500<N>:5000'
     container_name: sobel-worker-<N>
+    networks:
+        - loadbalancing
+
+nginx:
+    build: ../nginx
+    ports:
+        - '80:80'
+    networks:
+        - loadbalancing
+    depends_on:
+        - sobel-worker-1
+        - sobel-worker-2
+        - sobel-worker-N
+```
+
+Luego, actualizar el archivo de configuración de nginx
+
+```
+upstream backend {
+    server sobel-worker-1:5000;
+    server sobel-worker-2:5000;
+    server sobel-worker-<N>:5000;
+}
 ```
 
 3. Iniciar los contenedores
