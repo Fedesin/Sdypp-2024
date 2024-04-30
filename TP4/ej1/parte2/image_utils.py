@@ -41,7 +41,9 @@ def join_image(fragments):
         fragment = fragment_images[i]
         joined_image[i*height : (i+1)*height, :] = fragment
 
-    # path = os.path.join('tmp', random_name)
-    cv2.imwrite("tmp/final_image.png", joined_image)
+    random_name = generate_random_name()
+    path = os.path.join('tmp', random_name)
+    cv2.imwrite(path, joined_image)
+    return path
         
     

@@ -9,9 +9,12 @@ app = Flask(__name__)
 
 @app.route("/api/split", methods=['POST'])
 def split():
-    if request.method == 'POST':            
-        # Verificar que num_fragments esté dentro del rango permitido
+    if request.method == 'POST':
+        # Obtiene de las variables de entorno la cantidad de partes que en que divirá la imagen            
+        num_fragments = os.environ.get('FRAGMENTS_COUNT')
         num_fragments = int(num_fragments)
+        
+        # Verificar que num_fragments esté dentro del rango permitido
         if num_fragments < 1 or num_fragments > 10:
             return "Bad request: el número de fragmentos debe estar entre 1 y 15", 400
             
@@ -33,12 +36,15 @@ def split():
             if image is None:
                 return "Bad request: error al procesar la imagen", 400
             
-            # Aplica el filtro Sobel a la imagen
+            # Aplica el filtro Sobel a la imagen. Fragments en un array con los paths a los fragmentos de imagen
             fragments = split_image(image, num_fragments)
-            join_image(fragments)
+            
+            # TODO: enviar cada uno de los fragmentos a los workers para que le apliquen sobel
+            
+            final_image = join_image(fragments)
+            
             # Devuelve la imagen procesada
-            # return send_file(imagen_sobel, mimetype='image/png', as_attachment=True)
-            return "Imagen dividida en {} partes".format(num_fragments), 200
+            return send_file(final_image, mimetype='image/png', as_attachment=True)
     else:
         return "Método no permitido o imagen no adjunta", 405  # Método no permitido o imagen no adjunta
 
