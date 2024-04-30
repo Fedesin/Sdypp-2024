@@ -5,6 +5,9 @@ services:
         container_name: splitter-joiner
         ports:
             - '5000:5000'
+        environment:
+            FRAGMENTS_COUNT: ${FRAGMENTS_COUNT}
+            # LOAD_BALANCER_ADDRESS: ${LOAD_BALANCER_ADDRESS}
     sobel-worker-1:
         depends_on:
             - splitter-joiner-service
