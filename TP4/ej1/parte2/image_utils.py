@@ -15,7 +15,7 @@ def split_image(image, fragments_count):
         os.makedirs('tmp')
 
     # Dividir verticalmente
-    fragment_width = height // fragments_count
+    fragment_width = width // fragments_count
     for i in range(fragments_count):
         fragment = image[i * fragment_width: (i + 1) * fragment_width, :]
         random_name = generate_random_name()
