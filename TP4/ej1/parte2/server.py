@@ -43,3 +43,8 @@ def split():
         return "Método no permitido o imagen no adjunta", 405  # Método no permitido o imagen no adjunta
 
             # return f"El tiempo total de ejecución fue de {tiempo:.2f} segundos"
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    print("Se ha producido un error interno del servidor:", error)
+    return "Ocurrió un error interno del servidor", 500
