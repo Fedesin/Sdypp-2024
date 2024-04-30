@@ -14,11 +14,25 @@ npm install
 
 ```
 PORT = 3000
-HOST = localhost
+HOST = 0.0.0.0
 ```
 
 3. Iniciar la aplicación
 
 ```bash
 npm run dev
+```
+
+## Instrucciones de ejecución (Docker)
+
+1. Crear red docker
+
+```bash
+docker network create generic-task-network
+```
+
+2. Ejecutar el contenedor
+
+```bash
+docker run -p 3000:3000 --name server --network generic-task-network -v /var/run/docker.sock:/var/run/docker.sock fedesin31/tp2-http-server
 ```

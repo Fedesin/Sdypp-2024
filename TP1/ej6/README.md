@@ -20,13 +20,13 @@ Es decir, el objetivo de este HIT es incorporar un nuevo tipo de nodo (D) que ac
 5. En la segunda terminal, parate en el directorio de la aplicación y ejecuta un nodo tipo C:
 
     ```bash
-    node client-server.js localhost 3006
+    node client-server.js localhost 3006 8006
     ```
 
 6. En la tercera terminal, parate en el directorio de la aplicación y ejecuta un segundo nodo tipo C:
 
     ```bash
-    node client-server.js localhost 3006
+    node client-server.js localhost 8060
     ```
 
 7. Si quiere registrar más de dos nodos C, repita el paso 6 la cantidad de veces que considere.
