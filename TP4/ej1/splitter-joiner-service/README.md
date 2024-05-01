@@ -1,4 +1,4 @@
-# HIT 1 | Parte 2
+# HIT 1 | Servicio fragmentador y unificador de imagen
 
 Desarrolle este proceso de manera distribuida donde se debe partir la imagen en n pedazos, y asignar la tarea de aplicar la máscara a N procesos distribuidos. Después deberá unificar los resultados.
 
@@ -14,7 +14,7 @@ LOAD_BALANCER_URL = http://load-balancer:8080/api/sobel
 FRAGMENTS_COUNT = 6
 ```
 
-2. (opcional) Si desea puede modificar la cantidad de workers (por defecto son 2) sobel que se inician modificando el docker-compose.yml. La idea es pegar el replicar el siguiente bloque tantas veces como desea, reemplanzando <N> por el orden del worker. Es decir, si hay dos workers y desea agregar un tercero, N = 3.
+2. (opcional) Si desea puede modificar la cantidad de workers (por defecto son 3) sobel que se inician modificando el docker-compose.yml. La idea es pegar el replicar el siguiente bloque tantas veces como desea, reemplanzando <N> por el orden del worker. Es decir, si hay tres workers y desea agregar un cuarto, N = 4.
 
 ```
 sobel-worker-<N>:
@@ -32,6 +32,7 @@ nginx:
     depends_on:
         - sobel-worker-1
         - sobel-worker-2
+        - sobel-worker-3
         - sobel-worker-N
 ```
 
@@ -41,6 +42,7 @@ Luego, actualizar el archivo de configuración de nginx
 upstream backend {
     server sobel-worker-1:5000;
     server sobel-worker-2:5000;
+    server sobel-worker-3:5000;
     server sobel-worker-<N>:5000;
 }
 ```

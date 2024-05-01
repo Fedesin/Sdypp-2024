@@ -3,7 +3,8 @@ services:
     splitter-joiner-service:
         depends_on:
             - nginx
-        image: fedesin31/tp4-ej1-splitter-joiner:latest
+        # image: fedesin31/tp4-ej1-splitter-joiner:latest
+        image: splitter-joiner
         container_name: splitter-joiner
         ports:
             - '5000:5000'
@@ -13,7 +14,9 @@ services:
         networks:
             - loadbalancing
     sobel-worker-1:
-        image: fedesin31/tp4-ej1-sobel:latest
+        # Esta imagen introduce un error al momento de aplicar el sobel. Es para probar la tolerancia a fallos
+        image: fedesin31/tp4-ej1-sobel:error
+        # image: fedesin31/tp4-ej1-sobel:latest
         networks:
             - loadbalancing
         container_name: sobel-worker-1
@@ -22,6 +25,12 @@ services:
         container_name: sobel-worker-2
         networks:
             - loadbalancing
+    sobel-worker-3:
+        image: fedesin31/tp4-ej1-sobel:latest
+        container_name: sobel-worker-3
+        networks:
+            - loadbalancing
+
     nginx:
         image: nginx:stable-alpine-perl
         ports:
@@ -33,6 +42,7 @@ services:
         depends_on:
             - sobel-worker-1
             - sobel-worker-2
+            - sobel-worker-3
         container_name: load-balancer
 networks:
     loadbalancing:
