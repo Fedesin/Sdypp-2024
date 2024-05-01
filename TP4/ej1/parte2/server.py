@@ -8,7 +8,7 @@ import os
 
 app = Flask(__name__)
 
-@app.route("/api/split", methods=['POST'])
+@app.route("/api/sobel", methods=['POST'])
 def split():
     if request.method == 'POST':
         # Obtiene de las variables de entorno la cantidad de partes que en que divirá la imagen            
