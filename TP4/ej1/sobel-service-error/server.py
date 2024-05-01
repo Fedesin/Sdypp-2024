@@ -14,6 +14,12 @@ app = Flask(__name__)
 @app.route("/api/sobel", methods=['POST'])
 def sobel():
     if request.method == 'POST':
+
+        # Simular un error de red de forma aleatoria, con una probabilidad del 90%
+        if random.random() < 0.9:
+            error_code = random.choice([500, 503])
+            return "Error de servidor", error_code
+
         # Verifica si hay un archivo adjunto de imagen en la solicitud
         if 'image' in request.files:
             # Obtén el archivo adjunto de la imagen
