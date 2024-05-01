@@ -28,6 +28,13 @@ jobs:
             - name: Build and push Docker image
               uses: docker/build-push-action@v2
               with:
+                  context: ./TP4/ej1/sobel-service-error
+                  push: true
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-sobel:error
+
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v2
+              with:
                   context: ./TP4/ej1/splitter-joiner-service
                   push: true
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-splitter-joiner:latest
