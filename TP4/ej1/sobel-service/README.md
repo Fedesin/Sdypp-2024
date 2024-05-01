@@ -4,7 +4,7 @@ El operador de Sobel es una máscara que, aplicada a una imagen, permite detecta
 
 Desarrollar un proceso centralizado que tome una imagen, aplique la máscara, y genere un nuevo archivo con el resultado.
 
-## Instrucciones
+## Instrucciones para probar el servicio
 
 1. Activar el entorno virtual python
 

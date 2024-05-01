@@ -2,7 +2,9 @@
 
 Desarrolle este proceso de manera distribuida donde se debe partir la imagen en n pedazos, y asignar la tarea de aplicar la máscara a N procesos distribuidos. Después deberá unificar los resultados.
 
-## Instrucciones (contar con docker instalado)
+Mejore la aplicación del punto anterior para que, en caso de que un proceso distribuido (al que se le asignó parte de la imagen a procesar - WORKER) se caiga y no responda, el proceso principal detecte esta situación y pida este cálculo a otro proceso.
+
+# Instrucciones
 
 1. Clonar el archivo .env.example y renombrarlo a .env
 
@@ -10,7 +12,7 @@ Desarrolle este proceso de manera distribuida donde se debe partir la imagen en 
 # Esto es para indicarle la URL del balanceador de cargas
 LOAD_BALANCER_URL = http://load-balancer:8080/api/sobel
 
-# Definir la cantidad de partes en las que se dividirá la imagen (probablemente este valor dependa de la cantidad de workers que se inicien)
+# Definir la cantidad de partes en las que se dividirá la imagen
 FRAGMENTS_COUNT = 6
 ```
 
