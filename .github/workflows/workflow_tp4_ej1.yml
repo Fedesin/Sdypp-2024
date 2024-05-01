@@ -1,4 +1,4 @@
-name: Workflow for Sobel - TP 2
+name: Workflow for HIT - TP 3
 
 on:
     push:
