@@ -13,6 +13,7 @@ RUN apt-get update && \
 COPY ./requirements.txt requirements.txt
 COPY ./server.py server.py
 COPY ./image_utils.py image_utils.py
+COPY ./apply_sobel.py apply_sobel.py
 
 # Cambiar la propiedad de los archivos al usuario no root
 RUN chown -R nonroot:nonroot /split-join

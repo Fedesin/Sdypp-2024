@@ -25,7 +25,12 @@ def split_image(image, fragments_count):
     
     return fragments
 
-def join_image(fragments):
+def join_image(original_fragments, sobel_fragments):
+    fragments = []
+    
+    for fragment in original_fragments:
+        fragments.append(sobel_fragments[fragment]["sobel_fragment_path"])
+    
     # Cargar los fragmentos de imagen
     fragment_images = [cv2.imread(fragment) for fragment in fragments]
 
