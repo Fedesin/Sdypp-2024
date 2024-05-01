@@ -7,11 +7,11 @@ Desarrolle este proceso de manera distribuida donde se debe partir la imagen en 
 1. Clonar el archivo .env.example y renombrarlo a .env
 
 ```
-# Esto es para indicarle la IP del balanceador de cargas pero todavía no lo implementé
-# LOAD_BALANCER_ADDRESS =
+# Esto es para indicarle la URL del balanceador de cargas
+LOAD_BALANCER_URL = http://load-balancer:8080/api/sobel
 
 # Definir la cantidad de partes en las que se dividirá la imagen (probablemente este valor dependa de la cantidad de workers que se inicien)
-FRAGMENTS_COUNT = 2
+FRAGMENTS_COUNT = 6
 ```
 
 2. (opcional) Si desea puede modificar la cantidad de workers (por defecto son 2) sobel que se inician modificando el docker-compose.yml. La idea es pegar el replicar el siguiente bloque tantas veces como desea, reemplanzando <N> por el orden del worker. Es decir, si hay dos workers y desea agregar un tercero, N = 3.
