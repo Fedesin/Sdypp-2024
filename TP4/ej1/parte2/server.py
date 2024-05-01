@@ -15,8 +15,8 @@ def split():
         num_fragments = os.environ.get('FRAGMENTS_COUNT')
         num_fragments = int(num_fragments)
         
-        if num_fragments < 1 or num_fragments > 10:
-            return "Bad request: el número de fragmentos debe estar entre 1 y 15", 400
+        if num_fragments < 1 or num_fragments > 20:
+            return "Bad request: el número de fragmentos debe estar entre 1 y 20", 400
             
         # Verifica si hay un archivo adjunto de imagen en la solicitud
         if 'image' in request.files:
