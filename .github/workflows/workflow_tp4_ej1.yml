@@ -31,3 +31,9 @@ jobs:
                   context: ./TP4/ej1/parte2
                   push: true
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-splitter-joiner:latest
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v2
+              with:
+                  context: ./TP4/ej1/parte3
+                  push: true
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-splitter-joiner-tolerante-fallos:latest
