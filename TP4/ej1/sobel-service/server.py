@@ -5,10 +5,16 @@ import random
 
 import cv2
 import numpy as np
-from flask import Flask, request, send_file
+from flask import Flask, jsonify, request, send_file
+
 from sobel_filter import filter_image
 
 app = Flask(__name__)
+
+
+@app.route("/api/sobel", methods=['GET'])
+def status():
+    return jsonify({"code": "200", "status": "OK", "description": "Sobel service is working..."})
 
 
 @app.route("/api/sobel", methods=['POST'])
