@@ -1,3 +1,24 @@
+# Health check
+resource "google_compute_http_health_check" "api_health_check" {
+  name               = "api-health-check"
+  request_path       = "/api/sobel"
+  port               = 5000
+  check_interval_sec = 1
+  timeout_sec        = 1
+}
+
+# Compute Healthcheck
+resource "google_compute_health_check" "default" {
+  name               = var.hc_name
+  check_interval_sec = 1
+  timeout_sec        = 1
+
+  tcp_health_check {
+    port = var.hc_port
+  }
+}
+
+
 # Backend Services
 resource "google_compute_backend_service" "rbs" {
   name             = var.be_name
@@ -10,7 +31,7 @@ resource "google_compute_backend_service" "rbs" {
     group = google_compute_region_instance_group_manager.rmig.instance_group
   }
 
-  health_checks = ["${google_compute_http_health_check.default.self_link}"]
+  health_checks = ["${google_compute_http_health_check.api_health_check.self_link}"]
 }
 
 # Regional MIG
@@ -20,15 +41,15 @@ resource "google_compute_region_instance_group_manager" "rmig" {
   region             = var.region
   target_size        = var.min_replicas
 
-  named_port {
-    name = "http"
-    port = 80
-  }
+  # named_port {
+  #   name = "http"
+  #   port = 80
+  # }
 
-  named_port {
-    name = "https"
-    port = 443
-  }
+  # named_port {
+  #   name = "https"
+  #   port = 443
+  # }
 
   named_port {
     name = "sobel-service"
@@ -36,7 +57,7 @@ resource "google_compute_region_instance_group_manager" "rmig" {
   }
 
   auto_healing_policies {
-    health_check      = google_compute_http_health_check.default.self_link
+    health_check      = google_compute_http_health_check.api_health_check.self_link
     initial_delay_sec = 300
   }
 
@@ -46,7 +67,6 @@ resource "google_compute_region_instance_group_manager" "rmig" {
   }
 
 }
-
 
 # Global Forwarding Rule
 resource "google_compute_global_forwarding_rule" "gfr" {

@@ -16,20 +16,3 @@ resource "google_compute_region_autoscaler" "cras" {
   }
 }
 
-resource "google_compute_http_health_check" "default" {
-  name               = var.hc_name
-  request_path       = "/"
-  check_interval_sec = 1
-  timeout_sec        = 1
-}
-
-# Compute Healthcheck
-resource "google_compute_health_check" "default" {
-  name               = var.hc_name
-  check_interval_sec = 1
-  timeout_sec        = 1
-
-  tcp_health_check {
-    port = var.hc_port
-  }
-}

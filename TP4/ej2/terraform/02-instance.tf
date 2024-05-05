@@ -11,14 +11,11 @@ data "google_client_openid_userinfo" "me" {}
 #       image = "sobel-docker-1714937934"
 #     }
 #   }
-#   metadata = {
-#     ssh-keys = "${split("@", data.google_client_openid_userinfo.me.email)[0]}:${tls_private_key.keys.public_key_openssh}"
-#   }
+#
 #   network_interface {
 #     network = "default"
 #     access_config {}
 #   }
-#   metadata_startup_script = file(var.metadata_startup_script)
 
 # }
 
@@ -66,6 +63,10 @@ resource "google_compute_instance_template" "sobel-worker-template" {
     create_before_destroy = true
   }
 
-  # metadata_startup_script = file(var.metadata_startup_script)
-  metadata_startup_script = local.linux_metadata
+  metadata_startup_script = file(var.metadata_startup_script)
+
+  # Configuración metadata para ssh key
+  # metadata = {
+  #   ssh-keys = "${split("@", data.google_client_openid_userinfo.me.email)[0]}:${tls_private_key.keys.public_key_openssh}"
+  # }
 }
