@@ -10,7 +10,7 @@ Mejore la aplicación del punto anterior para que, en caso de que un proceso dis
 
 ```
 # Esto es para indicarle la URL del balanceador de cargas
-LOAD_BALANCER_URL = http://load-balancer:8080/api/sobel
+LOAD_BALANCER_URL = http://load-balancer:80/api/sobel
 
 # Definir la cantidad de partes en las que se dividirá la imagen
 FRAGMENTS_COUNT = 6
@@ -58,5 +58,11 @@ docker compose up -d
 4. Moverse al directorio `Images` y utilizar cURL para realizar la petición para filtrar la imagen
 
 ```bash
-curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image.jpg" -w '\nTiempo total: %{time_total}s\n' http://localhost:5000/api/sobel --output imagen_procesada.png
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image.jpg" -w '\nTiempo total: %{time_total}s\n' http://localhost:5001/api/sobel --output imagen_procesada.png
+```
+
+5. Alternativamente, puede ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen)
+
+```bash
+sh runner.sh
 ```
