@@ -48,6 +48,20 @@
 
 - Diríjase a la web https://www.shadertoy.com la cual nos permite programar de forma interactiva shaders gráficos que corren en GPU gracias al uso de WebGL. Toque en la opción “Nuevo” arriba a la derecha, amplíe las “Entradas del shader”, agregue a su informe un listado de las entradas posibles indicando su tipo, nombre y una descripción breve de qué representa cada una.
 
+	|  Tipo  	    | Nombre 		   | Descripción 	             	|
+	| :-: 	 	    | :----: 	           | :---------: 		     	|
+	| uniform vec3      | iResolution          | viewport resolution (in pixels) 	|
+	| uniform float     | iTime          	   | shader playback time (in seconds)	|
+	| uniform float     | iTimeDelta           | render time (in seconds)		|
+	| uniform float     | iFrameRate           | shader frame rate			|
+	| uniform int       | iFrame          	   | shader playback frame		|
+	| uniform float     | iChannelTime[4]      | channel playback time (in seconds)	|
+	| uniform vec3      | iChannelResolution[4]| channel resolution (in pixels)	|
+	| uniform vec4      | iMouse          	   | mouse pixel coords. xy: current (if MLB           down), zw: click |
+	| uniform samplerXX | iChannel0..3         | input channel. XX = 2D/Cube	|
+	| uniform vec4      | iDate          	   | (year, month, day, time in seconds)|
+	| uniform float     | iSampleRate          | sound sample rate (i.e., 44100) 	|
+	
 - Diríjase a https://www.shadertoy.com/howto y agregue a su informe un listado de las salidas posibles de los Pixel Shaders así como su tipo y una breve descripción de qué representa cada una.
 
 - Cuando crea un nuevo shadertoy el código de ejemplo que le sugiere la web es el siguiente:
