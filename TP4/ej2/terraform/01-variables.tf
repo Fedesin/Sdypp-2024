@@ -25,7 +25,7 @@ variable "nodes" {
 
 variable "metadata_startup_script" {
   type    = string
-  default = "init.sh"
+  default = "./scripts/init.sh"
 }
 
 # Instance Template
