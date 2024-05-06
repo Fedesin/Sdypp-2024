@@ -50,9 +50,9 @@ resource "google_compute_instance_template" "sobel-worker-template" {
     network = var.network
     #
     # Give a Public IP to instance(s)
-    access_config {
-      // Ephemeral IP
-    }
+    # access_config {
+    #   // Ephemeral IP
+    # }
   }
 
   service_account {
