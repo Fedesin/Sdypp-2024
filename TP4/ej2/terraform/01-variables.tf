@@ -125,7 +125,7 @@ variable "min_replicas" {
 
 variable "max_replicas" {
   type    = string
-  default = 10
+  default = 16
 }
 
 # Global Forwarding Rule
