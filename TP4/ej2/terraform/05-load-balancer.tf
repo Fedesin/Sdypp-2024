@@ -46,16 +46,6 @@ resource "google_compute_region_instance_group_manager" "rmig" {
     port = 80
   }
 
-  # named_port {
-  #   name = "https"
-  #   port = 443
-  # }
-
-  # named_port {
-  #   name = "sobel-service"
-  #   port = 80
-  # }
-
   auto_healing_policies {
     health_check      = google_compute_http_health_check.default.self_link
     initial_delay_sec = 300

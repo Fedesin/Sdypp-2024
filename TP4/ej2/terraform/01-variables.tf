@@ -18,10 +18,6 @@ variable "zone" {
   default = "us-east1-b"
 }
 
-variable "nodes" {
-  type    = number
-  default = 1
-}
 
 variable "metadata_startup_script" {
   type    = string
@@ -54,9 +50,10 @@ variable "machine_type" {
   default = "n1-standard-2"
 }
 
+# This is the family tag used when building the Golden Image with Packer.
 variable "source_image" {
   type    = string
-  default = "sobel-docker-1714953231" //This is the family tag used when building the Golden Image with Packer.
+  default = "sobel-docker-1714953231"
 }
 
 variable "network" {

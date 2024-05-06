@@ -1,28 +1,6 @@
 
 data "google_client_openid_userinfo" "me" {}
 
-# resource "google_compute_instance" "vm_instance" {
-#   count        = var.nodes
-#   name         = "sobel-worker-${count.index}"
-#   machine_type = "e2-medium"
-#   zone         = "us-east1-b"
-#   boot_disk {
-#     initialize_params {
-#       image = "sobel-docker-1714937934"
-#     }
-#   }
-#
-#   network_interface {
-#     network = "default"
-#     access_config {}
-#   }
-
-# }
-
-locals {
-  linux_metadata = templatefile("${path.module}/metadata/linux-metadata.tpl", {})
-}
-
 # Template creation
 resource "google_compute_instance_template" "sobel-worker-template" {
   name_prefix          = var.prefix
@@ -32,7 +10,7 @@ resource "google_compute_instance_template" "sobel-worker-template" {
   tags                 = ["${var.tags}"]
   instance_description = var.desc_inst
   machine_type         = var.machine_type
-  can_ip_forward       = false // Whether to allow sending and receiving of packets with non-matching source or destination IPs. This defaults to false.
+  can_ip_forward       = false
 
   scheduling {
     automatic_restart   = true
