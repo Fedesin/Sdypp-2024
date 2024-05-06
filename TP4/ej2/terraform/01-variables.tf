@@ -56,7 +56,7 @@ variable "machine_type" {
 
 variable "source_image" {
   type    = string
-  default = "sobel-docker-1714948621" //This is the family tag used when building the Golden Image with Packer.
+  default = "sobel-docker-1714953231" //This is the family tag used when building the Golden Image with Packer.
 }
 
 variable "network" {
@@ -83,7 +83,7 @@ variable "hc_name" {
 
 variable "hc_port" {
   type    = string
-  default = "5000"
+  default = "80"
 }
 
 # Backend
@@ -99,7 +99,7 @@ variable "be_protocol" {
 
 variable "be_port_name" {
   type    = string
-  default = "sobel-service"
+  default = "http"
 }
 
 variable "be_timeout" {
@@ -136,7 +136,7 @@ variable "gfr_name" {
 
 variable "gfr_portrange" {
   type    = string
-  default = "5000"
+  default = "80"
 }
 
 variable "thp_name" {
