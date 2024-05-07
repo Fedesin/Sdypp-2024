@@ -1,4 +1,6 @@
-# Regional MIG AutoScaler
+# Definimos un autoscaler regional para un grupo de instancias administrado (RMIG). 
+# El autoscaler ajustará automáticamente el tamaño del grupo de instancias basado en la utilización de la CPU, 
+# para garantizar un rendimiento óptimo de la aplicación.
 resource "google_compute_region_autoscaler" "cras" {
 
   name   = "autoscaler"

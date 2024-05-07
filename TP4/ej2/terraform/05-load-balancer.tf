@@ -1,4 +1,4 @@
-# Health check
+# Configuramos el health check http que verifica el estado de los workers pegandole a su ruta de status
 resource "google_compute_http_health_check" "default" {
   name               = var.hc_name
   request_path       = "/api/sobel"
@@ -7,7 +7,6 @@ resource "google_compute_http_health_check" "default" {
   timeout_sec        = 1
 }
 
-# Compute Healthcheck
 resource "google_compute_health_check" "default" {
   name               = var.hc_name
   check_interval_sec = 1
@@ -18,8 +17,8 @@ resource "google_compute_health_check" "default" {
   }
 }
 
-
-# Backend Services
+# Creamos un servicio de backend al cual el load balancer podrá redirigir todo el tráfico.
+# Este servicio de backend utiliza el grupo de instancias que se declara abajo
 resource "google_compute_backend_service" "rbs" {
   name             = var.be_name
   port_name        = var.be_port_name
@@ -34,7 +33,8 @@ resource "google_compute_backend_service" "rbs" {
   health_checks = ["${google_compute_http_health_check.default.self_link}"]
 }
 
-# Regional MIG
+# Creamos un grupo de instancias administrado de forma regional. Es decir, existirán instancias en diferentes zonas dentro de la región especificada.
+# Podría realizarse lo mismo de forma zonal y global.
 resource "google_compute_region_instance_group_manager" "rmig" {
   name               = var.rmig_name
   base_instance_name = var.base_instance_name
@@ -58,11 +58,11 @@ resource "google_compute_region_instance_group_manager" "rmig" {
 
 }
 
-# Global Forwarding Rule
+# Configuramos el enrutamiento de las peticiones que llegan al load balancer.
 resource "google_compute_global_forwarding_rule" "gfr" {
   name       = var.gfr_name
   target     = google_compute_target_http_proxy.thp.self_link
-  port_range = var.gfr_portrange
+  port_range = var.gfr_portrange # Define el rango de puertos en los que la forwarding rule escuchará el tráfico entrante.
 }
 resource "google_compute_target_http_proxy" "thp" {
   name    = var.thp_name

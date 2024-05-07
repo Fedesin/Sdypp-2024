@@ -1,7 +1,7 @@
 
 data "google_client_openid_userinfo" "me" {}
 
-# Template creation
+# Definimos el template de las VM que se irán creando como workers
 resource "google_compute_instance_template" "sobel-worker-template" {
   name_prefix          = var.prefix
   description          = var.desc
@@ -17,19 +17,20 @@ resource "google_compute_instance_template" "sobel-worker-template" {
     on_host_maintenance = "MIGRATE"
   }
 
-  // Create a new boot disk from an image (Lets use one created by Packer)
+  // Como imagen base usamos la creada con Packer (sobel.json)
   disk {
-    source_image = var.source_image
+    source_image = var.source_image 
     auto_delete  = true
     boot         = true
   }
 
   network_interface {
     network = var.network
-    #
+    
+    # Esto es para darle una IP publica a los workers. Pero como son accedidos a través del balanceador, no haría falta.
     # Give a Public IP to instance(s)
     # access_config {
-    #   // Ephemeral IP
+      // Ephemeral IP
     # }
   }
 
@@ -41,6 +42,7 @@ resource "google_compute_instance_template" "sobel-worker-template" {
     create_before_destroy = true
   }
 
+  # Acá se define que archivo se va al iniciar cada una de las instancias (init.sh)
   metadata_startup_script = file(var.metadata_startup_script)
 
   # Configuración metadata para ssh key

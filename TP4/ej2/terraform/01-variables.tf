@@ -32,7 +32,7 @@ variable "prefix" {
 
 variable "desc" {
   type    = string
-  default = "This template is used to create sobel worker instances."
+  default = "This template is used to create sobel worker instances"
 }
 
 variable "tags" {
