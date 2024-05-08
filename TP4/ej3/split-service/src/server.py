@@ -12,6 +12,11 @@ from utils.split import split_image
 app = Flask(__name__)
 
 
+@app.route("/api/status", methods=['GET'])
+def status():
+    return jsonify({"code": "200", "status": "OK", "description": "Split service is working..."})
+
+
 @app.route("/api/split", methods=['POST'])
 def split():
     if request.method == 'POST':
