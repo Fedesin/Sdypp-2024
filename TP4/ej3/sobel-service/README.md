@@ -25,10 +25,16 @@ pip install -r requirements.txt
 flask --app server run
 ```
 
-4. Moverse al directorio `Images` y utilizar cURL para realizar la petición para filtrar la imagen
+4a. Moverse al directorio `Images` y utilizar cURL para realizar la petición para filtrar la imagen
 
 ```bash
 curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image6.jpg" -w '\nTiempo total: %{time_total}s\n' http://localhost:5000/api/sobel --output imagen_procesada.png
+```
+
+4b. Alternativamente, puede ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen)
+
+```bash
+sh runner.sh
 ```
 
 # Instrucciones para ejecutar con docker
@@ -43,4 +49,10 @@ docker run -p 5001:5000 fedesin31/sobel-service:latest
 
 ```bash
 curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image6.jpg" -w '\nTiempo total: %{time_total}s\n' http://localhost:5001/api/sobel --output imagen_procesada.png
+```
+
+3. Alternativamente, puede ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen)
+
+```bash
+sh runner.sh
 ```

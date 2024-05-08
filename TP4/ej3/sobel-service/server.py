@@ -12,7 +12,7 @@ from sobel_filter import filter_image
 app = Flask(__name__)
 
 
-@app.route("/api/sobel", methods=['GET'])
+@app.route("/api/status", methods=['GET'])
 def status():
     return jsonify({"code": "200", "status": "OK", "description": "Sobel service is working..."})
 
