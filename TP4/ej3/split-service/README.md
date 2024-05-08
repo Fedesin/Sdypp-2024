@@ -34,7 +34,7 @@ flask --app server run
 4. Moverse al directorio `Images` y utilizar cURL para realizar la petición para filtrar la imagen
 
 ```bash
-curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image.jpg" -w '\nTiempo total: %{time_total}s\n' http://localhost:5001/api/split
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image.jpg" -w '\nTiempo total: %{time_total}s\n' http://localhost:5000/api/split
 ```
 
 5. Alternativamente, puede ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen)
