@@ -10,6 +10,14 @@ El objetivo de este ejercicio es que ustedes puedan construir una arquitectura e
 
 ![HIT 2](https://github.com/Fedesin/sdypp-2024/assets/117539520/3d14d998-01c0-4760-8ea7-d15f8f857db0)
 
+### ¿Por qué colocamos los workers en la nube?
+
+El proceso que divide la imagen se ejecutará de forma local y estará a la espera de peticiones de clientes, ya que consideramos que no se requiere un alto costo computacional para fragmentar la imagen. La desventaja de hacerlo de esta manera es que no estará expuesto a internet, por lo tanto, si se quiere aplicar sobel a la imagen estará obligado a levantar el contenedor docker que contiene a esta aplicación.
+
+El procesamiento de imagenes para aplicar el filtro sobel decidimos colocarlo en la nube. De esta manera, podemos contar con una base elástica de workers encargados unicamente de recibir peticiones para aplicar el filtro sobel. La nube proporciona recursos escalables que pueden manejar eficientemente el procesamiento de múltiples fragmentos de imagen. La idea es colocar adelante un load-balancer para que distribuya el tráfico de forma eficiente y la aplicación cliente tenga un único punto de acceso y sea transparente la cantidad de workers que hay activos en todo momento, ya que estos pueden iniciarse o apagarse dependiendo de la carga de trabajo.
+
+Una vez que todos los fragmentos han sido procesados, la fase de unificación de los resultados ocurre también de forma local. El encargado de unificar la imagen es el mismo proceso que en un principio la dividió, por lo cuál, es quien recibirá la respuestas de los workers con los fragmentos sobelizados. Además, este proceso es el que actúa como punto de entrada para la comunicación con el cliente, por lo cuál, es quien entregará el resultado final (imagen original sobelizada). 
+
 # Instrucciones
 
 1. Clonar el archivo .env.example y renombrarlo a .env
