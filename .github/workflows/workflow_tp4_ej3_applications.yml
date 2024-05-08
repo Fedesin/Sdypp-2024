@@ -1,4 +1,4 @@
-name: Workflow for HIT 3 - TP 3
+name: Pipeline de aplicaciones | TP 4 HIT 3
 
 on:
     push:
