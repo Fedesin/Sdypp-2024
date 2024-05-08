@@ -1,9 +1,9 @@
-name: Workflow for HIT 1 - TP 3
+name: Workflow for HIT 3 - TP 3
 
 on:
     push:
         branches: ['main']
-        paths: ['TP4/ej1/**']
+        paths: ['TP4/ej3/**']
 jobs:
     build-and-push-docker-image:
         name: Build and Push Docker Image
@@ -21,20 +21,20 @@ jobs:
             - name: Build and push Docker image
               uses: docker/build-push-action@v2
               with:
-                  context: ./TP4/ej1/sobel-service
+                  context: ./TP4/ej3/sobel-service
                   push: true
-                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-sobel:latest
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/sobel-service:latest
 
             - name: Build and push Docker image
               uses: docker/build-push-action@v2
               with:
-                  context: ./TP4/ej1/sobel-service-error
+                  context: ./TP4/ej3/split-service
                   push: true
-                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-sobel:error
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/split-service:latest
 
-            - name: Build and push Docker image
-              uses: docker/build-push-action@v2
-              with:
-                  context: ./TP4/ej1/splitter-joiner-service
-                  push: true
-                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp4-ej1-splitter-joiner:latest
+            # - name: Build and push Docker image
+            #   uses: docker/build-push-action@v2
+            #   with:
+            #       context: ./TP4/ej3/join-service
+            #       push: true
+            #       tags: ${{ secrets.DOCKER_HUB_USERNAME }}/join-service:latest
