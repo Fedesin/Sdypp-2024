@@ -49,7 +49,7 @@ def split():
 
                 # Verifica si la imagen se ha cargado correctamente
                 if image is None:
-                    return jsonify({'Bad request': 'El número de fragmentos debe estar entre 1 y 16'}), 400
+                    return jsonify({'Internal server error': 'Ocurrió un error al procesar la imagen'}), 500
 
                 # "fragments" en un array con los paths a los fragmentos de imagen
                 fragments = split_image(image, num_fragments)
@@ -64,7 +64,7 @@ def split():
                     }
 
                     # TODO: Generar tareas para encolar en el RabbitMQ
-                    # TODO: Subir los fragmentos al bucket GCP
+                    # TODO: Subir los fragmentos al bucket GCP (no sé que tan viable es esto. En otro caso, buscar alternativas)
                     # TODO: Registrar estado de tarea en Redis.
 
             return jsonify({'OK': 'Imagen fragmentada correctamente'}), 200
