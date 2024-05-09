@@ -32,6 +32,13 @@ jobs:
                   push: true
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/split-service:latest
 
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v2
+              with:
+                  context: ./TP4/ej3/entry-server
+                  push: true
+                  tags: ${{ secrets.DOCKER_HUB_USERNAME }}/entry-server:latest
+
             # - name: Build and push Docker image
             #   uses: docker/build-push-action@v2
             #   with:
