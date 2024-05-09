@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0
 # Copiar archivos y directorios
 COPY ./requirements.txt requirements.txt
 COPY ./src/server.py server.py
-COPY ./src/utils/split.py utils/split.py
+COPY ./src/utils utils
+COPY ./src/plugins plugins
 
 # Cambiar la propiedad de los archivos al usuario no root
 RUN chown -R nonroot:nonroot /split

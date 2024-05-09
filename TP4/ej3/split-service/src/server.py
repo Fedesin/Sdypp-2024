@@ -1,12 +1,14 @@
-import io
 import os
 import imghdr
+import time
 
+import json
 import uuid
 import cv2
 import numpy as np
 from flask import Flask, jsonify, request
 from utils.split import split_image
+from plugins.redis.redis_client import redis_connect
 
 
 app = Flask(__name__)
@@ -17,8 +19,8 @@ def status():
     return jsonify({"code": "200", "status": "OK", "description": "Split service is working..."})
 
 
-@app.route("/api/split", methods=['POST'])
-def split():
+@app.route("/api/split/<task_id>", methods=['POST'])
+def split(task_id):
     if request.method == 'POST':
         num_fragments = os.environ.get('FRAGMENTS_COUNT')
         num_fragments = int(num_fragments)
@@ -54,18 +56,32 @@ def split():
                 # "fragments" en un array con los paths a los fragmentos de imagen
                 fragments = split_image(image, num_fragments)
 
+                subtasks = []
+
                 for fragment in fragments:
-                    task = {
-                        "task_id": str(uuid.uuid4()),
+                    # TODO: Subir los fragmentos al bucket GCP (no sé que tan viable es esto. En otro caso, buscar alternativas)
+                    # TODO: Generar tareas para encolar en el RabbitMQ
+                    subtask_id = str(uuid.uuid4())
+                    subtask = {
+                        "task_id": task_id,
+                        "subtask_id": subtask_id,
                         "fragment_name": fragment,
-                        "total_fragments": num_fragments,
-                        "processed_fragments": 0,
-                        "img_url": "http://fragment.com"
+                        "img_url": "http://fragment.com",
                     }
 
-                    # TODO: Generar tareas para encolar en el RabbitMQ
-                    # TODO: Subir los fragmentos al bucket GCP (no sé que tan viable es esto. En otro caso, buscar alternativas)
-                    # TODO: Registrar estado de tarea en Redis.
+                    subtasks.append(subtask_id)
+
+                # Registro estado inicial de tarea sobel en redis.
+                r = redis_connect()
+
+                r.hset(task_id, mapping={
+                    "subtasks_count": len(subtasks),
+                    "completed_subtasks": 0,
+                    "status": "PENDING",
+                    "fragments": json.dumps(fragments),
+                    "created_at": int(time.time()),
+                    "completed_at": 0,
+                })
 
             return jsonify({'OK': 'Imagen fragmentada correctamente'}), 200
         except internal_server_error:
