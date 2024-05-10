@@ -27,7 +27,7 @@ Para ello, será necesario:
 
 ```
 # Definir la cantidad de partes en las que se dividirá la imagen (probablemente este valor dependa de la cantidad de workers que se inicien)
-FRAGMENTS_COUNT=6
+FRAGMENTS_COUNT=4
 
 # Puerto donde escucha el servidor redis
 REDIS_PORT=6379
@@ -53,13 +53,7 @@ sh create.sh
 docker compose up -d
 ```
 
-4. Moverse al directorio `Images` y utilizar cURL para realizar la petición para filtrar la imagen
-
-```bash
-curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image6.jpg" -w '\nTiempo total: %{time_total}s\n' http://localhost:5001/api/sobel
-```
-
-5. Alternativamente, puede ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen).
+4. Ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen).
 
 ```bash
 sh runner.sh
