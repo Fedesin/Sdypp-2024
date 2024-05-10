@@ -9,6 +9,7 @@ import numpy as np
 from flask import Flask, jsonify, request
 from utils.split import split_image
 from plugins.redis.redis_client import redis_connect
+from plugins.bucket.storage_client import upload_image
 
 
 app = Flask(__name__)
@@ -59,14 +60,16 @@ def split(task_id):
                 subtasks = []
 
                 for fragment in fragments:
-                    # TODO: Subir los fragmentos al bucket GCP (no sé que tan viable es esto. En otro caso, buscar alternativas)
+                    # Subo los fragmentos al bucket GCP
+                    upload_image(fragment)
+
                     # TODO: Generar tareas para encolar en el RabbitMQ
                     subtask_id = str(uuid.uuid4())
                     subtask = {
                         "task_id": task_id,
                         "subtask_id": subtask_id,
                         "fragment_name": fragment,
-                        "img_url": "http://fragment.com",
+                        "bucket_object": f"pre-sobel/{fragment}.png",
                     }
 
                     subtasks.append(subtask_id)

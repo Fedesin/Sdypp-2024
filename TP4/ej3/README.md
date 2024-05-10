@@ -18,7 +18,7 @@ Para ello, será necesario:
         - Pipeline 1.2-1.N: De cada aplicación desarrollada (frontend, backend, split, join)
 
     - Pipeline 2: Despliegue de máquinas virtuales para construir los workers. Objetivo deseable: Que estas máquinas sean “dinámicas”.
-      
+
 ![Diagramas-# HIT 3 (TP 4)](https://github.com/Fedesin/sdypp-2024/assets/117539520/660a280b-d904-4bf5-b8dc-57966502dfa0)
 
 # Instrucciones para ejecutar el servicio de manera local con docker
@@ -37,21 +37,29 @@ REDIS_HOST="localhost"
 # Endpoint para interactuar con el servicio de split de imágenes
 SPLIT_SERVICE_URL=http://split-service:5000/api/split
 
+# Endpoint para interactuar con el servicio de split de imágenes
+BUCKET_NAME=sobel
 ```
 
-2. Iniciar los contenedores
+2. Crear la infraestructura ejecutando el script `create.sh` dentro de la carpeta `terraform`. Para este paso también es necesario contar con el archivo con las keys (`credentials.json`) en el directorio raiz del proyecto.
+
+```bash
+sh create.sh
+```
+
+3. Iniciar los contenedores
 
 ```
 docker compose up -d
 ```
 
-3. Moverse al directorio `Images` y utilizar cURL para realizar la petición para filtrar la imagen
+4. Moverse al directorio `Images` y utilizar cURL para realizar la petición para filtrar la imagen
 
 ```bash
 curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image6.jpg" -w '\nTiempo total: %{time_total}s\n' http://localhost:5001/api/sobel
 ```
 
-3. Alternativamente, puede ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen).
+5. Alternativamente, puede ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen).
 
 ```bash
 sh runner.sh

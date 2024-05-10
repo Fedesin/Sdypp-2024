@@ -3,3 +3,4 @@ __pycache__
 tmp
 .env
 build.sh
+credentials.json

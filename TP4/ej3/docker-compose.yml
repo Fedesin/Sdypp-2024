@@ -25,12 +25,16 @@ services:
             - entry-server
         container_name: split-service
         image: split-service
+        volumes:
+            - ./credentials.json:/credentials/credentials.json
         ports:
             - '5000'
         environment:
             - FRAGMENTS_COUNT=${FRAGMENTS_COUNT}
             - REDIS_HOST=${REDIS_HOST}
             - REDIS_PORT=${REDIS_PORT}
+            - BUCKET_NAME=${BUCKET_NAME}
+            - CREDENTIALS_PATH=/credentials/credentials.json
         networks:
             - sobel-network
 networks:
