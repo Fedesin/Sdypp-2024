@@ -1,3 +1,4 @@
 .history
 /redis/
 .env
+credentials.json
