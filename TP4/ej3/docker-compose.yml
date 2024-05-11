@@ -5,9 +5,23 @@ services:
         image: redis:alpine3.19
         restart: always
         ports:
-            - '6379:6379'
+            - '6379'
         volumes:
             - ./redis:/data
+        networks:
+            - sobel-network
+    rabbitmq:
+        container_name: rabbit
+        image: rabbitmq:3.13-management
+        restart: always
+        hostname: 'rabbit'
+        volumes:
+            - ./rabbitmq/data:/var/lib/rabbitmq
+        ports:
+            - '15672:15672'
+        environment:
+            - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+            - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
         networks:
             - sobel-network
     entry-server:
@@ -23,6 +37,7 @@ services:
         depends_on:
             - redis
             - entry-server
+            - rabbitmq
         container_name: split-service
         image: split-service
         volumes:
@@ -31,10 +46,13 @@ services:
             - '5000'
         environment:
             - FRAGMENTS_COUNT=${FRAGMENTS_COUNT}
-            - REDIS_HOST=${REDIS_HOST}
+            - REDIS_HOST=redis
             - REDIS_PORT=${REDIS_PORT}
             - BUCKET_NAME=${BUCKET_NAME}
             - CREDENTIALS_PATH=/credentials/credentials.json
+            - RABBITMQ_HOST=rabbit
+            - RABBITMQ_USER=${RABBITMQ_USER}
+            - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
         networks:
             - sobel-network
 networks:

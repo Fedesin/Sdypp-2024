@@ -26,7 +26,7 @@ Para ello, será necesario:
 1. Clonar el archivo .env.example y renombrarlo a .env. Si desea, puede actualizar los valores por defecto.
 
 ```
-# Definir la cantidad de partes en las que se dividirá la imagen (probablemente este valor dependa de la cantidad de workers que se inicien)
+# Definir la cantidad de partes en las que se dividirá la imagen
 FRAGMENTS_COUNT=4
 
 # Puerto donde escucha el servidor redis
@@ -37,8 +37,12 @@ REDIS_HOST="localhost"
 # Endpoint para interactuar con el servicio de split de imágenes
 SPLIT_SERVICE_URL=http://split-service:5000/api/split
 
-# Endpoint para interactuar con el servicio de split de imágenes
+# Nombre del bucket GCP donde se subirán los fragmentos de imagen
 BUCKET_NAME=sobel
+
+# Nombre de usuario y password para usar de credenciales en rabbitmq
+RABBITMQ_USER=rabbituser
+RABBITMQ_PASSWORD=rabbitpassword
 ```
 
 2. Crear la infraestructura ejecutando el script `create.sh` dentro de la carpeta `terraform`. Para este paso también es necesario contar con el archivo con las keys (`credentials.json`) en el directorio raiz del proyecto.

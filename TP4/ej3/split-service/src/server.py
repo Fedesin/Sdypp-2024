@@ -1,6 +1,7 @@
 import os
 import imghdr
 import time
+import pika
 
 import json
 import uuid
@@ -9,10 +10,29 @@ import numpy as np
 from flask import Flask, jsonify, request
 from utils.split import split_image
 from plugins.redis.redis_client import redis_connect
+from plugins.rabbitmq.rabbit_client import rabbit_connect
 from plugins.bucket.storage_client import upload_image
 
 
 app = Flask(__name__)
+
+# Variables globales para mantener las conexiones
+redis_connection = None
+rabbitmq_channel = None
+
+
+def get_redis_connection():
+    global redis_connection
+    if redis_connection is None:
+        redis_connection = redis_connect()
+    return redis_connection
+
+
+def get_rabbitmq_channel():
+    global rabbitmq_channel
+    if rabbitmq_channel is None:
+        rabbitmq_channel = rabbit_connect()
+    return rabbitmq_channel
 
 
 @app.route("/api/status", methods=['GET'])
@@ -59,23 +79,32 @@ def split(task_id):
 
                 subtasks = []
 
+                rabbitmq_channel = get_rabbitmq_channel()
                 for fragment in fragments:
                     # Subo los fragmentos al bucket GCP
                     upload_image(fragment)
 
-                    # TODO: Generar tareas para encolar en el RabbitMQ
                     subtask_id = str(uuid.uuid4())
                     subtask = {
                         "task_id": task_id,
                         "subtask_id": subtask_id,
                         "fragment_name": fragment,
-                        "bucket_object": f"pre-sobel/{fragment}.png",
+                        "bucket_object": f"pre-sobel/{fragment}",
                     }
+
+                    # Publico las subtareas en la cola de rabbit.
+                    properties = pika.BasicProperties(
+                        delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE)
+
+                    rabbitmq_channel.basic_publish(
+                        exchange='sobel', routing_key='pre',
+                        properties=properties,
+                        body=json.dumps(subtask))
 
                     subtasks.append(subtask_id)
 
                 # Registro estado inicial de tarea sobel en redis.
-                r = redis_connect()
+                r = get_redis_connection()
 
                 r.hset(task_id, mapping={
                     "subtasks_count": len(subtasks),
@@ -95,6 +124,6 @@ def split(task_id):
         return jsonify({'Method not allowed': 'Método no permitido'}), 405
 
 
-@app.errorhandler(500)
+@ app.errorhandler(500)
 def internal_server_error(error):
     print("Se ha producido un error interno del servidor:", error)
