@@ -46,7 +46,7 @@ RABBITMQ_USER=rabbituser
 RABBITMQ_PASSWORD=rabbitpassword
 ```
 
-2. Ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen). Para este paso es necesario contar con el archivo con las keys (`credentials.json`) en el directorio raiz del proyecto
+2. Ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen). Para este paso es necesario contar con el archivo con las keys (credentials.json) en el directorio raiz del proyecto. También deberá actualizar los valores de variables en el código terraform para adecuarlo a su proyecto GCP.
 
 ```bash
 sh runner.sh
