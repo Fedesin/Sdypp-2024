@@ -12,6 +12,7 @@ WORKDIR /entry-server
 # Copiar archivos y directorios
 COPY ./requirements.txt requirements.txt
 COPY server.py server.py
+COPY storage_client.py storage_client.py
 
 # Cambiar la propiedad de los archivos al usuario no root
 RUN chown -R nonroot:nonroot /entry-server

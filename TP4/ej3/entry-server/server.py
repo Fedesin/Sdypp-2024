@@ -4,6 +4,7 @@ import imghdr
 import uuid
 
 from flask import Flask, jsonify, request, send_file
+from storage_client import check_result
 
 
 app = Flask(__name__)
@@ -15,14 +16,15 @@ def status():
 
 
 @app.route("/api/result/<task_id>", methods=['GET'])
-# A este endpoint podría pegarle el cliente para saber si su resultado ya está disponible
+# A este endpoint le pega el cliente para saber si su resultado ya está disponible
 def getResult(task_id):
     if request.method == 'GET':
-        sobel_result = f"results/{task_id}.png"
-        if os.path.exists(sobel_result):
-            return send_file(sobel_result, mimetype='image/png', as_attachment=True)
+        # TODO: Buscar en el bucket si está la imagen resultado.
+        url = check_result(task_id)
+        if (url):
+            return jsonify({'COMPLETED': f"El resultado sobel de la imagen {task_id} ya está disponible", 'URL': url}), 200
         else:
-            return jsonify({'OK': f"El resultado sobel de la imagen {task_id} aún no está disponible. Vuelva en unos momentos"}), 200
+            return jsonify({'PENDING': f"El resultado sobel de la imagen {task_id} aún no está disponible. Vuelva en unos momentos"}), 200
     else:
         return jsonify({'Method not allowed': 'Método no permitido'}), 405
 
