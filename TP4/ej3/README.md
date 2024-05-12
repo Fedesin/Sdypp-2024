@@ -45,22 +45,11 @@ RABBITMQ_USER=rabbituser
 RABBITMQ_PASSWORD=rabbitpassword
 ```
 
-2. Ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen). Copie el TASK_ID obtenido como respuesta.
+2. Ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen). Para este paso es necesario contar con el archivo con las keys (`credentials.json`) en el directorio raiz del proyecto
 
 ```bash
 sh runner.sh
 ```
+Copie el TASK_ID obtenido como respuesta.
 
 3. Abra el navegador y pegue la siguiente URL `http://localhost:5001/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
-
-4. Crear la infraestructura ejecutando el script `create.sh` dentro de la carpeta `terraform`. Para este paso también es necesario contar con el archivo con las keys (`credentials.json`) en el directorio raiz del proyecto.
-
-```bash
-sh create.sh
-```
-
-3. Iniciar los contenedores
-
-```
-docker compose up -d
-```
