@@ -59,7 +59,7 @@ services:
         depends_on:
             - rabbitmq
         container_name: sobel-service
-        image: sobel-service
+        image: fedesin31/sobel-service
         volumes:
             - ./credentials.json:/credentials/credentials.json
         ports:
