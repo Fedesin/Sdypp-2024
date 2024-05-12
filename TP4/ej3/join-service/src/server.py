@@ -59,7 +59,6 @@ def consume_tasks():
 
             for fragment in fragments:
                 download_image(fragment)
-                # time.sleep(30)
 
             time.sleep(30)
 
