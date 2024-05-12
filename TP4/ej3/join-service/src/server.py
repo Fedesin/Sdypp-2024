@@ -49,6 +49,7 @@ def consume_tasks():
 
         task = r.hgetall(task_id)
 
+        # Actualiza estado de tarea. Cada completed subtask = 1 fragmento sobelizado
         task["completed_subtasks"] = int(task["completed_subtasks"]) + 1
 
         if (int(task["completed_subtasks"]) == int(task["subtasks_count"])):
@@ -58,6 +59,7 @@ def consume_tasks():
             fragments = json.loads(task["fragments"])
 
             for fragment in fragments:
+                # Descarga del bucket cada fragmento sobelizado asociado a la tarea
                 download_image(fragment)
 
             time.sleep(30)
@@ -66,6 +68,7 @@ def consume_tasks():
 
             time.sleep(20)
 
+            # Sube la imagen final al bucket
             upload_image(task_id)
 
         r.hset(task_id, mapping=task)
