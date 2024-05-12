@@ -29,10 +29,9 @@ Para ello, será necesario:
 # Definir la cantidad de partes en las que se dividirá la imagen
 FRAGMENTS_COUNT=4
 
-# Puerto donde escucha el servidor redis
+# Host y puerto donde escucha el servidor redis
 REDIS_PORT=6379
-# Host donde se encuentra el servidor redis
-REDIS_HOST="localhost"
+REDIS_HOST=redis
 
 # Endpoint para interactuar con el servicio de split de imágenes
 SPLIT_SERVICE_URL=http://split-service:5000/api/split
@@ -40,6 +39,8 @@ SPLIT_SERVICE_URL=http://split-service:5000/api/split
 # Nombre del bucket GCP donde se subirán los fragmentos de imagen
 BUCKET_NAME=sobel
 
+# Host donde se está ejecutando rabbit
+RABBITMQ_HOST=rabbit
 # Nombre de usuario y password para usar de credenciales en rabbitmq
 RABBITMQ_USER=rabbituser
 RABBITMQ_PASSWORD=rabbitpassword
@@ -50,6 +51,7 @@ RABBITMQ_PASSWORD=rabbitpassword
 ```bash
 sh runner.sh
 ```
+
 Copie el TASK_ID obtenido como respuesta.
 
 3. Abra el navegador y pegue la siguiente URL `http://localhost:5001/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
