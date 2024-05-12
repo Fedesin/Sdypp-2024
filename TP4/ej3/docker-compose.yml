@@ -26,7 +26,7 @@ services:
             - sobel-network
     entry-server:
         container_name: entry-server
-        image: entry-server
+        image: fedesin31/entry-server
         ports:
             - '5001:5000'
         environment:
@@ -39,7 +39,7 @@ services:
             - entry-server
             - rabbitmq
         container_name: split-service
-        image: split-service
+        image: fedesin31/split-service
         volumes:
             - ./credentials.json:/credentials/credentials.json
         ports:
@@ -48,6 +48,23 @@ services:
             - FRAGMENTS_COUNT=${FRAGMENTS_COUNT}
             - REDIS_HOST=redis
             - REDIS_PORT=${REDIS_PORT}
+            - BUCKET_NAME=${BUCKET_NAME}
+            - CREDENTIALS_PATH=/credentials/credentials.json
+            - RABBITMQ_HOST=rabbit
+            - RABBITMQ_USER=${RABBITMQ_USER}
+            - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+        networks:
+            - sobel-network
+    sobel-service:
+        depends_on:
+            - rabbitmq
+        container_name: sobel-service
+        image: sobel-service
+        volumes:
+            - ./credentials.json:/credentials/credentials.json
+        ports:
+            - '5005:5000'
+        environment:
             - BUCKET_NAME=${BUCKET_NAME}
             - CREDENTIALS_PATH=/credentials/credentials.json
             - RABBITMQ_HOST=rabbit

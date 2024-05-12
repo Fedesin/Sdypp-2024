@@ -1,18 +1,12 @@
 
 import cv2
 import numpy as np
-import argparse
-import time
 import os
-import uuid
 
-def filter_image(imagen):
-    
-    # Registra el tiempo de inicio
-    tiempo_inicio = time.time()
-    
+
+def filter_image(fragment):
     # Cargar la imagen desde la ruta proporcionada
-    # imagen = cv2.imread(image_path)
+    imagen = cv2.imread(os.path.join(os.getcwd(), "tmp", "pre", fragment))
 
     # Verificar si la imagen se ha cargado correctamente
     if imagen is None:
@@ -35,21 +29,8 @@ def filter_image(imagen):
     magnitud = np.uint8(255 * magnitud / np.max(magnitud))
 
     # Guardar la imagen con los bordes detectados
-    random_name = str(uuid.uuid4()) + '.png'
-    
-    if not os.path.exists('tmp'):
-        os.makedirs('tmp')
+    if not os.path.exists('tmp/post'):
+        os.makedirs('tmp/post')
 
-    path = os.path.join('tmp', random_name)
+    path = os.path.join(os.getcwd(), "tmp", "post", fragment)
     cv2.imwrite(path, magnitud)
-
-    # Registra el tiempo de finalización
-    tiempo_fin = time.time()
-    # Calcula la diferencia de tiempo
-    tiempo_ejecucion = tiempo_fin - tiempo_inicio
-
-
-    # Imprime el tiempo total de ejecución
-    print(f"El tiempo total de ejecución fue de {tiempo_ejecucion:.2f} segundos")
-    
-    return path

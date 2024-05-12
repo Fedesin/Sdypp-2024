@@ -3,3 +3,4 @@
 /rabbitmq/
 .env
 credentials.json
+build.sh

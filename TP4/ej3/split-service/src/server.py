@@ -89,7 +89,6 @@ def split(task_id):
                         "task_id": task_id,
                         "subtask_id": subtask_id,
                         "fragment_name": fragment,
-                        "bucket_object": f"pre-sobel/{fragment}",
                     }
 
                     # Publico las subtareas en la cola de rabbit.
