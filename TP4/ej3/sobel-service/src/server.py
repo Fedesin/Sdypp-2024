@@ -30,11 +30,11 @@ def consume_tasks():
 
         # Descargo fragmento original del bucket
         download_image(fragment)
-        time.sleep(30)
+        time.sleep(20)
 
         # Filtro el fragmento original descargado
         filter_image(fragment)
-        time.sleep(30)
+        time.sleep(15)
 
         # Subo el fragmento sobelizado al bucket
         upload_image(fragment)
