@@ -25,8 +25,8 @@ def consume_tasks():
     print(" [*] Waiting for messages. To exit press CTRL+C")
 
     def callback(ch, method, properties, body):
-        parsed_json = json.loads(body)
-        fragment = parsed_json["fragment_name"]
+        subtask = json.loads(body)
+        fragment = subtask["fragment_name"]
 
         # Descargo fragmento original del bucket
         download_image(fragment)
@@ -40,9 +40,9 @@ def consume_tasks():
         upload_image(fragment)
 
         # Registrar subtask en rabbitmq para join-service
-        subtask = {
-            "task_id": parsed_json["task_id"],
-            "subtask_id": parsed_json["subtask_id"],
+        new_subtask = {
+            "task_id": subtask["task_id"],
+            "subtask_id": subtask["subtask_id"],
             "fragment_name": fragment,
         }
 
@@ -52,7 +52,7 @@ def consume_tasks():
         rabbitmq_channel.basic_publish(
             exchange='sobel', routing_key='post',
             properties=properties,
-            body=json.dumps(subtask))
+            body=json.dumps(new_subtask))
 
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
