@@ -3,11 +3,11 @@ kind: ConfigMap
 metadata:
     name: application-config
 data:
-    SPLIT_SERVICE_URL: http://split-service-service.default.svc.cluster.local:5000/api/split
+    SPLIT_SERVICE_URL: http://split-service:5000/api/split
     FRAGMENTS_COUNT: '4'
     BUCKET_NAME: sobel
     REDIS_PORT: '6379'
-    REDIS_HOST: redis-service.default.svc.cluster.local
+    REDIS_HOST: redis
     RABBITMQ_HOST: raabbit
     RABBITMQ_USER: rabbituser
     RABBITMQ_PASSWORD: rabbitpassword
