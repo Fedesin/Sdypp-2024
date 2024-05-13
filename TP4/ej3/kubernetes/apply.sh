@@ -10,9 +10,9 @@ kubectl apply -f redis.yml
 kubectl apply -f split-service.yml
 sleep 10
 
-# Obtener el nombre del deployment
-# pod_name=$(kubectl get pods -o=jsonpath='{.items[0].metadata.name}')
-pod_name=$(kubectl get pods -o=jsonpath='{.items[2].metadata.name}')
+# Obtener el nombre del deployment entry-server deployment.
+pod_name=$(kubectl get pods -o=jsonpath='{.items[0].metadata.name}')
+# service_name=$(kubectl get services -o=jsonpath='{.items[0].metadata.name}')
 
 if [ -z "$pod_name" ]; then
     echo "No se encontraron pods."
@@ -22,4 +22,4 @@ fi
 echo $pod_name
 
 kubectl port-forward $pod_name 5001:5000
-# kubectl port-forward $pod_name 6379:6379
+# kubectl port-forward svc/$service_name 5001:5000
