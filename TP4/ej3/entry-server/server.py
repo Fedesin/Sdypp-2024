@@ -69,6 +69,7 @@ def sobel():
 
                 # Envía la imagen al splitter
                 url = os.environ.get('SPLIT_SERVICE_URL')
+                print(url)
                 url = f"{url}/{task_id}"
 
                 response = requests.post(
