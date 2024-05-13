@@ -7,6 +7,8 @@ data:
     FRAGMENTS_COUNT: '4'
     BUCKET_NAME: sobel
     REDIS_PORT: '6379'
+    RABBITMQ_USER: rabbituser
+    RABBITMQ_PASSWORD: rabbitpassword
 
 ---
 # apiVersion: v1
