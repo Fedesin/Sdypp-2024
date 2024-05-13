@@ -16,7 +16,7 @@ spec:
         spec:
             containers:
                 - name: entry-server
-                  image: 'mgimenezdev/entry-server:latest'
+                  image: 'fedesin31/entry-server:latest'
                   ports:
                       - containerPort: 5000
                   env:
