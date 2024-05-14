@@ -2,6 +2,7 @@ apiVersion: rabbitmq.com/v1beta1
 kind: RabbitmqCluster
 metadata:
     name: rabbitmq
+    namespace: default
 spec:
     image: rabbitmq:3.13-management
     service:
@@ -9,6 +10,6 @@ spec:
     # Agrega toleration para asegurar que los pods se creen unicamente en el node group de servicios
     tolerations:
         - key: instance_type
-          operator: NotEqual
-          value: services
+          operator: Equal
+          value: applications
           effect: NoSchedule
