@@ -58,3 +58,9 @@ spec:
                 - name: credentials-volume
                   configMap:
                       name: credentials-config
+            # Agrega toleration para asegurar que los pods se creen unicamente en el node group de aplicaciones
+            tolerations:
+                - key: instance_type
+                  operator: NotEqual
+                  value: applications
+                  effect: NoSchedule
