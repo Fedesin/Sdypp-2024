@@ -28,10 +28,12 @@ kubectl apply -f volumes/redis-data.yml
 kubectl apply -f deployments/entry-server.yml
 kubectl apply -f deployments/redis.yml
 kubectl apply -f deployments/split-service.yml
+kubectl apply -f deployments/join-service.yml
 
 kubectl apply -f services/entry-server.yml
 kubectl apply -f services/redis.yml
 kubectl apply -f services/split-service.yml
+kubectl apply -f services/join-service.yml
 
 
 
