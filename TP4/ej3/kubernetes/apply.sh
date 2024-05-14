@@ -1,26 +1,40 @@
+kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml"
+kubectl apply -f deployments/rabbitmq.yml
+
+sleep 60
+
+RABBITMQ_PASSWORD=$(kubectl get secret rabbitmq-default-user -o jsonpath="{.data.password}" | base64 --decode)
+RABBITMQ_USER=$(kubectl get secret rabbitmq-default-user -o jsonpath="{.data.username}" | base64 --decode)
+
+# Crear un nuevo ConfigMap con las credenciales de RabbitMQ
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbit-config
+data:
+  RABBITMQ_USER: $RABBITMQ_USER
+  RABBITMQ_PASSWORD: $RABBITMQ_PASSWORD
+  RABBITMQ_HOST: rabbitmq
+EOF
+
+# Crear un nuevo ConfigMap con las credenciales de GCP
 kubectl create configmap credentials-config --from-file=../credentials.json
+
 kubectl apply -f config.yml
-cd deployments
-kubectl apply -f entry-server.yml
-kubectl apply -f redis.yml
-kubectl apply -f split-service.yml
-cd ../services
-kubectl apply -f entry-server.yml
-kubectl apply -f redis.yml
-kubectl apply -f split-service.yml
-sleep 10
 
-# Obtener el nombre del deployment entry-server deployment.
-# pod_name=$(kubectl get pods -o=jsonpath='{.items[0].metadata.name}')
-service_name=$(kubectl get services -o=jsonpath='{.items[0].metadata.name}')
+kubectl apply -f volumes/redis-data.yml
 
-if [ -z "$service_name" ]; then
-    echo "No se encontraron servicios"
-    exit 1
-else 
-    echo $service_name
-fi
+kubectl apply -f deployments/entry-server.yml
+kubectl apply -f deployments/redis.yml
+kubectl apply -f deployments/split-service.yml
 
-echo $service_name
+kubectl apply -f services/entry-server.yml
+kubectl apply -f services/redis.yml
+kubectl apply -f services/split-service.yml
+
+
+
+sleep 15
 
 kubectl port-forward service/entry-server 5000:5000

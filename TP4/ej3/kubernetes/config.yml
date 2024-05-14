@@ -8,10 +8,6 @@ data:
     BUCKET_NAME: sobel
     REDIS_PORT: '6379'
     REDIS_HOST: redis
-    RABBITMQ_HOST: raabbit
-    RABBITMQ_USER: rabbituser
-    RABBITMQ_PASSWORD: rabbitpassword
-
 ---
 # apiVersion: v1
 # kind: Secret

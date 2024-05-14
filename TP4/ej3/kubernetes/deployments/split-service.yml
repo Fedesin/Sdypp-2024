@@ -41,17 +41,17 @@ spec:
                       - name: RABBITMQ_HOST
                         valueFrom:
                             configMapKeyRef:
-                                name: application-config
+                                name: rabbit-config
                                 key: RABBITMQ_HOST
                       - name: RABBITMQ_USER
                         valueFrom:
                             configMapKeyRef:
-                                name: application-config
+                                name: rabbit-config
                                 key: RABBITMQ_USER
                       - name: RABBITMQ_PASSWORD
                         valueFrom:
                             configMapKeyRef:
-                                name: application-config
+                                name: rabbit-config
                                 key: RABBITMQ_PASSWORD
                       - name: CREDENTIALS_PATH
                         value: /credentials/credentials.json
