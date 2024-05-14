@@ -55,3 +55,31 @@ sh runner.sh
 Copie el TASK_ID obtenido como respuesta.
 
 3. Abra el navegador y pegue la siguiente URL `http://localhost:5001/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
+
+# Instrucciones para ejecutar el cluster k8s (por ahora, local con minikube)
+
+1. Para este paso es necesario contar con el archivo con las keys (credentials.json) en el directorio raiz del proyecto. También deberá actualizar los valores de variables en el código terraform para adecuarlo a su proyecto GCP.
+
+Luego, de asegurarse de esto, moverse a la carpeta `k8s` y ejecutar el siguiente comando:
+
+```bash
+sh apply.sh
+```
+
+2. Abrir una terminal nueva y ejecutar el siguiente comando:
+
+```bash
+kubectl port-forward service/entry-server 5000:5000
+```
+
+3. Abrir una segunda nueva y, sin cerrar la terminal abierta en el paso anterior, ejecutar el siguiente comando:
+
+```bash
+minikube service entry-server
+```
+
+4. Ejecutar el script `runner-k8s`:
+
+```bash
+sh runner-k8s.sh
+```
