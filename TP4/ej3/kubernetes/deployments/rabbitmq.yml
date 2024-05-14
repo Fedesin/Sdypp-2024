@@ -4,3 +4,5 @@ metadata:
     name: rabbitmq
 spec:
     image: rabbitmq:3.13-management
+    service:
+        type: LoadBalancer
