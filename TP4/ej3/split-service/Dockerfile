@@ -6,7 +6,7 @@ RUN useradd -m -d /home/nonroot -s /bin/bash nonroot
 WORKDIR /split
 
 # Instalar dependencias del sistema
-RUN apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0
+RUN apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0 curl
 
 # Copiar archivos y directorios
 COPY ./requirements.txt requirements.txt
