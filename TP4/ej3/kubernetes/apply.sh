@@ -1,10 +1,10 @@
 kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml"
 
- sleep 30
+sleep 60
 
 kubectl apply -f deployments/rabbitmq.yml
 
-sleep 60
+sleep 120
 
 RABBITMQ_PASSWORD=$(kubectl get secret rabbitmq-default-user -o jsonpath="{.data.password}" | base64 --decode)
 RABBITMQ_USER=$(kubectl get secret rabbitmq-default-user -o jsonpath="{.data.username}" | base64 --decode)
