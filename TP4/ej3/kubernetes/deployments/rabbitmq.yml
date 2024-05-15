@@ -7,9 +7,3 @@ spec:
     image: rabbitmq:3.13-management
     service:
         type: LoadBalancer
-    # Agrega toleration para asegurar que los pods se creen unicamente en el node group de servicios
-    tolerations:
-        - key: instance_type
-          operator: Equal
-          value: applications
-          effect: NoSchedule

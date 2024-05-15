@@ -26,9 +26,3 @@ spec:
                 - name: redis-volume
                   persistentVolumeClaim:
                       claimName: redis-data
-            # Agrega toleration para asegurar que los pods se creen unicamente en el node group de servicios
-            tolerations:
-                - key: instance_type
-                  operator: Equal
-                  value: applications
-                  effect: NoSchedule

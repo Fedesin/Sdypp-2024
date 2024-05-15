@@ -1,4 +1,7 @@
 kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml"
+
+ sleep 30
+
 kubectl apply -f deployments/rabbitmq.yml
 
 sleep 60
@@ -34,9 +37,3 @@ kubectl apply -f services/entry-server.yml
 kubectl apply -f services/redis.yml
 kubectl apply -f services/split-service.yml
 kubectl apply -f services/join-service.yml
-
-
-
-sleep 15
-
-kubectl port-forward service/entry-server 5000:5000

@@ -67,5 +67,5 @@ spec:
             tolerations:
                 - key: instance_type
                   operator: Equal
-                  value: services
+                  value: applications
                   effect: NoSchedule
