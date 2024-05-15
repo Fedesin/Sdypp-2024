@@ -7,7 +7,7 @@ resource "google_service_account" "kubernetes" {
 resource "google_container_node_pool" "applications" {
   name       = "applications"
   cluster    = google_container_cluster.primary.id
-  node_count = 0
+  node_count = 1
 
   management {
     auto_repair  = true
@@ -61,7 +61,7 @@ resource "google_container_node_pool" "services" {
     machine_type = "c2-standard-4" 
 
     labels = {
-      team = "services"
+      role = "services"
     }
 
     service_account = google_service_account.kubernetes.email
