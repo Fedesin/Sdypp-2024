@@ -21,7 +21,7 @@ resource "google_container_node_pool" "applications" {
 
   node_config {
     preemptible  = false
-    machine_type = "e2-medium"
+    machine_type = "e2-medium" 
 
     labels = {
       role = "applications"
@@ -58,7 +58,7 @@ resource "google_container_node_pool" "services" {
 
   node_config {
     preemptible  = false
-    machine_type = "e2-medium" 
+    machine_type = "c2-standard-4" 
 
     labels = {
       team = "services"
