@@ -29,6 +29,6 @@ spec:
             # Agrega toleration para asegurar que los pods se creen unicamente en el node group de servicios
             tolerations:
                 - key: instance_type
-                  operator: NotEqual
-                  value: services
+                  operator: Equal
+                  value: applications
                   effect: NoSchedule
