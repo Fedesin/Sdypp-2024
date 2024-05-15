@@ -44,3 +44,12 @@ spec:
                   operator: Equal
                   value: applications
                   effect: NoSchedule
+            affinity:
+                nodeAffinity:
+                    requiredDuringSchedulingIgnoredDuringExecution:
+                        nodeSelectorTerms:
+                            - matchExpressions:
+                                  - key: role
+                                    operator: In
+                                    values:
+                                        - applications
