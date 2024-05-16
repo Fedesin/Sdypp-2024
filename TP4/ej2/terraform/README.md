@@ -9,7 +9,7 @@
 -   Ejecutar terraform para crear la instancia de la VM en GCP.
 
 ```bash
- terraform init --reconfigure --backend-config "bucket=terraform_state_cloud --backend-config "prefix=workers/state"
+ terraform init --reconfigure --backend-config "bucket=terraform_state_cloud" --backend-config "prefix=workers/state"
 terraform apply -auto-approve
 
 # Otra alternativa es ejecutar el siguiente script:
