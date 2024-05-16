@@ -21,6 +21,18 @@ Para ello, será necesario:
 
 ![Diagramas-# HIT 3 (TP 4)](https://github.com/Fedesin/sdypp-2024/assets/117539520/660a280b-d904-4bf5-b8dc-57966502dfa0)
 
+# Instrucciones para interactuar con el servicio corriendo en la nube
+
+1. Ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen). Para este paso es necesario contar con el archivo con las keys (credentials.json) en el directorio raiz del proyecto. También deberá actualizar los valores de variables en el código terraform para adecuarlo a su proyecto GCP.
+
+```bash
+sh runner-k8s.sh
+```
+
+Copie el TASK_ID obtenido como respuesta.
+
+2. Abra el navegador y pegue la siguiente URL `http://34.74.201.251:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final
+
 # Instrucciones para ejecutar el servicio de manera local con docker
 
 1. Clonar el archivo .env.example y renombrarlo a .env. Si desea, puede actualizar los valores por defecto.
