@@ -12,9 +12,6 @@
 terraform init --reconfigure --backend-config "bucket=terraform_state_cloud" --backend-config "prefix=workers/state"
 terraform plan
 terraform apply -auto-approve
-
-# Otra alternativa es ejecutar el siguiente script:
-sh runner.sh
 ```
 
 -   Para conectarse por ssh, ejecutamos el siguiente script `ssh-connect.sh`:
