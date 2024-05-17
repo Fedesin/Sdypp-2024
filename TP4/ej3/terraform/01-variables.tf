@@ -47,13 +47,13 @@ variable "desc_inst" {
 
 variable "machine_type" {
   type    = string
-  default = "n4-highcpu-4"
+  default = "n1-standard-2"
 }
 
 # This is the family tag used when building the Golden Image with Packer.
 variable "source_image" {
   type    = string
-  default = "async-sobel-docker-1715870991"
+  default = "async-sobel-docker-1715903966"
 }
 
 variable "network" {

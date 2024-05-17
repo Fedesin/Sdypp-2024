@@ -68,30 +68,26 @@ Copie el TASK_ID obtenido como respuesta.
 
 3. Abra el navegador y pegue la siguiente URL `http://localhost:5001/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
 
-# Instrucciones para ejecutar el cluster k8s (por ahora, local con minikube)
+# Instrucciones para ejecutar el cluster k8s
 
-1. Para este paso es necesario contar con el archivo con las keys (credentials.json) en el directorio raiz del proyecto. También deberá actualizar los valores de variables en el código terraform para adecuarlo a su proyecto GCP.
+1. Realizar un commit con el mensage "(up)" para crear la infraestructura con el cluster de Kubernetes y las aplicaciones. Esto disparará la ejecución del pipeline de Kubernetes en Github actions.
 
-Luego, de asegurarse de esto, moverse a la carpeta `k8s` y ejecutar el siguiente comando:
+2. Luego, de asegurarse de que el pipeline de Kubernetes termine su ejecución (aprox 20 min.), realizar un commit con el mensaje "(workers-up)". Esto disparará la ejecución del pipeline de los workers en Github actions.
 
-```bash
-sh apply.sh
-```
-
-2. Abrir una terminal nueva y ejecutar el siguiente comando:
+3. Una vez que el pipeline de los workers termine su ejecución, ejecutar el siguiente comando para obtener la IP del service para utilizar la aplicación sobel:
 
 ```bash
-kubectl port-forward service/entry-server 5000:5000
+kubectl get services
 ```
 
-3. Abrir una segunda nueva y, sin cerrar la terminal abierta en el paso anterior, ejecutar el siguiente comando:
+Copiarse la IP externa del servicio `entry-server`
+
+4. Abrir una terminal nueva y ejecutar el siguiente comando, reemplazando la IP del servicio:
 
 ```bash
-minikube service entry-server
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Image6.jpg" -w '\nTiempo total: %{time_total}s\n' http://<SERVICE-IP>:5000/api/sobel
 ```
 
-4. Ejecutar el script `runner-k8s`:
+Copie el TASK_ID obtenido como respuesta.
 
-```bash
-sh runner-k8s.sh
-```
+5. Abra el navegador y pegue la siguiente URL `http://<SERVICE-IP>:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
