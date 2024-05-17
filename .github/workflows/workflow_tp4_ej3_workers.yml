@@ -80,7 +80,7 @@ jobs:
                     -e RABBITMQ_USER=${RABBITMQ_USER} \
                     -e RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD} \
                     -e CREDENTIALS_PATH=/credentials/credentials.json \
-                    mgimenezdev/sobel-service:latest
+                    fedesin31/sobel-service:latest
                   EOL
 
                   echo '${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}' > credentials.json
