@@ -21,21 +21,21 @@ jobs:
             - name: Build and push split service image
               uses: docker/build-push-action@v2
               with:
-                  context: ./split-service
+                  context: ./TP4/ej3/split-service
                   push: true
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/split-service:latest
 
             - name: Build and push entry server image
               uses: docker/build-push-action@v2
               with:
-                  context: ./entry-server
+                  context: ./TP4/ej3/entry-server
                   push: true
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/entry-server:latest
 
             - name: Build and push join service image
               uses: docker/build-push-action@v2
               with:
-                  context: ./join-service
+                  context: ./TP4/ej3/join-service
                   push: true
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/join-service:latest
     infra-up:
