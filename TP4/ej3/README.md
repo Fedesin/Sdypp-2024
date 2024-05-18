@@ -35,7 +35,7 @@ Copie el TASK_ID obtenido como respuesta.
 
 # Instrucciones para ejecutar el servicio de manera local con docker
 
-1. Clonar el archivo .env.example y renombrarlo a .env. Si desea, puede actualizar los valores por defecto.
+1. Clonar el archivo .env.example y renombrarlo a .env. Si desea, puede actualizar los valores por defecto
 
 ```
 # Definir la cantidad de partes en las que se dividirá la imagen
