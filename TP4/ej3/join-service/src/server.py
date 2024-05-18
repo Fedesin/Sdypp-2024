@@ -75,6 +75,7 @@ def consume_tasks():
 
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
+    time.sleep(60)
     rabbitmq_channel.basic_consume(
         queue='post-sobel', on_message_callback=callback)
     rabbitmq_channel.start_consuming()
