@@ -18,8 +18,9 @@ def rabbit_connect():
     channel.exchange_declare(
         exchange='sobel', exchange_type='direct', durable=True, auto_delete=False)
 
-    channel.queue_declare(queue='pre-sobel', durable=True)
+    channel.queue_declare(queue='post-sobel', durable=True)
 
-    channel.queue_bind(exchange='sobel', queue='pre-sobel', routing_key='pre')
+    channel.queue_bind(exchange='sobel', queue='post-sobel',
+                       routing_key='post')
 
     return channel
