@@ -56,8 +56,6 @@ def consume_tasks():
 
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
-    # Aseguramos que la queue exista antes de consumir subtareas
-    rabbitmq_channel.queue_declare(queue='pre-sobel')
     rabbitmq_channel.basic_consume(
         queue='pre-sobel', on_message_callback=callback)
     rabbitmq_channel.start_consuming()
