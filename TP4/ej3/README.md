@@ -31,7 +31,7 @@ sh runner-k8s.sh
 
 Copie el TASK_ID obtenido como respuesta.
 
-2. Abra el navegador y pegue la siguiente URL `http://34.74.201.251:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
+2. Abra el navegador y pegue la siguiente URL `http://34.74.201.251:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final
 
 # Instrucciones para ejecutar el servicio de manera local con docker
 
