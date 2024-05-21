@@ -47,7 +47,7 @@ variable "desc_inst" {
 
 variable "machine_type" {
   type    = string
-  default = "n1-standard-2"
+  default = "e2-highcpu-4" # n1-standard-2
 }
 
 # This is the family tag used when building the Golden Image with Packer.
@@ -117,7 +117,7 @@ variable "rmig_as_name" {
 
 variable "min_replicas" {
   type    = string
-  default = 4
+  default = 8
 }
 
 variable "max_replicas" {
