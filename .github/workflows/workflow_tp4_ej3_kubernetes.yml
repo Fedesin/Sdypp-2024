@@ -94,7 +94,7 @@ jobs:
                   gcloud container clusters get-credentials primary --region=us-east1-b
 
             # Despliega los objectos en la nube.
-            - name: Kubernetes deploy
+            - name: RabbitMQ deploy
               working-directory: TP4/ej3/kubernetes
               run: |
                   kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml"
@@ -105,6 +105,9 @@ jobs:
 
                   sleep 150
 
+            - name: Create RabbitMQ config
+              working-directory: TP4/ej3/kubernetes
+              run: |
                   RABBITMQ_PASSWORD=$(kubectl get secret rabbitmq-default-user -o jsonpath="{.data.password}" | base64 --decode)
                   RABBITMQ_USER=$(kubectl get secret rabbitmq-default-user -o jsonpath="{.data.username}" | base64 --decode)
 
@@ -120,23 +123,34 @@ jobs:
                     RABBITMQ_HOST: rabbitmq
                   EOF
 
+            - name: Create GCP config
+              working-directory: TP4/ej3/kubernetes
+              run: |
                   echo '${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}' > credentials.json
 
                   # Crear un nuevo ConfigMap con las credenciales de GCP
                   kubectl create configmap credentials-config --from-file=credentials.json
 
+            - name: Create applications config
+              working-directory: TP4/ej3/kubernetes
+              run: |
                   kubectl apply -f config.yml
 
+            - name: Deploy Redis
+              working-directory: TP4/ej3/kubernetes
+              run: |
                   kubectl apply -f volumes/redis-data.yml
-
                   kubectl apply -f deployments/redis-master.yml
                   kubectl apply -f deployments/redis-replica.yml
+                  kubectl apply -f services/redis-master.yml
+                  kubectl apply -f services/redis-replica.yml
+
+            - name: Deploy applications
+              working-directory: TP4/ej3/kubernetes
+              run: |
                   kubectl apply -f deployments/entry-server.yml
                   kubectl apply -f deployments/split-service.yml
                   kubectl apply -f deployments/join-service.yml
-
-                  kubectl apply -f services/redis-master.yml
-                  kubectl apply -f services/redis-replica.yml
                   kubectl apply -f services/entry-server.yml
                   kubectl apply -f services/split-service.yml
                   kubectl apply -f services/join-service.yml
