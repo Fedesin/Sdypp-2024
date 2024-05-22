@@ -117,7 +117,7 @@ variable "rmig_as_name" {
 
 variable "min_replicas" {
   type    = string
-  default = 8
+  default = 6
 }
 
 variable "max_replicas" {
