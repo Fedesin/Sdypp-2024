@@ -7,6 +7,6 @@ echo "Espere unos segundos... \n"
 sleep 5
 
 
-curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image6.jpg" -w '\nTiempo total: %{time_total}s\n' http://34.74.131.137:5000/api/sobel
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image8.jpg" http://34.74.131.137:5000/api/sobel
 # curl http://34.74.131.137:5000/api/status
-# http://34.74.131.137:5000/api/result/
+# http://34.74.131.137:5000/api/result/17881dad-3c33-464d-b652-238907f21bba
