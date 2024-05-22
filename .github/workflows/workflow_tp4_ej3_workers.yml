@@ -10,20 +10,20 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Copy credentials.json
               run: |
                   echo '${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}' > TP4/ej3/sobel-service/credentials.json
 
             - name: Login to Docker Hub
-              uses: docker/login-action@v2
+              uses: docker/login-action@v3
               with:
                   username: ${{ secrets.DOCKER_HUB_USERNAME }}
                   password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
             - name: Build and push sobel service Docker image
-              uses: docker/build-push-action@v2
+              uses: docker/build-push-action@v5
               with:
                   context: ./TP4/ej3/sobel-service
                   push: true
@@ -34,16 +34,16 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
               # Configuración CLI Google Cloud.
             - name: Google Cloud authentication
-              uses: google-github-actions/auth@v1
+              uses: google-github-actions/auth@v2
               with:
                   credentials_json: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}
 
             - name: Google Cloud kubectl plugin
-              uses: google-github-actions/setup-gcloud@v1
+              uses: google-github-actions/setup-gcloud@v2
               with:
                   version: '>= 363.0.0'
                   install_components: 'kubectl'
@@ -56,7 +56,7 @@ jobs:
 
             # Setup de CLI de Terraform
             - name: Terraform setup
-              uses: hashicorp/setup-terraform@v2
+              uses: hashicorp/setup-terraform@v3
 
             # Crea el cluster en la nube.
             - name: Terraform init
@@ -103,11 +103,11 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
               # Setup de CLI de Terraform
             - name: Terraform setup
-              uses: hashicorp/setup-terraform@v2
+              uses: hashicorp/setup-terraform@v3
 
               # Crea el cluster en la nube.
             - name: Terraform init
