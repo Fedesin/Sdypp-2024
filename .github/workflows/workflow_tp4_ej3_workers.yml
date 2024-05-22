@@ -48,13 +48,28 @@ jobs:
                   version: '>= 363.0.0'
                   install_components: 'kubectl'
 
+            - name: Wait for Kubernetes cluster to be ready
+              run: |
+                  until gcloud container clusters describe primary --region=us-east1-b; do
+                    echo "Waiting for Kubernetes cluster to be ready..."
+                    sleep 10
+                  done
+
             - name: Google Cloud kubectl cluster metadata
               run: |
                   gcloud info
                   gcloud components list
                   gcloud container clusters get-credentials primary --region=us-east1-b
 
+            - name: Wait for RabbitMQ service to be ready
+              run: |
+                  while [[ $(kubectl get svc rabbitmq -n rabbitmq-namespace -o=jsonpath='{.status.loadBalancer.ingress[0].ip}') == "" ]]; do
+                    echo "Waiting for RabbitMQ service to be ready..."
+                    sleep 10
+                  done
+
             - name: Create init.sh script for workers
+              working-directory: TP4/ej3/terraform
               run: |
                   RABBITMQ_SERVICE_IP=$(kubectl get svc rabbitmq -n rabbitmq-namespace -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
                   RABBITMQ_PASSWORD=$(kubectl get secret rabbitmq-default-user -o jsonpath="{.data.password}" -n rabbitmq-namespace | base64 --decode)
