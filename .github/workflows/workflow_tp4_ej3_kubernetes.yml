@@ -122,6 +122,7 @@ jobs:
                   kind: ConfigMap
                   metadata:
                     name: rabbit-config
+                    namespace: applications-namespace
                   data:
                     RABBITMQ_USER: $RABBITMQ_USER
                     RABBITMQ_PASSWORD: $RABBITMQ_PASSWORD
