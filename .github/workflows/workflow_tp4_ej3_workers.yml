@@ -54,23 +54,11 @@ jobs:
                   gcloud components list
                   gcloud container clusters get-credentials primary --region=us-east1-b
 
-            # Setup de CLI de Terraform
-            - name: Terraform setup
-              uses: hashicorp/setup-terraform@v3
-
-            # Crea el cluster en la nube.
-            - name: Terraform init
-              working-directory: TP4/ej3/terraform
-              env:
-                  GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}
+            - name: Create init.sh script for workers
               run: |
                   RABBITMQ_SERVICE_IP=$(kubectl get svc rabbitmq -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
                   RABBITMQ_PASSWORD=$(kubectl get secret rabbitmq-default-user -o jsonpath="{.data.password}" | base64 --decode)
                   RABBITMQ_USER=$(kubectl get secret rabbitmq-default-user -o jsonpath="{.data.username}" | base64 --decode)
-
-                  echo "Service IP: $RABBIT_SERVICE_IP"
-                  echo "Rabbit user: $RABBITMQ_PASSWORD"
-                  echo "Rabbit password: $RABBITMQ_USER"
 
                   cat <<EOL > ./scripts/init.sh
                   sudo docker run -p 80:5000 \
@@ -83,6 +71,16 @@ jobs:
                     fedesin31/sobel-service:latest
                   EOL
 
+            # Setup de CLI de Terraform
+            - name: Terraform setup
+              uses: hashicorp/setup-terraform@v3
+
+            # Crea el cluster en la nube.
+            - name: Terraform init
+              working-directory: TP4/ej3/terraform
+              env:
+                  GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}
+              run: |
                   echo '${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}' > credentials.json
 
                   bucket_name="terraform_state_cloud"
