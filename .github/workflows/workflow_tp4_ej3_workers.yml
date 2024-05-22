@@ -30,7 +30,7 @@ jobs:
                   tags: ${{ secrets.DOCKER_HUB_USERNAME }}/sobel-service:latest
     infra-up:
         name: Build workers infrastructure
-        if: startsWith(github.event.head_commit.message, '(workers-up)')
+        if: startsWith(github.event.head_commit.message, '(up)')
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -112,7 +112,7 @@ jobs:
                   terraform apply -lock=false --auto-approve
     infra-destroy:
         name: Destroy workers infrastructure
-        if: startsWith(github.event.head_commit.message, '(workers-down)')
+        if: startsWith(github.event.head_commit.message, '(down)')
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
