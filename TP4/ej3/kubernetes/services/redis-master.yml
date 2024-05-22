@@ -5,7 +5,7 @@ metadata:
     name: redis-master
     namespace: redis-namespace
 spec:
-    type: LoadBalancer
+    type: ClusterIP
     ports:
         - port: 6379
           targetPort: 6379
