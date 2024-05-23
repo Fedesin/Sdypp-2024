@@ -142,24 +142,24 @@ jobs:
               run: |
                   kubectl apply -f config.yml
 
-            - name: Deploy Redis
-              working-directory: TP4/ej3/kubernetes
-              run: |
-                  kubectl apply -f volumes/redis-data.yml
-                  kubectl apply -f deployments/redis-master.yml
-                  kubectl apply -f deployments/redis-replica.yml
-                  kubectl apply -f services/redis-master.yml
-                  kubectl apply -f services/redis-replica.yml
+            # - name: Deploy Redis
+            #   working-directory: TP4/ej3/kubernetes
+            #   run: |
+            #       kubectl apply -f volumes/redis-data.yml
+            #       kubectl apply -f deployments/redis-master.yml
+            #       kubectl apply -f deployments/redis-replica.yml
+            #       kubectl apply -f services/redis-master.yml
+            #       kubectl apply -f services/redis-replica.yml
 
-            - name: Deploy applications
-              working-directory: TP4/ej3/kubernetes
-              run: |
-                  kubectl apply -f deployments/entry-server.yml
-                  kubectl apply -f deployments/split-service.yml
-                  kubectl apply -f deployments/join-service.yml
-                  kubectl apply -f services/entry-server.yml
-                  kubectl apply -f services/split-service.yml
-                  kubectl apply -f services/join-service.yml
+            # - name: Deploy applications
+            #   working-directory: TP4/ej3/kubernetes
+            #   run: |
+            #       kubectl apply -f deployments/entry-server.yml
+            #       kubectl apply -f deployments/split-service.yml
+            #       kubectl apply -f deployments/join-service.yml
+            #       kubectl apply -f services/entry-server.yml
+            #       kubectl apply -f services/split-service.yml
+            #       kubectl apply -f services/join-service.yml
     infra-destroy:
         name: Destroy Kubernetes infrastructure
         if: startsWith(github.event.head_commit.message, '(down)')
