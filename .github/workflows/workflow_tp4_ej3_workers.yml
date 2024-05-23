@@ -50,16 +50,18 @@ jobs:
 
             - name: Wait for Kubernetes cluster to be ready
               run: |
-                  until [ "$(gcloud container clusters describe primary --region=us-central1-a --format='value(status)')" = "RUNNING" ]; do
+                  REGION="us-central1-a"
+                  until [ "$(gcloud container clusters describe primary --region=${REGION} --format='value(status)')" = "RUNNING" ]; do
                     echo "Waiting for Kubernetes cluster to be ready..."
                     sleep 10
                   done
 
             - name: Google Cloud kubectl cluster metadata
               run: |
+                  REGION="us-central1-a"
                   gcloud info
                   gcloud components list
-                  gcloud container clusters get-credentials primary --region=us-central1-a
+                  gcloud container clusters get-credentials primary --region=${REGION}
 
             - name: Wait for RabbitMQ service to be ready
               run: |
