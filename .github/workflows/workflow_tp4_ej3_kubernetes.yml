@@ -91,7 +91,7 @@ jobs:
 
                   gcloud components list
 
-                  gcloud container clusters get-credentials primary --region=us-east1-b
+                  gcloud container clusters get-credentials primary --region=us-central1-a
 
             - name: Create Kubernetes namespaces
               working-directory: TP4/ej3/kubernetes
