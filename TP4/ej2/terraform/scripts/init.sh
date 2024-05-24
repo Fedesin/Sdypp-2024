@@ -1,0 +1,1 @@
+sudo docker run -p 80:5000 --name sobel fedesin31/tp4-ej1-sobel

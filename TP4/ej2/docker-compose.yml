@@ -1,0 +1,10 @@
+version: '3'
+services:
+    splitter-joiner-service:
+        image: fedesin31/tp4-ej1-splitter-joiner:latest
+        container_name: splitter-joiner
+        ports:
+            - '5000:5000'
+        environment:
+            FRAGMENTS_COUNT: ${FRAGMENTS_COUNT}
+            LOAD_BALANCER_URL: ${LOAD_BALANCER_URL}
