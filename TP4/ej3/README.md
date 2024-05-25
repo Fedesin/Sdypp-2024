@@ -35,10 +35,10 @@ Realizamos las siguientes pruebas de performance al procesar imagenes de diferen
 | 02  |         1.886         |         3         |        200        |
 | 03  |         3.688         |         3         |        190        |
 | 05  |        10.658         |         3         |        230        |
-| 01  |          444          |         1         |         0         |
-| 02  |         1.886         |         1         |         0         |
-| 03  |         3.688         |         1         |         0         |
-| 05  |        10.658         |         1         |         0         |
+| 01  |          444          |         1         |        232        |
+| 02  |         1.886         |         1         |        235        |
+| 03  |         3.688         |         1         |        491        |
+| 05  |        10.658         |         1         |        832        |
 
 # Instrucciones para ejecutar el servicio de manera local con docker
 
