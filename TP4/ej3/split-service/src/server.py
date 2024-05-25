@@ -110,14 +110,19 @@ def split(task_id):
                 })
 
             return jsonify({'OK': 'Imagen fragmentada correctamente'}), 200
-        except internal_server_error:
-            return jsonify({'Internal server error': 'Ocurrio un error al dividir la imagen. Reintente en unos momentos.'}), 500
-
+        except InternalServerError as e:
+            return jsonify({'Internal server error': str(e)}), 500
+        except Exception as e:
+            return jsonify({'Error': str(e)}), 500
     else:
         # Método no permitido o imagen no adjunta
         return jsonify({'Method not allowed': 'Método no permitido'}), 405
 
 
+class InternalServerError(Exception):
+    pass
+
+
 @ app.errorhandler(500)
-def internal_server_error(error):
-    print("Se ha producido un error interno del servidor:", error)
+def handle_500_error(error):
+    return jsonify({'Error': 'Internal Server Error'}), 500
