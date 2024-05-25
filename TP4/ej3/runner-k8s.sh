@@ -8,10 +8,18 @@ sleep 5
 current_date_time=$(date +"%Y-%m-%d %H:%M:%S")
 echo "Current date and time: $current_date_time"
 curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image3.jpg" http://35.225.91.133:5000/api/sobel
-# curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image4.jpg" http://35.225.91.133:5000/api/sobel
-# curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image6.jpg" http://35.225.91.133:5000/api/sobel
-# curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image7.jpg" http://35.225.91.133:5000/api/sobel
-# curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image8.jpg" http://35.225.91.133:5000/api/sobel
+sleep 15
+current_date_time=$(date +"%Y-%m-%d %H:%M:%S")
+echo "Current date and time: $current_date_time"
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image4.jpg" http://35.225.91.133:5000/api/sobel
+sleep 15
+current_date_time=$(date +"%Y-%m-%d %H:%M:%S")
+echo "Current date and time: $current_date_time"
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image6.jpg" http://35.225.91.133:5000/api/sobe
+sleep 15
+current_date_time=$(date +"%Y-%m-%d %H:%M:%S")
+echo "Current date and time: $current_date_time"
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image8.jpg" http://35.225.91.133:5000/api/sobel
 
 
 
