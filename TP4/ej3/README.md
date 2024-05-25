@@ -23,16 +23,18 @@ Para ello, será necesario:
 
 ## Pruebas de performance
 
+Realizamos las siguientes pruebas de performance al procesar imagenes de diferentes tamaños y con cantidad de workers variables. El splitter funciona de forma parametrizada, por lo cuál, en cada ejecución dividió la imagen en 5 partes.
+
 |  #  | Tamaño de imagen (KB) | Cantidad de nodos | Tiempo (segundos) |
 | :-: | :-------------------: | :---------------: | :---------------: |
 | 01  |          444          |         5         |        97         |
 | 02  |         1.886         |         5         |        92         |
 | 03  |         3.688         |         5         |        94         |
 | 05  |        10.658         |         5         |        167        |
-| 01  |          444          |         3         |         0         |
-| 02  |         1.886         |         3         |         0         |
-| 03  |         3.688         |         3         |         0         |
-| 05  |        10.658         |         3         |         0         |
+| 01  |          444          |         3         |        124        |
+| 02  |         1.886         |         3         |        200        |
+| 03  |         3.688         |         3         |        190        |
+| 05  |        10.658         |         3         |        230        |
 | 01  |          444          |         1         |         0         |
 | 02  |         1.886         |         1         |         0         |
 | 03  |         3.688         |         1         |         0         |

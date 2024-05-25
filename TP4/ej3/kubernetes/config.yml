@@ -5,7 +5,7 @@ metadata:
     namespace: applications-namespace
 data:
     SPLIT_SERVICE_URL: http://split-service:5000/api/split
-    FRAGMENTS_COUNT: '3' # 5
+    FRAGMENTS_COUNT: '5' # 5
     BUCKET_NAME: sobel
     REDIS_PORT: '6379'
     REDIS_HOST: redis-master.redis-namespace.svc.cluster.local
