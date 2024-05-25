@@ -15,9 +15,10 @@ spec:
         limits:
             memory: '2Gi'
             cpu: '1'
-    policies:
-        - name: sobel-mirror
-          vhost: /
-          pattern: .*sobel.*
-          definition: '{"ha-mode":"all"}'
-          priority: 0
+    additionalConfig: |
+        policies:
+            sobel-mirror:
+                vhost: '/'
+                pattern: '.*sobel.*'
+                definition: '{"ha-mode":"all"}'
+                priority: 0
