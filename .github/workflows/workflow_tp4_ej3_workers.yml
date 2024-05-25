@@ -112,6 +112,7 @@ jobs:
                   terraform plan -lock=false
 
                   terraform apply -lock=false --auto-approve
+
     infra-destroy:
         name: Destroy workers infrastructure
         if: startsWith(github.event.head_commit.message, '(down)')
