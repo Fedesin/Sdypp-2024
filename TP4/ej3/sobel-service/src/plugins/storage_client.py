@@ -22,9 +22,11 @@ def download_image(fragment_name):
     if not os.path.exists('tmp'):
         os.makedirs('tmp/pre')
 
-    # Descargo el fragmento original del bucket
-    blob = bucket.blob(f"pre-sobel/{fragment_name}")
-    blob.download_to_filename(f"tmp/pre/{fragment_name}")
-
-    # Una vez descargado, elimina el fragmento del bucket
-    blob.delete()
+    try:
+        # Descargo el fragmento original del bucket
+        blob = bucket.blob(f"pre-sobel/{fragment_name}")
+        blob.download_to_filename(f"tmp/pre/{fragment_name}")
+        # Una vez descargado, elimina el fragmento del bucket
+        blob.delete()
+    except:
+        print("Error dowloading the fragment")

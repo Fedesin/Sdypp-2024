@@ -33,6 +33,16 @@ Copie el TASK_ID obtenido como respuesta.
 
 2. Abra el navegador y pegue la siguiente URL `http://34.74.201.251:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
 
+## Pruebas de performance
+
+|  #  | Tamaño de imagen (KB) | Cantidad de nodos | Tiempo (segundos) |
+| :-: | :-------------------: | :---------------: | :---------------: |
+| 01  |          444          |         5         |       0.875       |
+| 02  |         1886          |         5         |       7.05        |
+| 03  |         3688          |         5         |       14.29       |
+| 04  |         8926          |         5         |       18.39       |
+| 05  |         10658         |         5         |       18.39       |
+
 # Instrucciones para ejecutar el servicio de manera local con docker
 
 1. Clonar el archivo .env.example y renombrarlo a .env. Si desea, puede actualizar los valores por defecto
