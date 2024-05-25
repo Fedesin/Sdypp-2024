@@ -7,18 +7,4 @@ spec:
     image: rabbitmq:3.13-management
     service:
         type: LoadBalancer
-    replicas: 3
-    resources:
-        requests:
-            memory: '1Gi'
-            cpu: '500m'
-        limits:
-            memory: '2Gi'
-            cpu: '1'
-    additionalConfig: |
-        policies:
-            sobel-mirror:
-                vhost: '/'
-                pattern: '.*sobel.*'
-                definition: '{"ha-mode":"all"}'
-                priority: 0
+    replicas: 1
