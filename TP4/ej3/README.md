@@ -21,27 +21,22 @@ Para ello, será necesario:
 
 ![Diagramas-# HIT 3 (TP 4)](https://github.com/Fedesin/sdypp-2024/assets/117539520/660a280b-d904-4bf5-b8dc-57966502dfa0)
 
-# Instrucciones para interactuar con el servicio corriendo en la nube
-
-1. Ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen). Para este paso es necesario contar con el archivo con las keys (credentials.json) en el directorio raiz del proyecto. También deberá actualizar los valores de variables en el código terraform para adecuarlo a su proyecto GCP
-
-```bash
-sh runner-k8s.sh
-```
-
-Copie el TASK_ID obtenido como respuesta.
-
-2. Abra el navegador y pegue la siguiente URL `http://34.74.201.251:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
-
 ## Pruebas de performance
 
 |  #  | Tamaño de imagen (KB) | Cantidad de nodos | Tiempo (segundos) |
 | :-: | :-------------------: | :---------------: | :---------------: |
-| 01  |          444          |         5         |       0.875       |
-| 02  |         1886          |         5         |       7.05        |
-| 03  |         3688          |         5         |       14.29       |
-| 04  |         8926          |         5         |       18.39       |
-| 05  |         10658         |         5         |       18.39       |
+| 01  |          444          |         5         |         0         |
+| 02  |         1.886         |         5         |         0         |
+| 03  |         3.688         |         5         |         0         |
+| 05  |        10.658         |         5         |         0         |
+| 01  |          444          |         3         |         0         |
+| 02  |         1.886         |         3         |         0         |
+| 03  |         3.688         |         3         |         0         |
+| 05  |        10.658         |         3         |         0         |
+| 01  |          444          |         1         |         0         |
+| 02  |         1.886         |         1         |         0         |
+| 03  |         3.688         |         1         |         0         |
+| 05  |        10.658         |         1         |         0         |
 
 # Instrucciones para ejecutar el servicio de manera local con docker
 
@@ -78,26 +73,24 @@ Copie el TASK_ID obtenido como respuesta.
 
 3. Abra el navegador y pegue la siguiente URL `http://localhost:5001/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
 
-# Instrucciones para ejecutar el cluster k8s
+# Instrucciones para iniciar el cluster k8s
 
 1. Realizar un commit con el mensage "(up)" para crear la infraestructura con el cluster de Kubernetes y las aplicaciones. Esto disparará la ejecución del pipeline de Kubernetes en Github actions.
 
-2. Luego, de asegurarse de que el pipeline de Kubernetes termine su ejecución (aprox 20 min.), realizar un commit con el mensaje "(workers-up)". Esto disparará la ejecución del pipeline de los workers en Github actions.
-
-3. Una vez que el pipeline de los workers termine su ejecución, ejecutar el siguiente comando para obtener la IP del service para utilizar la aplicación sobel:
+2. Luego, de asegurarse de que el pipeline de Kubernetes termine su ejecución (aprox 15 min.) y ejecutar el siguiente comando para obtener la IP del service para utilizar la aplicación sobel:
 
 ```bash
-kubectl get services
+kubectl get services -n applications-namespace
 ```
 
 Copiarse la IP externa del servicio `entry-server`
 
-4. Abrir una terminal nueva y ejecutar el siguiente comando, reemplazando la IP del servicio:
+3. Abrir una terminal nueva y ejecutar el siguiente comando, reemplazando la IP del servicio:
 
 ```bash
-curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Image6.jpg" -w '\nTiempo total: %{time_total}s\n' http://<SERVICE-IP>:5000/api/sobel
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Image6.jpg" -w '\nTiempo total: %{time_total}s\n' http://<ENTRY_SERVER_SERVICE_IP>:5000/api/sobel
 ```
 
 Copie el TASK_ID obtenido como respuesta.
 
-5. Abra el navegador y pegue la siguiente URL `http://<SERVICE-IP>:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
+4. Abra el navegador y pegue la siguiente URL `http://<ENTRY_SERVER_SERVICE_IP>:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
