@@ -14,7 +14,8 @@ def rabbit_connect():
                 pika.ConnectionParameters(
                     host=rabbit_host,
                     credentials=pika.PlainCredentials(
-                        rabbit_user, rabbit_password)
+                        rabbit_user, rabbit_password),
+                    heartbeat=60
                 )
             )
             channel = connection.channel()
