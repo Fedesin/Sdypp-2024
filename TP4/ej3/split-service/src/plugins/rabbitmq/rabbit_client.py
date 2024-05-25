@@ -38,4 +38,4 @@ def rabbit_connect():
         print("Failed to connect to RabbitMQ. Retrying in 5 seconds...")
         time.sleep(5)
 
-        return channel
+    return channel
