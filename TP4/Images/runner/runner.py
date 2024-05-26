@@ -5,9 +5,6 @@ import concurrent.futures
 url = "http://34.172.98.204:5000/api/sobel"
 file_name = "../Image6.jpg"
 
-# Función para enviar la petición a la URL dada
-
-
 def send_request(url, file_name):
     try:
         # Abre el archivo de imagen en modo binario y envía la petición POST con el archivo adjunto
