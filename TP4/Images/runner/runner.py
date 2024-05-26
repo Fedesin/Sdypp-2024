@@ -2,7 +2,7 @@ import requests
 import concurrent.futures
 
 # Define la URL y el nombre del archivo de imagen
-url = "http://34.29.25.48:5000/api/sobel"
+url = "http://34.172.98.204:5000/api/sobel"
 file_name = "../Image6.jpg"
 
 # Función para enviar la petición a la URL dada
@@ -20,7 +20,7 @@ def send_request(url, file_name):
 
 
 # Número de peticiones concurrentes que quieres enviar
-num_requests = 2
+num_requests = 10
 
 # Usa ThreadPoolExecutor para enviar las peticiones concurrentes
 with concurrent.futures.ThreadPoolExecutor(max_workers=num_requests) as executor:
