@@ -44,7 +44,7 @@ resource "google_container_node_pool" "applications" {
 resource "google_container_node_pool" "services" {
   name       = "services"
   cluster    = google_container_cluster.primary.id
-  node_count = 1
+  node_count = 2
 
   management {
     auto_repair  = true
@@ -52,7 +52,7 @@ resource "google_container_node_pool" "services" {
   }
 
   autoscaling {
-    min_node_count = 1
+    min_node_count = 2
     max_node_count = 10
   }
 
