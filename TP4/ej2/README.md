@@ -16,18 +16,18 @@ El proceso que divide la imagen se ejecutará de forma local y estará a la espe
 
 El procesamiento de imagenes para aplicar el filtro sobel decidimos colocarlo en la nube. De esta manera, podemos contar con una base elástica de workers encargados unicamente de recibir peticiones para aplicar el filtro sobel. La nube proporciona recursos escalables que pueden manejar eficientemente el procesamiento de múltiples fragmentos de imagen. La idea es colocar adelante un load-balancer para que distribuya el tráfico de forma eficiente y la aplicación cliente tenga un único punto de acceso y sea transparente la cantidad de workers que hay activos en todo momento, ya que estos pueden iniciarse o apagarse dependiendo de la carga de trabajo.
 
-Una vez que todos los fragmentos han sido procesados, la fase de unificación de los resultados ocurre también de forma local. El encargado de unificar la imagen es el mismo proceso que en un principio la dividió, por lo cuál, es quien recibirá la respuestas de los workers con los fragmentos sobelizados. Además, este proceso es el que actúa como punto de entrada para la comunicación con el cliente, por lo cuál, es quien entregará el resultado final (imagen original sobelizada). 
+Una vez que todos los fragmentos han sido procesados, la fase de unificación de los resultados ocurre también de forma local. El encargado de unificar la imagen es el mismo proceso que en un principio la dividió, por lo cuál, es quien recibirá la respuestas de los workers con los fragmentos sobelizados. Además, este proceso es el que actúa como punto de entrada para la comunicación con el cliente, por lo cuál, es quien entregará el resultado final (imagen original sobelizada).
 
-# Instrucciones
+## Instrucciones
 
 1. Clonar el archivo .env.example y renombrarlo a .env
 
 ```
 # Esto es para indicarle la URL del balanceador de cargas
-LOAD_BALANCER_URL = <URL_PÚBLICA>
+LOAD_BALANCER_URL = http://<IP_PUBLICA_BALANCER>:80/api/sobel
 
 # Definir la cantidad de partes en las que se dividirá la imagen
-FRAGMENTS_COUNT = 8
+FRAGMENTS_COUNT = 4
 ```
 
 3. Iniciar la aplicación de manera local. Los workers estarán desplegados en la nube.
@@ -40,4 +40,10 @@ docker compose up -d
 
 ```bash
 curl -X POST -H "Content-Type: multipart/form-data" -F "image=@Image.jpg" -w '\nTiempo total: %{time_total}s\n' http://localhost:5000/api/sobel --output imagen_procesada.png
+```
+
+5. Alternativamente, puede ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen)
+
+```bash
+sh runner.sh
 ```

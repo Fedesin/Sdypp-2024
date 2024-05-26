@@ -4,3 +4,4 @@
 .env
 credentials.json
 build.sh
+runner-k8s.sh

@@ -40,13 +40,13 @@ Realizamos las siguientes pruebas de performance al procesar imagenes de diferen
 | 03  |         3.688         |         1         |        491        |
 | 05  |        10.658         |         1         |        832        |
 
-# Instrucciones para ejecutar el servicio de manera local con docker
+## Instrucciones para ejecutar el servicio de manera local con docker (Requiere el bucket "sobel" para las imagenes en la nube)
 
 1. Clonar el archivo .env.example y renombrarlo a .env. Si desea, puede actualizar los valores por defecto
 
 ```
 # Definir la cantidad de partes en las que se dividirá la imagen
-FRAGMENTS_COUNT=4
+FRAGMENTS_COUNT=3
 
 # Host y puerto donde escucha el servidor redis
 REDIS_PORT=6379
@@ -65,21 +65,23 @@ RABBITMQ_USER=rabbituser
 RABBITMQ_PASSWORD=rabbitpassword
 ```
 
-2. Ejecutar el siguiente comando (debe modificar la linea de curl si desea utilizar otra imagen). Para este paso es necesario contar con el archivo con las keys (credentials.json) en el directorio raiz del proyecto. También deberá actualizar los valores de variables en el código terraform para adecuarlo a su proyecto GCP.
+2. Iniciar los contenedores y la red docker. Para este paso es necesario contar con el archivo con las keys (credentials.json) en el directorio raiz del proyecto.
 
 ```bash
-sh runner.sh
+docker compose up -d
 ```
 
-Copie el TASK_ID obtenido como respuesta.
-
-3. Abra el navegador y pegue la siguiente URL `http://localhost:5001/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
-
-# Instrucciones para iniciar el cluster k8s
+## Instrucciones para desplegar el cluster de Kubernetes
 
 1. Realizar un commit con el mensage "(up)" para crear la infraestructura con el cluster de Kubernetes y las aplicaciones. Esto disparará la ejecución del pipeline de Kubernetes en Github actions.
 
-2. Luego, de asegurarse de que el pipeline de Kubernetes termine su ejecución (aprox 15 min.) y ejecutar el siguiente comando para obtener la IP del service para utilizar la aplicación sobel:
+2. Luego, de asegurarse de que el pipeline de Kubernetes termine su ejecución (aprox 15 min.) y ejecutar el siguiente comando para obtener las credenciales para poder acceder al cluster:
+
+```bash
+gcloud container clusters get-credentials primary --region=us-central1-a
+```
+
+3.  Luego, ejecutar el siguiente comando para obtener la IP del service para utilizar la aplicación sobel:
 
 ```bash
 kubectl get services -n applications-namespace
@@ -90,7 +92,7 @@ Copiarse la IP externa del servicio `entry-server`
 3. Abrir una terminal nueva y ejecutar el siguiente comando, reemplazando la IP del servicio:
 
 ```bash
-curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Image6.jpg" -w '\nTiempo total: %{time_total}s\n' http://<ENTRY_SERVER_SERVICE_IP>:5000/api/sobel
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Image6.jpg" http://<ENTRY_SERVER_SERVICE_IP>:5000/api/sobel
 ```
 
 Copie el TASK_ID obtenido como respuesta.

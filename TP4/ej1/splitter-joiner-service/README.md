@@ -4,7 +4,7 @@ Desarrolle este proceso de manera distribuida donde se debe partir la imagen en 
 
 Mejore la aplicación del punto anterior para que, en caso de que un proceso distribuido (al que se le asignó parte de la imagen a procesar - WORKER) se caiga y no responda, el proceso principal detecte esta situación y pida este cálculo a otro proceso.
 
-# Instrucciones
+## Instrucciones
 
 1. Clonar el archivo .env.example y renombrarlo a .env
 
@@ -13,7 +13,7 @@ Mejore la aplicación del punto anterior para que, en caso de que un proceso dis
 LOAD_BALANCER_URL = http://load-balancer:80/api/sobel
 
 # Definir la cantidad de partes en las que se dividirá la imagen
-FRAGMENTS_COUNT = 6
+FRAGMENTS_COUNT = 3
 ```
 
 2. (opcional) Si desea puede modificar la cantidad de workers (por defecto son 3) sobel que se inician modificando el docker-compose.yml. La idea es pegar el replicar el siguiente bloque tantas veces como desea, reemplanzando <N> por el orden del worker. Es decir, si hay tres workers y desea agregar un cuarto, N = 4.
