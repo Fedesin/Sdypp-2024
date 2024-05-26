@@ -25,20 +25,29 @@ Para ello, será necesario:
 
 Realizamos las siguientes pruebas de performance al procesar imagenes de diferentes tamaños y con cantidad de workers variables. El splitter funciona de forma parametrizada, por lo cuál, en cada ejecución dividió la imagen en 5 partes.
 
-|  #  | Tamaño de imagen (KB) | Cantidad de nodos | Tiempo (segundos) |
-| :-: | :-------------------: | :---------------: | :---------------: |
-| 01  |          444          |         5         |        97         |
-| 02  |         1.886         |         5         |        92         |
-| 03  |         3.688         |         5         |        94         |
-| 05  |        10.658         |         5         |        167        |
-| 01  |          444          |         3         |        124        |
-| 02  |         1.886         |         3         |        200        |
-| 03  |         3.688         |         3         |        190        |
-| 05  |        10.658         |         3         |        230        |
-| 01  |          444          |         1         |        232        |
-| 02  |         1.886         |         1         |        235        |
-| 03  |         3.688         |         1         |        491        |
-| 05  |        10.658         |         1         |        832        |
+| Prueba | Tamaño de imagen (KB) | Cantidad de workers | Tiempo (segundos) |
+| :----: | :-------------------: | :-----------------: | :---------------: |
+|   01   |          444          |          5          |        97         |
+|   02   |         1.886         |          5          |        92         |
+|   03   |         3.688         |          5          |        94         |
+|   05   |        10.658         |          5          |        167        |
+|   01   |          444          |          3          |        124        |
+|   02   |         1.886         |          3          |        200        |
+|   03   |         3.688         |          3          |        190        |
+|   05   |        10.658         |          3          |        230        |
+|   01   |          444          |          1          |        232        |
+|   02   |         1.886         |          1          |        235        |
+|   03   |         3.688         |          1          |        491        |
+|   05   |        10.658         |          1          |        832        |
+
+Por otro lado, se realizaron pruebas de performance modificando la cantidad de peticiones concurrentes que se realizan.
+
+| Prueba | Tamaño de imagen (KB) | Cantidad de peticiones concurrentes | Cantidad de workers | Tiempo promedio (segundos) |
+| :----: | :-------------------: | :---------------------------------: | :-----------------: | :------------------------: |
+|   01   |         3.688         |                  2                  |          4          |            149             |
+|   02   |         3.688         |                  4                  |          4          |           189,5            |
+|   03   |         3.688         |                  6                  |          4          |           241,7            |
+|   04   |         3.688         |                  8                  |          4          |           385,8            |
 
 ## Instrucciones para ejecutar el servicio de manera local con docker (Requiere el bucket "sobel" para las imagenes en la nube)
 
@@ -78,7 +87,7 @@ docker compose up -d
 2. Luego, de asegurarse de que el pipeline de Kubernetes termine su ejecución (aprox 15 min.) y ejecutar el siguiente comando para obtener las credenciales para poder acceder al cluster:
 
 ```bash
-gcloud container clusters get-credentials primary --region=us-central1-a
+gcloud container clusters get-credentials primary --region=us-east1-b
 ```
 
 3.  Luego, ejecutar el siguiente comando para obtener la IP del service para utilizar la aplicación sobel:
