@@ -49,6 +49,54 @@ Por otro lado, se realizaron pruebas de performance modificando la cantidad de p
 |   03   |         3.688         |                  6                  |          4          |           241,7            |
 |   04   |         3.688         |                  8                  |          4          |           385,8            |
 
+# Instrucciones
+
+0. Verificar si el cluster ya está levantado. Para eso, puede ejecuctar el siguiente comando:
+
+```
+curl http://IP_ENTRY_SERVER:5000/api/status
+```
+
+Debería recibir un status 200, indicando que el entry-server está corriendo.
+
+1. Realizar una petición para iniciar el proceso sobel:
+
+```bash
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Image6.jpg" http://<IP_ENTRY_SERVER>:5000/api/sobel
+```
+
+Copie el TASK_ID obtenido como respuesta.
+
+2. Abra el navegador y pegue la siguiente URL `http://<IP_ENTRY_SERVER>:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
+
+## Instrucciones para desplegar el cluster de Kubernetes
+
+1. Realizar un commit con el mensage "(up)" para crear la infraestructura con el cluster de Kubernetes y las aplicaciones. Esto disparará la ejecución del pipeline de Kubernetes en Github actions.
+
+2. Luego, de asegurarse de que el pipeline de Kubernetes termine su ejecución (aprox 15 min.) y ejecutar el siguiente comando para obtener las credenciales para poder acceder al cluster:
+
+```bash
+gcloud container clusters get-credentials primary --region=us-east1-b
+```
+
+3.  Luego, ejecutar el siguiente comando para obtener la IP del service para utilizar la aplicación sobel:
+
+```bash
+kubectl get services -n applications-namespace
+```
+
+Copiarse la IP externa del servicio `entry-server`
+
+3. Abrir una terminal nueva y ejecutar el siguiente comando, reemplazando la IP del servicio:
+
+```bash
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Image6.jpg" http://<ENTRY_SERVER_SERVICE_IP>:5000/api/sobel
+```
+
+Copie el TASK_ID obtenido como respuesta.
+
+4. Abra el navegador y pegue la siguiente URL `http://<ENTRY_SERVER_SERVICE_IP>:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
+
 ## Instrucciones para ejecutar el servicio de manera local con docker (Requiere el bucket "sobel" para las imagenes en la nube)
 
 1. Clonar el archivo .env.example y renombrarlo a .env. Si desea, puede actualizar los valores por defecto
@@ -79,31 +127,3 @@ RABBITMQ_PASSWORD=rabbitpassword
 ```bash
 docker compose up -d
 ```
-
-## Instrucciones para desplegar el cluster de Kubernetes
-
-1. Realizar un commit con el mensage "(up)" para crear la infraestructura con el cluster de Kubernetes y las aplicaciones. Esto disparará la ejecución del pipeline de Kubernetes en Github actions.
-
-2. Luego, de asegurarse de que el pipeline de Kubernetes termine su ejecución (aprox 15 min.) y ejecutar el siguiente comando para obtener las credenciales para poder acceder al cluster:
-
-```bash
-gcloud container clusters get-credentials primary --region=us-east1-b
-```
-
-3.  Luego, ejecutar el siguiente comando para obtener la IP del service para utilizar la aplicación sobel:
-
-```bash
-kubectl get services -n applications-namespace
-```
-
-Copiarse la IP externa del servicio `entry-server`
-
-3. Abrir una terminal nueva y ejecutar el siguiente comando, reemplazando la IP del servicio:
-
-```bash
-curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Image6.jpg" http://<ENTRY_SERVER_SERVICE_IP>:5000/api/sobel
-```
-
-Copie el TASK_ID obtenido como respuesta.
-
-4. Abra el navegador y pegue la siguiente URL `http://<ENTRY_SERVER_SERVICE_IP>:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
