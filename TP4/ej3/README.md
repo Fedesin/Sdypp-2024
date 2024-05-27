@@ -76,7 +76,7 @@ Copie el TASK_ID obtenido como respuesta.
 2. Luego, de asegurarse de que el pipeline de Kubernetes termine su ejecución (aprox 15 min.) y ejecutar el siguiente comando para obtener las credenciales para poder acceder al cluster:
 
 ```bash
-gcloud container clusters get-credentials primary --region=us-east1-b
+gcloud container clusters get-credentials primary --region=us-east4-a
 ```
 
 3.  Luego, ejecutar el siguiente comando para obtener la IP del service para utilizar la aplicación sobel:
