@@ -51,23 +51,23 @@ Por otro lado, se realizaron pruebas de performance modificando la cantidad de p
 
 # Instrucciones
 
-0. Verificar si el cluster ya está levantado. Para eso, puede ejecuctar el siguiente comando:
+1. Verificar si el cluster ya está levantado. Para eso, puede ejecuctar el siguiente comando:
 
 ```
-curl http://IP_ENTRY_SERVER:5000/api/status
+curl http://34.48.91.203:5000/api/status
 ```
 
 Debería recibir un status 200, indicando que el entry-server está corriendo.
 
-1. Realizar una petición para iniciar el proceso sobel:
+2. Realizar una petición para iniciar el proceso sobel:
 
 ```bash
-curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Image6.jpg" http://<IP_ENTRY_SERVER>:5000/api/sobel
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@../Images/Image6.jpg" http://34.48.91.203:5000/api/sobel
 ```
 
 Copie el TASK_ID obtenido como respuesta.
 
-2. Abra el navegador y pegue la siguiente URL `http://<IP_ENTRY_SERVER>:5000/api/results/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
+2. Abra el navegador y pegue la siguiente URL `http://34.48.91.203:5000/api/result/<TASK_ID>`, reemplazando el valor de TASK_ID obtenido en el paso anterior. El JSON que muestra como respuesta indica el estado de la tarea. Cuando la tarea esté completa, le mostrará la URL que le permitirá obtener la imagen sobel final.
 
 ## Instrucciones para desplegar el cluster de Kubernetes
 
