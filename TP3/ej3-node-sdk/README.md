@@ -53,7 +53,9 @@ Algo así debería estar el estado de Terraform cuando no hay recursos siendo ut
 
 Sin embargo, al eliminar la instancia por fuera de Terraform, el contenido del archivo `terraform.tfstate` sigue igual que cuando iniciamos la VM, como si no hubiesen ocurrido cambios en la nube.
 
-Cuando volvemos a ejecutar un `terraform plan`, Terraform consulta el estado actual de la nube para ver que acciones debe llevar a cabo para lograr la infraestructura deseada, por lo cuál, detecta que debe crear el recurso (vm-instance) ya que no existe más. Si bien en la consola indica que se está refrescando el estado, en este paso Terraform no actualiza el estado `terraform.tfstate`, pero si  está consultando la infraestructura existente para obtener su estado actual y luego compararlo con la infraestructura deseada definida en los archivos de configuración.
+Cuando volvemos a ejecutar un `terraform plan`, Terraform consulta el estado actual de la nube para ver que acciones debe llevar a cabo para lograr la infraestructura deseada, por lo cuál, detecta que debe crear el recurso (vm-instance) ya que no existe más. En realidad el comando que realiza la consulta del estado actual es `terraform refresh`, pero al ejecutar un `terraform plan`, se está refrescando el estado de forma indirecta, ya que por debajo el `plan` hace uso del `refresh`.
+
+Si bien en la consola indica que se está refrescando el estado, en este paso Terraform no actualiza el estado `terraform.tfstate`, pero si está consultando la infraestructura existente para obtener su estado actual y luego compararlo con la infraestructura deseada definida en los archivos de configuración.
 
 Al ejecutar `terraform apply`, comienza la creación de todos los recursos indicados en la configuración de la infraestructura. Ahora sí, al finalizar el proceso, Terraform vuelve a actualizar su estado para reflejar el estado actual de la infraestructura luego de los cambios realizados.
 
@@ -72,5 +74,3 @@ Por último, se ejecuta un `terraform destroy` para destruir los recursos en la 
 ```
 
 ![image](https://github.com/Fedesin/sdypp-2024/assets/117539520/0de28706-d2e5-483a-8274-c8384ecee1f7)
-
-

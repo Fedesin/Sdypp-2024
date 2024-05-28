@@ -25,7 +25,11 @@ instance_ip=$(cat ./temp/instance_ip.txt | tr -d '"')
 ssh -i ./.keys/ssh_private_key.pem ${username}@${instance_ip}
 ```
 
+Idealmente, la regla de firewall que habilita conexiones en el puerto 22 para SSH no debería habilitar a todas las IPs origen, ya que esto implicaría un riesgo de seguridad alto.
+Se estaría permitiendo que desde cualquier lugar se tenga la posibilidad de intentar acceder remotamente a la instancia.
+
 Los valores de username, instance_ip y la clave privada son obtenidos del output de terraform.
+
 ```
 resource "local_file" "ssh_private_key_pem" {
   content         = tls_private_key.keys.private_key_pem
@@ -51,20 +55,19 @@ resource "local_file" "instance_ip" {
 
 Iniciamos al mismo tiempo la descarga de la ISO de Ubuntu 22 de forma local y en una instancia en GCP. Se puede notar una gran diferencia en la velocidad en la que la descarga se completa.
 
-***Descarga en VM GCP***
+**_Descarga en VM GCP_**
 
 ![cloud](https://github.com/Fedesin/sdypp-2024/assets/117539520/acf05368-f216-4be2-9685-0bd91ff514b7)
 
-***Descarga local***
+**_Descarga local_**
 
 ![local](https://github.com/Fedesin/sdypp-2024/assets/117539520/837eacd6-38d3-4a59-88a1-f6a455c2d626)
 
+Asumimos que esto se debe a que la red en la que se encuentra la VM de Google Cloud puede tener una tasa de transferencia más alta (MB/seg) en comparación con nuestra red local, siendo este factor el que consideramos más influyente en la velocidad de la descarga del archivo de la ISO.
 
-Asumimos que se debe a que la red en la que se encuentra la VM de Google Cloud puede tener un ancho de banda más alto y quizás una menor latencia en comparación con nuestra red local.
+Otro factor que puede influir es la ubicación del servidor de origen desde el cual se está descargando la ISO puede tener un impacto en la velocidad de descarga. Si el servidor de origen está más cerca de la infraestructura de Google Cloud que de tu ubicación local, la descarga podría ser más rápida debido a la baja latencia en la comunicación.
 
-Otro factor que puede influir es la ubicación del servidor de origen desde el cual se está descargando la ISO puede tener un impacto en la velocidad de descarga. Si el servidor de origen está más cerca de la infraestructura de Google Cloud que de tu ubicación local, la descarga podría ser más rápida en la VM.
-
-Incluso, los proveedores de servicios en la nube a menudo implementan optimizaciones de red, como la distribución de contenido en caché o la optimización de rutas, que pueden mejorar la velocidad de descarga de los recursos. Estas optimizaciones pueden no estar presentes en tu red local.
+Incluso, los proveedores de servicios en la nube a menudo implementan optimizaciones de red, como la distribución de contenido en caché o la optimización de rutas, que pueden mejorar la velocidad de descarga de los recursos.
 
 ## Copiando un archivo a la VM en GCP
 
@@ -77,14 +80,14 @@ instance_ip=$(cat ./temp/instance_ip.txt | tr -d '"')
 # Copiamos este archivo README en la VM en la nube.
 scp -i ./.keys/ssh_private_key.pem ./README.md ${username}@${instance_ip}:/home/${username}
 ```
+
 ![scp-local](https://github.com/Fedesin/sdypp-2024/assets/117539520/8229ee14-5767-4649-8b5d-f0cac5320dde)
 ![scp-remote](https://github.com/Fedesin/sdypp-2024/assets/117539520/4a619b4b-789d-4bf1-96d4-942698fe0083)
 
-
-Salimos de la vm, presionando 
+Salimos de la vm, presionando
 
 `Control + D`
 
 Finalmente matamos la vm con el comando:
 
- `terraform destroy --auto-approve`
+`terraform destroy --auto-approve`
