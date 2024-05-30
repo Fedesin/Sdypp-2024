@@ -1,6 +1,6 @@
 # HIT 3 | Sobel contenerizado asincrónico y escalable
 
-A diferencia del clúster anterior, la idea es que construya una infraestructura basada en la nube pero ahora con un enfoque diferente
+A diferencia del clúster anterior, la idea es que construya una infraestructura basada en la nube pero ahora con un enfoque diferente.
 
 Para ello, será necesario:
 
