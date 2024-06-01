@@ -37,7 +37,7 @@ El estado de Terraform se actualizará automáticamente siempre y cuando se cree
 
 Si creamos una instancia de máquina virtual en la nube con Terraform, el estado reflejará esos cambios. En caso de que la instancia la eliminemos desde esta aplicación que utiliza el SDK de GCP, el estado de Terraform no notará esos cambios que ocurrieron en los recursos en la nube.
 
-Algo así debería estar el estado de Terraform cuando no hay recursos siendo utilizados en la nube.
+Algo así debería estar el estado de Terraform cuando no hay recursos siendo utilizados en la nube
 
 ```
 {
